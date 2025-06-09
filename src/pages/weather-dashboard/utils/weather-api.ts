@@ -136,8 +136,28 @@ export async function fetchWeatherData(latitude: number, longitude: number): Pro
   }
 }
 
-export function formatTemperature(temp: number): string {
+export function formatTemperature(temp: number, unit: 'celsius' | 'fahrenheit' = 'celsius'): string {
+  if (unit === 'fahrenheit') {
+    const fahrenheit = (temp * 9) / 5 + 32;
+    return `${Math.round(fahrenheit)}°F`;
+  }
   return `${Math.round(temp)}°C`;
+}
+
+export function convertTemperature(
+  temp: number,
+  fromUnit: 'celsius' | 'fahrenheit',
+  toUnit: 'celsius' | 'fahrenheit',
+): number {
+  if (fromUnit === toUnit) return temp;
+
+  if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
+    return (temp * 9) / 5 + 32;
+  } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
+    return ((temp - 32) * 5) / 9;
+  }
+
+  return temp;
 }
 
 export function formatDate(dateString: string): string {

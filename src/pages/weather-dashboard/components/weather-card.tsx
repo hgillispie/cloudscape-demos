@@ -9,6 +9,7 @@ import Grid from '@cloudscape-design/components/grid';
 import Box from '@cloudscape-design/components/box';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import KeyValuePairs from '@cloudscape-design/components/key-value-pairs';
+import ButtonDropdown from '@cloudscape-design/components/button-dropdown';
 
 import { CurrentWeather, WeatherLocation } from '../types';
 import { getWeatherDescription, formatTemperature, getWindDirection, formatTime } from '../utils/weather-api';
@@ -16,15 +17,46 @@ import { getWeatherDescription, formatTemperature, getWindDirection, formatTime 
 interface WeatherCardProps {
   location: WeatherLocation;
   weather: CurrentWeather;
+  temperatureUnit: 'celsius' | 'fahrenheit';
+  onTemperatureUnitChange: (unit: 'celsius' | 'fahrenheit') => void;
 }
 
-export function WeatherCard({ location, weather }: WeatherCardProps) {
+export function WeatherCard({ location, weather, temperatureUnit, onTemperatureUnitChange }: WeatherCardProps) {
   const weatherInfo = getWeatherDescription(weather.weatherCode);
   const windDirection = getWindDirection(weather.windDirection);
   const lastUpdated = formatTime(weather.time);
 
   return (
-    <Container header={<Header variant="h2">Current Weather</Header>}>
+    <Container
+      header={
+        <Header
+          variant="h2"
+          actions={
+            <ButtonDropdown
+              items={[
+                {
+                  id: 'celsius',
+                  text: 'Celsius (°C)',
+                  disabled: temperatureUnit === 'celsius',
+                },
+                {
+                  id: 'fahrenheit',
+                  text: 'Fahrenheit (°F)',
+                  disabled: temperatureUnit === 'fahrenheit',
+                },
+              ]}
+              onItemClick={({ detail }) => onTemperatureUnitChange(detail.id as 'celsius' | 'fahrenheit')}
+              variant="icon"
+              ariaLabel="Temperature unit"
+            >
+              {temperatureUnit === 'celsius' ? '°C' : '°F'}
+            </ButtonDropdown>
+          }
+        >
+          Current Weather
+        </Header>
+      }
+    >
       <SpaceBetween size="l">
         <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
           <SpaceBetween size="m">
@@ -43,7 +75,7 @@ export function WeatherCard({ location, weather }: WeatherCardProps) {
                 {weatherInfo.icon}
               </Box>
               <Box variant="h1" margin={{ vertical: 'xs' }}>
-                {formatTemperature(weather.temperature)}
+                {formatTemperature(weather.temperature, temperatureUnit)}
               </Box>
               <Box variant="h4" color="text-status-subdued">
                 {weatherInfo.description}

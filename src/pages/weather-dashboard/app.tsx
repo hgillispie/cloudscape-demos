@@ -20,6 +20,7 @@ import { fetchWeatherData } from './utils/weather-api';
 import { LocationSearch } from './components/location-search';
 import { WeatherCard } from './components/weather-card';
 import { ForecastTable } from './components/forecast-table';
+import { ForecastScroll } from './components/forecast-scroll';
 
 export function App() {
   const [selectedLocation, setSelectedLocation] = useState<WeatherLocation | null>(null);
@@ -27,6 +28,7 @@ export function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [forecastView, setForecastView] = useState<'daily' | 'hourly'>('daily');
+  const [temperatureUnit, setTemperatureUnit] = useState<'celsius' | 'fahrenheit'>('celsius');
 
   // Load default location (London) on mount
   useEffect(() => {
@@ -119,13 +121,21 @@ export function App() {
 
             {selectedLocation && weatherData && !loading && !error && (
               <SpaceBetween size="l">
-                <WeatherCard location={selectedLocation} weather={weatherData.current} />
+                <WeatherCard
+                  location={selectedLocation}
+                  weather={weatherData.current}
+                  temperatureUnit={temperatureUnit}
+                  onTemperatureUnitChange={setTemperatureUnit}
+                />
+
+                <ForecastScroll daily={weatherData.daily} temperatureUnit={temperatureUnit} />
 
                 <ForecastTable
                   daily={weatherData.daily}
                   hourly={weatherData.hourly}
                   viewMode={forecastView}
                   onViewModeChange={setForecastView}
+                  temperatureUnit={temperatureUnit}
                 />
               </SpaceBetween>
             )}

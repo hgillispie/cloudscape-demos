@@ -24,9 +24,10 @@ interface ForecastTableProps {
   hourly: HourlyForecast;
   viewMode: 'daily' | 'hourly';
   onViewModeChange: (mode: 'daily' | 'hourly') => void;
+  temperatureUnit: 'celsius' | 'fahrenheit';
 }
 
-export function ForecastTable({ daily, hourly, viewMode, onViewModeChange }: ForecastTableProps) {
+export function ForecastTable({ daily, hourly, viewMode, onViewModeChange, temperatureUnit }: ForecastTableProps) {
   const dailyItems = daily.time.map((time, index) => ({
     id: `daily-${index}`,
     date: time,
@@ -75,8 +76,8 @@ export function ForecastTable({ daily, hourly, viewMode, onViewModeChange }: For
       header: 'Temperature',
       cell: (item: (typeof dailyItems)[0]) => (
         <SpaceBetween direction="horizontal" size="xs">
-          <Badge color="red">{formatTemperature(item.tempMax)}</Badge>
-          <Badge color="blue">{formatTemperature(item.tempMin)}</Badge>
+          <Badge color="red">{formatTemperature(item.tempMax, temperatureUnit)}</Badge>
+          <Badge color="blue">{formatTemperature(item.tempMin, temperatureUnit)}</Badge>
         </SpaceBetween>
       ),
       minWidth: 140,
@@ -120,7 +121,7 @@ export function ForecastTable({ daily, hourly, viewMode, onViewModeChange }: For
     {
       id: 'temperature',
       header: 'Temperature',
-      cell: (item: (typeof hourlyItems)[0]) => formatTemperature(item.temperature),
+      cell: (item: (typeof hourlyItems)[0]) => formatTemperature(item.temperature, temperatureUnit),
       minWidth: 100,
     },
     {
