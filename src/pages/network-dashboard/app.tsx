@@ -112,10 +112,11 @@ export function App() {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [showWarning, setShowWarning] = useState(true);
 
-  const filteredDevices = devicesData.filter(device =>
-    device.name.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.ip.includes(filterText) ||
-    device.type.toLowerCase().includes(filterText.toLowerCase())
+  const filteredDevices = devicesData.filter(
+    device =>
+      device.name.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.ip.includes(filterText) ||
+      device.type.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   return (
@@ -132,7 +133,7 @@ export function App() {
                   { text: 'Administrative Dashboard', href: '#' },
                 ]}
               />
-              
+
               <Header
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
@@ -187,8 +188,12 @@ export function App() {
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
               <Container>
                 <SpaceBetween size="m">
-                  <Box variant="h3" color="text-label">Network traffic</Box>
-                  <div style={{ height: '300px', backgroundColor: '#fff', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)' }}>
+                  <Box variant="h3" color="text-label">
+                    Network traffic
+                  </Box>
+                  <div
+                    style={{ height: '300px', backgroundColor: '#fff', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)' }}
+                  >
                     <AreaChart
                       series={[
                         {
@@ -218,29 +223,47 @@ export function App() {
                         <div style={{ fontSize: '14px', color: '#5F6B7A' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                              <div style={{ 
-                                width: '14px', 
-                                height: '14px', 
-                                borderRadius: '2px', 
-                                border: '1px solid #688AE8', 
-                                backgroundColor: 'rgba(116, 146, 231, 0.40)' 
-                              }} />
+                              <div
+                                style={{
+                                  width: '14px',
+                                  height: '14px',
+                                  borderRadius: '2px',
+                                  border: '1px solid #688AE8',
+                                  backgroundColor: 'rgba(116, 146, 231, 0.40)',
+                                }}
+                              />
                               <span>Site 1</span>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                              <div style={{ 
-                                width: '14px', 
-                                height: '14px', 
-                                borderRadius: '2px', 
-                                border: '1px solid #C33D69', 
-                                backgroundColor: 'rgba(195, 61, 105, 0.40)' 
-                              }} />
+                              <div
+                                style={{
+                                  width: '14px',
+                                  height: '14px',
+                                  borderRadius: '2px',
+                                  border: '1px solid #C33D69',
+                                  backgroundColor: 'rgba(195, 61, 105, 0.40)',
+                                }}
+                              />
                               <span>Site 2</span>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                               <div style={{ width: '12px', height: '3px', display: 'flex', gap: '2px' }}>
-                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
-                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
+                                <div
+                                  style={{
+                                    width: '6px',
+                                    height: '3px',
+                                    backgroundColor: '#5F6B7A',
+                                    borderRadius: '1px',
+                                  }}
+                                />
+                                <div
+                                  style={{
+                                    width: '6px',
+                                    height: '3px',
+                                    backgroundColor: '#5F6B7A',
+                                    borderRadius: '1px',
+                                  }}
+                                />
                               </div>
                               <span>Performance goal</span>
                             </div>
@@ -254,7 +277,9 @@ export function App() {
 
               <Container>
                 <SpaceBetween size="m">
-                  <Box variant="h3" color="text-label">Credit Usage</Box>
+                  <Box variant="h3" color="text-label">
+                    Credit Usage
+                  </Box>
                   <div style={{ height: '300px', backgroundColor: '#fff' }}>
                     <BarChart
                       series={[
@@ -279,18 +304,34 @@ export function App() {
                         <div style={{ fontSize: '14px', color: '#5F6B7A' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                              <div style={{ 
-                                width: '14px', 
-                                height: '14px', 
-                                borderRadius: '2px', 
-                                backgroundColor: '#688AE8' 
-                              }} />
+                              <div
+                                style={{
+                                  width: '14px',
+                                  height: '14px',
+                                  borderRadius: '2px',
+                                  backgroundColor: '#688AE8',
+                                }}
+                              />
                               <span>Site 1</span>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                               <div style={{ width: '12px', height: '3px', display: 'flex', gap: '2px' }}>
-                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
-                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
+                                <div
+                                  style={{
+                                    width: '6px',
+                                    height: '3px',
+                                    backgroundColor: '#5F6B7A',
+                                    borderRadius: '1px',
+                                  }}
+                                />
+                                <div
+                                  style={{
+                                    width: '6px',
+                                    height: '3px',
+                                    backgroundColor: '#5F6B7A',
+                                    borderRadius: '1px',
+                                  }}
+                                />
                               </div>
                               <span>Performance goal</span>
                             </div>
