@@ -173,11 +173,7 @@ export function App() {
                   type="error"
                   dismissible
                   onDismiss={() => setShowWarning(false)}
-                  action={
-                    <Button onClick={() => setShowWarning(false)}>
-                      Dismiss
-                    </Button>
-                  }
+                  action={<Button onClick={() => setShowWarning(false)}>Dismiss</Button>}
                 >
                   This is a warning message
                 </Alert>
