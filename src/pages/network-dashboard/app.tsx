@@ -19,26 +19,26 @@ import { ContentLayout } from './components/content-layout';
 
 // Sample data for charts
 const networkTrafficData = [
-  { x: 'x1', y1: 20, y2: 15 },
-  { x: 'x2', y1: 25, y2: 18 },
-  { x: 'x3', y1: 30, y2: 22 },
-  { x: 'x4', y1: 35, y2: 28 },
-  { x: 'x5', y1: 40, y2: 32 },
-  { x: 'x6', y1: 45, y2: 35 },
-  { x: 'x7', y1: 50, y2: 40 },
-  { x: 'x8', y1: 48, y2: 38 },
-  { x: 'x9', y1: 52, y2: 42 },
-  { x: 'x10', y1: 55, y2: 45 },
-  { x: 'x11', y1: 58, y2: 48 },
-  { x: 'x12', y1: 60, y2: 50 },
+  { x: new Date(2024, 0, 1), y1: 20, y2: 15 },
+  { x: new Date(2024, 0, 2), y1: 25, y2: 18 },
+  { x: new Date(2024, 0, 3), y1: 30, y2: 22 },
+  { x: new Date(2024, 0, 4), y1: 35, y2: 28 },
+  { x: new Date(2024, 0, 5), y1: 40, y2: 32 },
+  { x: new Date(2024, 0, 6), y1: 45, y2: 35 },
+  { x: new Date(2024, 0, 7), y1: 50, y2: 40 },
+  { x: new Date(2024, 0, 8), y1: 48, y2: 38 },
+  { x: new Date(2024, 0, 9), y1: 52, y2: 42 },
+  { x: new Date(2024, 0, 10), y1: 55, y2: 45 },
+  { x: new Date(2024, 0, 11), y1: 58, y2: 48 },
+  { x: new Date(2024, 0, 12), y1: 60, y2: 50 },
 ];
 
 const creditUsageData = [
-  { x: 'x1', y: 30 },
-  { x: 'x2', y: 45 },
-  { x: 'x3', y: 35 },
-  { x: 'x4', y: 20 },
-  { x: 'x5', y: 38 },
+  { x: new Date(2024, 0, 1), y: 30 },
+  { x: new Date(2024, 0, 2), y: 45 },
+  { x: new Date(2024, 0, 3), y: 35 },
+  { x: new Date(2024, 0, 4), y: 20 },
+  { x: new Date(2024, 0, 5), y: 38 },
 ];
 
 // Sample data for devices table
