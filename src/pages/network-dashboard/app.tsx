@@ -15,6 +15,7 @@ import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
 import Checkbox from '@cloudscape-design/components/checkbox';
+import Box from '@cloudscape-design/components/box';
 import { ContentLayout } from './components/content-layout';
 
 // Sample data for charts
@@ -34,11 +35,11 @@ const networkTrafficData = [
 ];
 
 const creditUsageData = [
-  { x: new Date(2024, 0, 1), y: 30 },
-  { x: new Date(2024, 0, 2), y: 45 },
-  { x: new Date(2024, 0, 3), y: 35 },
-  { x: new Date(2024, 0, 4), y: 20 },
-  { x: new Date(2024, 0, 5), y: 38 },
+  { x: 'x1', y: 30 },
+  { x: 'x2', y: 45 },
+  { x: 'x3', y: 35 },
+  { x: 'x4', y: 20 },
+  { x: 'x5', y: 38 },
 ];
 
 // Sample data for devices table
@@ -63,44 +64,44 @@ const columnDefinitions = [
   },
   {
     id: 'name',
-    header: 'Device Name',
-    cell: item => item.name,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'name',
   },
   {
     id: 'ip',
-    header: 'IP Address',
-    cell: item => item.ip,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'ip',
   },
   {
     id: 'type',
-    header: 'Type',
-    cell: item => item.type,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'type',
   },
   {
     id: 'status',
-    header: 'Status',
-    cell: item => item.status,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'status',
   },
   {
     id: 'location',
-    header: 'Location',
-    cell: item => item.location,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'location',
   },
   {
     id: 'lastSeen',
-    header: 'Last Seen',
-    cell: item => item.lastSeen,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'lastSeen',
   },
   {
     id: 'bandwidth',
-    header: 'Bandwidth Usage',
-    cell: item => item.bandwidth,
+    header: 'Column header',
+    cell: () => 'Cell Value',
     sortingField: 'bandwidth',
   },
 ];
@@ -184,70 +185,121 @@ export function App() {
         >
           <SpaceBetween size="l">
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              <Container
-                header={
-                  <Header variant="h3">
-                    Network traffic
-                  </Header>
-                }
-              >
-                <AreaChart
-                  series={[
-                    {
-                      title: 'Site 1',
-                      type: 'area',
-                      data: networkTrafficData.map(d => ({ x: d.x, y: d.y1 })),
-                      color: '#688AE8',
-                    },
-                    {
-                      title: 'Site 2',
-                      type: 'area',
-                      data: networkTrafficData.map(d => ({ x: d.x, y: d.y2 })),
-                      color: '#C33D69',
-                    },
-                  ]}
-                  xDomain={networkTrafficData.map(d => d.x)}
-                  yDomain={[0, 70]}
-                  xTitle="Day"
-                  yTitle=""
-                  height={300}
-                  hideFilter
-                  hideLegend={false}
-                  visibleSeries={['Site 1', 'Site 2']}
-                  legendTitle="Legend"
-                  ariaLabel="Network traffic area chart"
-                  ariaDescription="Area chart showing network traffic over time for two sites"
-                />
+              <Container>
+                <SpaceBetween size="m">
+                  <Box variant="h3" color="text-label">Network traffic</Box>
+                  <div style={{ height: '300px', backgroundColor: '#fff', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)' }}>
+                    <AreaChart
+                      series={[
+                        {
+                          title: 'Site 1',
+                          type: 'area',
+                          data: networkTrafficData.map(d => ({ x: d.x, y: d.y1 })),
+                          color: '#688AE8',
+                        },
+                        {
+                          title: 'Site 2',
+                          type: 'area',
+                          data: networkTrafficData.map(d => ({ x: d.x, y: d.y2 })),
+                          color: '#C33D69',
+                        },
+                      ]}
+                      xDomain={networkTrafficData.map(d => d.x)}
+                      yDomain={[0, 70]}
+                      xTitle="Day"
+                      yTitle=""
+                      height={300}
+                      hideFilter
+                      hideLegend={false}
+                      legendTitle=""
+                      ariaLabel="Network traffic area chart"
+                      ariaDescription="Area chart showing network traffic over time for two sites"
+                      additionalFilters={
+                        <div style={{ fontSize: '14px', color: '#5F6B7A' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <div style={{ 
+                                width: '14px', 
+                                height: '14px', 
+                                borderRadius: '2px', 
+                                border: '1px solid #688AE8', 
+                                backgroundColor: 'rgba(116, 146, 231, 0.40)' 
+                              }} />
+                              <span>Site 1</span>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <div style={{ 
+                                width: '14px', 
+                                height: '14px', 
+                                borderRadius: '2px', 
+                                border: '1px solid #C33D69', 
+                                backgroundColor: 'rgba(195, 61, 105, 0.40)' 
+                              }} />
+                              <span>Site 2</span>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <div style={{ width: '12px', height: '3px', display: 'flex', gap: '2px' }}>
+                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
+                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
+                              </div>
+                              <span>Performance goal</span>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    />
+                  </div>
+                </SpaceBetween>
               </Container>
 
-              <Container
-                header={
-                  <Header variant="h3">
-                    Credit Usage
-                  </Header>
-                }
-              >
-                <BarChart
-                  series={[
-                    {
-                      title: 'Site 1',
-                      type: 'bar',
-                      data: creditUsageData,
-                      color: '#688AE8',
-                    },
-                  ]}
-                  xDomain={creditUsageData.map(d => d.x)}
-                  yDomain={[0, 50]}
-                  xTitle="Day"
-                  yTitle=""
-                  height={300}
-                  hideFilter
-                  hideLegend={false}
-                  visibleSeries={['Site 1']}
-                  legendTitle="Legend"
-                  ariaLabel="Credit usage bar chart"
-                  ariaDescription="Bar chart showing credit usage over time"
-                />
+              <Container>
+                <SpaceBetween size="m">
+                  <Box variant="h3" color="text-label">Credit Usage</Box>
+                  <div style={{ height: '300px', backgroundColor: '#fff' }}>
+                    <BarChart
+                      series={[
+                        {
+                          title: 'Site 1',
+                          type: 'bar',
+                          data: creditUsageData,
+                          color: '#688AE8',
+                        },
+                      ]}
+                      xDomain={creditUsageData.map(d => d.x)}
+                      yDomain={[0, 50]}
+                      xTitle="Day"
+                      yTitle=""
+                      height={300}
+                      hideFilter
+                      hideLegend={false}
+                      legendTitle=""
+                      ariaLabel="Credit usage bar chart"
+                      ariaDescription="Bar chart showing credit usage over time"
+                      additionalFilters={
+                        <div style={{ fontSize: '14px', color: '#5F6B7A' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <div style={{ 
+                                width: '14px', 
+                                height: '14px', 
+                                borderRadius: '2px', 
+                                backgroundColor: '#688AE8' 
+                              }} />
+                              <span>Site 1</span>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <div style={{ width: '12px', height: '3px', display: 'flex', gap: '2px' }}>
+                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
+                                <div style={{ width: '6px', height: '3px', backgroundColor: '#5F6B7A', borderRadius: '1px' }} />
+                              </div>
+                              <span>Performance goal</span>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    />
+                  </div>
+                </SpaceBetween>
               </Container>
             </Grid>
 
