@@ -184,7 +184,13 @@ export function App() {
         >
           <SpaceBetween size="l">
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              <Container>
+              <Container
+                header={
+                  <Header variant="h3">
+                    Network traffic
+                  </Header>
+                }
+              >
                 <AreaChart
                   series={[
                     {
@@ -203,7 +209,7 @@ export function App() {
                   xDomain={networkTrafficData.map(d => d.x)}
                   yDomain={[0, 70]}
                   xTitle="Day"
-                  yTitle="Network traffic"
+                  yTitle=""
                   height={300}
                   hideFilter
                   hideLegend={false}
@@ -214,7 +220,13 @@ export function App() {
                 />
               </Container>
 
-              <Container>
+              <Container
+                header={
+                  <Header variant="h3">
+                    Credit Usage
+                  </Header>
+                }
+              >
                 <BarChart
                   series={[
                     {
@@ -227,7 +239,7 @@ export function App() {
                   xDomain={creditUsageData.map(d => d.x)}
                   yDomain={[0, 50]}
                   xTitle="Day"
-                  yTitle="Credit Usage"
+                  yTitle=""
                   height={300}
                   hideFilter
                   hideLegend={false}
