@@ -96,13 +96,7 @@ export function App() {
                     Network Administration Dashboard
                   </Header>
 
-                  <Alert
-                    type="error"
-                    dismissible
-                    action={
-                      <Button variant="link">Dismiss</Button>
-                    }
-                  >
+                  <Alert type="error" dismissible action={<Button variant="link">Dismiss</Button>}>
                     This is a warning message
                   </Alert>
 
