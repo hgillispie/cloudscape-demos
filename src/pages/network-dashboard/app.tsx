@@ -77,7 +77,8 @@ export function App() {
 
   return (
     <HelpPanelProvider value={() => {}}>
-      <CustomAppLayout
+      <div className="network-dashboard">
+        <CustomAppLayout
         ref={appLayout}
         content={
           <ContentLayout
@@ -250,7 +251,8 @@ export function App() {
         toolsOpen={toolsOpen}
         onToolsChange={({ detail }) => setToolsOpen(detail.open)}
         notifications={<Notifications />}
-      />
+        />
+      </div>
     </HelpPanelProvider>
   );
 }
