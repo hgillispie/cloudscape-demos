@@ -11,7 +11,7 @@ import Container from '@cloudscape-design/components/container';
 import Grid from '@cloudscape-design/components/grid';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Table from '@cloudscape-design/components/table';
 import Box from '@cloudscape-design/components/box';
 import AreaChart from '@cloudscape-design/components/area-chart';
@@ -96,16 +96,15 @@ export function App() {
                     Network Administration Dashboard
                   </Header>
 
-                  <Flashbar
-                    items={[
-                      {
-                        type: 'error',
-                        content: 'This is a warning message',
-                        dismissible: true,
-                        buttonText: 'Dismiss',
-                      },
-                    ]}
-                  />
+                  <Alert
+                    type="error"
+                    dismissible
+                    action={
+                      <Button variant="link">Dismiss</Button>
+                    }
+                  >
+                    This is a warning message
+                  </Alert>
 
                   <Grid
                     gridDefinition={[
