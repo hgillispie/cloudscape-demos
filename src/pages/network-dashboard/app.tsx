@@ -21,6 +21,7 @@ import { Breadcrumbs, HelpPanelProvider, Notifications } from '../commons';
 import { CustomAppLayout } from '../commons/common-components';
 
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
+import '../../styles/network-dashboard.scss';
 
 // Mock data for charts
 const areaChartData = [
