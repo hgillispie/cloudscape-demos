@@ -177,7 +177,13 @@ export default function NetworkDashboard() {
               ]}
             >
               {/* Network Traffic Area Chart */}
-              <Container>
+              <Container
+                header={
+                  <Box variant="h3" color="text-label">
+                    Network traffic
+                  </Box>
+                }
+              >
                 <AreaChart
                   series={[
                     {
@@ -207,7 +213,9 @@ export default function NetworkDashboard() {
                   ariaLabel="Network traffic area chart"
                   height={300}
                   xTitle="Day"
-                  yTitle="Network traffic"
+                  yTitle=""
+                  hideLegend={false}
+                  legendTitle="Performance goal"
                   empty={
                     <Box textAlign="center" color="inherit">
                       <b>No data available</b>
