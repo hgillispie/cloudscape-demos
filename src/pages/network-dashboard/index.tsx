@@ -335,7 +335,7 @@ export default function NetworkDashboard() {
             >
               <Table
                 columnDefinitions={columnDefinitions}
-                items={filteredDevices}
+                items={paginatedDevices}
                 selectedItems={selectedItems}
                 onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
                 selectionType="multi"
