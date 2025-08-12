@@ -294,7 +294,8 @@ export function App() {
                   selectionType="multi"
                   ariaLabels={{
                     selectionGroupLabel: 'Device selection',
-                    allItemsSelectionLabel: 'Select all',
+                    allItemsSelectionLabel: ({ selectedItems }) =>
+                      selectedItems.length === paginatedDevices.length ? 'Deselect all' : 'Select all',
                     itemSelectionLabel: ({ selectedItems }, item) => {
                       const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
                       return `${item.name} is ${isItemSelected ? 'selected' : 'not selected'}`;
