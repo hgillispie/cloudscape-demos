@@ -128,6 +128,7 @@ const demos = [
   },
   { route: '/wizard', title: 'Wizard', description: 'Multi-step wizard demo.', category: 'Forms' },
   { route: '/write-to-s3', title: 'Write to S3', description: 'Write data to Amazon S3.', category: 'Integration' },
+  { route: '/network-dashboard', title: 'Network Dashboard', description: 'Network administration dashboard with traffic monitoring and device management.', category: 'Dashboards' },
 ];
 
 // Get unique categories
