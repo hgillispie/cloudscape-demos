@@ -141,7 +141,7 @@ export default function NetworkDashboard() {
               >
                 Network Administration Dashboard
               </Header>
-              <div className="search-controls">
+              <div className={styles.searchControls}>
                 <TextFilter
                   filteringText={filterText}
                   filteringPlaceholder="Search devices..."
