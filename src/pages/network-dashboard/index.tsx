@@ -14,6 +14,7 @@ import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
 import Checkbox from '@cloudscape-design/components/checkbox';
+import styles from './styles.module.scss';
 
 // Mock data for charts
 const networkTrafficData = [
