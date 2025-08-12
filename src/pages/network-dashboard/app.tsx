@@ -42,14 +42,78 @@ const creditUsageData = [
 
 // Mock device data
 const deviceData = [
-  { id: '1', name: 'Router-001', ip: '192.168.1.1', type: 'Router', status: 'Active', bandwidth: '1 Gbps', location: 'Building A' },
-  { id: '2', name: 'Switch-001', ip: '192.168.1.2', type: 'Switch', status: 'Active', bandwidth: '100 Mbps', location: 'Building A' },
-  { id: '3', name: 'AP-001', ip: '192.168.1.10', type: 'Access Point', status: 'Active', bandwidth: '300 Mbps', location: 'Floor 1' },
-  { id: '4', name: 'Server-001', ip: '192.168.1.100', type: 'Server', status: 'Active', bandwidth: '10 Gbps', location: 'Data Center' },
-  { id: '5', name: 'Firewall-001', ip: '192.168.1.254', type: 'Firewall', status: 'Active', bandwidth: '1 Gbps', location: 'DMZ' },
-  { id: '6', name: 'Switch-002', ip: '192.168.1.3', type: 'Switch', status: 'Warning', bandwidth: '100 Mbps', location: 'Building B' },
-  { id: '7', name: 'AP-002', ip: '192.168.1.11', type: 'Access Point', status: 'Active', bandwidth: '300 Mbps', location: 'Floor 2' },
-  { id: '8', name: 'Router-002', ip: '192.168.2.1', type: 'Router', status: 'Active', bandwidth: '1 Gbps', location: 'Building B' },
+  {
+    id: '1',
+    name: 'Router-001',
+    ip: '192.168.1.1',
+    type: 'Router',
+    status: 'Active',
+    bandwidth: '1 Gbps',
+    location: 'Building A',
+  },
+  {
+    id: '2',
+    name: 'Switch-001',
+    ip: '192.168.1.2',
+    type: 'Switch',
+    status: 'Active',
+    bandwidth: '100 Mbps',
+    location: 'Building A',
+  },
+  {
+    id: '3',
+    name: 'AP-001',
+    ip: '192.168.1.10',
+    type: 'Access Point',
+    status: 'Active',
+    bandwidth: '300 Mbps',
+    location: 'Floor 1',
+  },
+  {
+    id: '4',
+    name: 'Server-001',
+    ip: '192.168.1.100',
+    type: 'Server',
+    status: 'Active',
+    bandwidth: '10 Gbps',
+    location: 'Data Center',
+  },
+  {
+    id: '5',
+    name: 'Firewall-001',
+    ip: '192.168.1.254',
+    type: 'Firewall',
+    status: 'Active',
+    bandwidth: '1 Gbps',
+    location: 'DMZ',
+  },
+  {
+    id: '6',
+    name: 'Switch-002',
+    ip: '192.168.1.3',
+    type: 'Switch',
+    status: 'Warning',
+    bandwidth: '100 Mbps',
+    location: 'Building B',
+  },
+  {
+    id: '7',
+    name: 'AP-002',
+    ip: '192.168.1.11',
+    type: 'Access Point',
+    status: 'Active',
+    bandwidth: '300 Mbps',
+    location: 'Floor 2',
+  },
+  {
+    id: '8',
+    name: 'Router-002',
+    ip: '192.168.2.1',
+    type: 'Router',
+    status: 'Active',
+    bandwidth: '1 Gbps',
+    location: 'Building B',
+  },
 ];
 
 const columnDefinitions = [
@@ -104,16 +168,17 @@ export function App() {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [warningVisible, setWarningVisible] = useState(true);
 
-  const filteredDevices = deviceData.filter(device =>
-    device.name.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.ip.includes(filterText) ||
-    device.type.toLowerCase().includes(filterText.toLowerCase())
+  const filteredDevices = deviceData.filter(
+    device =>
+      device.name.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.ip.includes(filterText) ||
+      device.type.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   const itemsPerPage = 10;
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   return (
@@ -202,8 +267,8 @@ export function App() {
                     i18nStrings={{
                       legendAriaLabel: 'Legend',
                       chartAriaRoleDescription: 'Area chart',
-                      xTickFormatter: (value) => value,
-                      yTickFormatter: (value) => `${value}`,
+                      xTickFormatter: value => value,
+                      yTickFormatter: value => `${value}`,
                     }}
                     ariaLabel="Network traffic area chart"
                     xTitle="Day"
@@ -230,8 +295,8 @@ export function App() {
                     i18nStrings={{
                       legendAriaLabel: 'Legend',
                       chartAriaRoleDescription: 'Bar chart',
-                      xTickFormatter: (value) => value,
-                      yTickFormatter: (value) => `${value}`,
+                      xTickFormatter: value => value,
+                      yTickFormatter: value => `${value}`,
                     }}
                     ariaLabel="Credit usage bar chart"
                     xTitle="Day"
