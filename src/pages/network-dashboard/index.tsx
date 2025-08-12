@@ -185,7 +185,7 @@ export default function NetworkDashboard() {
                 <Pagination
                   currentPageIndex={currentPageIndex}
                   onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                  pagesCount={Math.ceil(filteredDevices.length / 10)}
+                  pagesCount={Math.ceil(filteredDevices.length / itemsPerPage)}
                   ariaLabels={{
                     nextPageLabel: 'Next page',
                     previousPageLabel: 'Previous page',
