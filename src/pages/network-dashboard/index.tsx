@@ -63,36 +63,51 @@ const columnDefinitions = [
     header: 'Device Name',
     cell: (item: any) => item.name,
     sortingField: 'name',
+    width: 180,
   },
   {
     id: 'type',
-    header: 'Type',
+    header: 'Device Type',
     cell: (item: any) => item.type,
     sortingField: 'type',
+    width: 120,
   },
   {
     id: 'status',
     header: 'Status',
-    cell: (item: any) => item.status,
+    cell: (item: any) => (
+      <Box color={
+        item.status === 'Online' ? 'text-status-success' :
+        item.status === 'Offline' ? 'text-status-error' :
+        item.status === 'Warning' ? 'text-status-warning' :
+        'text-status-info'
+      }>
+        {item.status}
+      </Box>
+    ),
     sortingField: 'status',
+    width: 100,
   },
   {
     id: 'ip',
     header: 'IP Address',
-    cell: (item: any) => item.ip,
+    cell: (item: any) => <Box fontFamily="monospace">{item.ip}</Box>,
     sortingField: 'ip',
+    width: 140,
   },
   {
     id: 'location',
     header: 'Location',
     cell: (item: any) => item.location,
     sortingField: 'location',
+    width: 150,
   },
   {
     id: 'lastSeen',
     header: 'Last Seen',
     cell: (item: any) => item.lastSeen,
     sortingField: 'lastSeen',
+    width: 120,
   },
 ];
 
