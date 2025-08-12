@@ -177,7 +177,7 @@ export default function NetworkDashboard() {
               />
             )}
 
-            <div className="charts-container">
+            <div className={styles.chartsContainer}>
               <Container>
                 <SpaceBetween size="l">
                   <Header variant="h2">Network Traffic</Header>
