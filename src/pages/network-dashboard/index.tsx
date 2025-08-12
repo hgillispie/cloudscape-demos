@@ -20,18 +20,18 @@ import Pagination from '@cloudscape-design/components/pagination';
 
 // Mock data for the area chart (Network Traffic)
 const networkTrafficData = [
-  { x: 'x1', site1: 30, site2: 20 },
-  { x: 'x2', site1: 32, site2: 25 },
-  { x: 'x3', site1: 28, site2: 22 },
-  { x: 'x4', site1: 35, site2: 30 },
-  { x: 'x5', site1: 38, site2: 32 },
-  { x: 'x6', site1: 40, site2: 35 },
-  { x: 'x7', site1: 42, site2: 38 },
-  { x: 'x8', site1: 45, site2: 40 },
-  { x: 'x9', site1: 48, site2: 42 },
-  { x: 'x10', site1: 46, site2: 44 },
-  { x: 'x11', site1: 50, site2: 46 },
-  { x: 'x12', site1: 52, site2: 48 },
+  { x: 'x1', site1: 25, site2: 15 },
+  { x: 'x2', site1: 28, site2: 18 },
+  { x: 'x3', site1: 32, site2: 22 },
+  { x: 'x4', site1: 35, site2: 25 },
+  { x: 'x5', site1: 38, site2: 28 },
+  { x: 'x6', site1: 42, site2: 32 },
+  { x: 'x7', site1: 45, site2: 35 },
+  { x: 'x8', site1: 48, site2: 38 },
+  { x: 'x9', site1: 46, site2: 40 },
+  { x: 'x10', site1: 50, site2: 42 },
+  { x: 'x11', site1: 52, site2: 45 },
+  { x: 'x12', site1: 55, site2: 48 },
 ];
 
 // Mock data for the bar chart (Credit Usage)
