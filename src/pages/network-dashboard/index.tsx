@@ -45,11 +45,16 @@ const creditUsageData = [
 
 // Mock data for the devices table
 const devicesData = [
-  { id: '1', name: 'Device-001', type: 'Router', status: 'Active', ip: '192.168.1.1', location: 'Office A', lastSeen: '2 min ago' },
-  { id: '2', name: 'Device-002', type: 'Switch', status: 'Active', ip: '192.168.1.2', location: 'Office B', lastSeen: '5 min ago' },
-  { id: '3', name: 'Device-003', type: 'Access Point', status: 'Inactive', ip: '192.168.1.3', location: 'Office C', lastSeen: '1 hour ago' },
-  { id: '4', name: 'Device-004', type: 'Firewall', status: 'Active', ip: '192.168.1.4', location: 'Data Center', lastSeen: '1 min ago' },
-  { id: '5', name: 'Device-005', type: 'Router', status: 'Warning', ip: '192.168.1.5', location: 'Remote Site', lastSeen: '30 min ago' },
+  { id: '1', name: 'MAIN-ROUTER-01', type: 'Router', status: 'Online', ip: '192.168.1.1', location: 'Main Office', lastSeen: '2 min ago' },
+  { id: '2', name: 'CORE-SWITCH-01', type: 'Switch', status: 'Online', ip: '192.168.1.2', location: 'Server Room', lastSeen: '1 min ago' },
+  { id: '3', name: 'AP-LOBBY-01', type: 'Access Point', status: 'Offline', ip: '192.168.1.15', location: 'Lobby', lastSeen: '2 hours ago' },
+  { id: '4', name: 'FIREWALL-EDGE', type: 'Firewall', status: 'Online', ip: '192.168.1.254', location: 'DMZ', lastSeen: '30 sec ago' },
+  { id: '5', name: 'BRANCH-RTR-02', type: 'Router', status: 'Warning', ip: '192.168.2.1', location: 'Branch Office', lastSeen: '15 min ago' },
+  { id: '6', name: 'DIST-SW-02', type: 'Switch', status: 'Online', ip: '192.168.1.3', location: 'Floor 2', lastSeen: '3 min ago' },
+  { id: '7', name: 'AP-CONF-01', type: 'Access Point', status: 'Online', ip: '192.168.1.20', location: 'Conference Room A', lastSeen: '5 min ago' },
+  { id: '8', name: 'BACKUP-RTR', type: 'Router', status: 'Standby', ip: '192.168.1.5', location: 'Server Room', lastSeen: '10 min ago' },
+  { id: '9', name: 'IOT-GATEWAY', type: 'Gateway', status: 'Online', ip: '192.168.1.100', location: 'IT Closet', lastSeen: '1 min ago' },
+  { id: '10', name: 'WAN-MODEM', type: 'Modem', status: 'Online', ip: '10.0.0.1', location: 'Telecom Room', lastSeen: '2 min ago' },
 ];
 
 const columnDefinitions = [
