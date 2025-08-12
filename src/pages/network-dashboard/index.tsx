@@ -116,12 +116,20 @@ export default function NetworkDashboard() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [filterText, setFilterText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const itemsPerPage = 10;
 
   // Filter devices based on search text
   const filteredDevices = devicesData.filter(device =>
     device.name.toLowerCase().includes(filterText.toLowerCase()) ||
     device.type.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.status.toLowerCase().includes(filterText.toLowerCase())
+    device.status.toLowerCase().includes(filterText.toLowerCase()) ||
+    device.location.toLowerCase().includes(filterText.toLowerCase())
+  );
+
+  // Paginate the filtered devices
+  const paginatedDevices = filteredDevices.slice(
+    (currentPageIndex - 1) * itemsPerPage,
+    currentPageIndex * itemsPerPage
   );
 
   return (
