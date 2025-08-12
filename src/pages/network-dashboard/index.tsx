@@ -147,7 +147,7 @@ export default function NetworkDashboard() {
                   filteringPlaceholder="Search devices..."
                   onChange={({ detail }) => setFilterText(detail.filteringText)}
                 />
-                <div className="pagination-controls">
+                <div className={styles.paginationControls}>
                   <Pagination
                     currentPageIndex={1}
                     pagesCount={5}
