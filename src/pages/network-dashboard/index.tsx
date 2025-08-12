@@ -236,7 +236,13 @@ export default function NetworkDashboard() {
               </Container>
 
               {/* Credit Usage Bar Chart */}
-              <Container>
+              <Container
+                header={
+                  <Box variant="h3" color="text-label">
+                    Credit Usage
+                  </Box>
+                }
+              >
                 <BarChart
                   series={[
                     {
@@ -260,7 +266,9 @@ export default function NetworkDashboard() {
                   ariaLabel="Credit usage bar chart"
                   height={300}
                   xTitle="Day"
-                  yTitle="Credit Usage"
+                  yTitle=""
+                  hideLegend={false}
+                  legendTitle="Performance goal"
                   empty={
                     <Box textAlign="center" color="inherit">
                       <b>No data available</b>
