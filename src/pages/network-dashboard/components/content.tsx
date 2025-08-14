@@ -8,7 +8,7 @@ import Box from '@cloudscape-design/components/box';
 import Button from '@cloudscape-design/components/button';
 import Checkbox from '@cloudscape-design/components/checkbox';
 import Container from '@cloudscape-design/components/container';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Grid from '@cloudscape-design/components/grid';
 import Header from '@cloudscape-design/components/header';
 import SpaceBetween from '@cloudscape-design/components/space-between';
