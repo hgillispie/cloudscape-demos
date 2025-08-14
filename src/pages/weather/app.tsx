@@ -59,6 +59,38 @@ export function WeatherApp() {
     }
   };
 
+  const handlePopularLocationSelect = (selectedOption: any) => {
+    if (selectedOption) {
+      const popularLocation = POPULAR_LOCATIONS.find(loc => loc.name === selectedOption.value);
+      if (popularLocation) {
+        setLocation({ lat: popularLocation.lat.toString(), lon: popularLocation.lon.toString() });
+        setLocationName(popularLocation.name);
+        setSelectedLocation(selectedOption);
+      }
+    }
+  };
+
+  const handleGetCurrentLocation = async () => {
+    setGettingLocation(true);
+    try {
+      const coords = await getCurrentLocation();
+      setLocation({ lat: coords.latitude.toString(), lon: coords.longitude.toString() });
+      setLocationName(`${coords.latitude.toFixed(4)}, ${coords.longitude.toFixed(4)}`);
+      setSelectedLocation(null);
+
+      // Automatically fetch weather data for current location
+      setLoading(true);
+      const data = await fetchWeatherData(coords.latitude, coords.longitude);
+      setWeatherData(data.current);
+      setForecastData(data.forecast);
+      setLoading(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to get current location');
+    } finally {
+      setGettingLocation(false);
+    }
+  };
+
   const getTemperatureChartData = () => {
     if (!forecastData?.hourly) return [];
 
