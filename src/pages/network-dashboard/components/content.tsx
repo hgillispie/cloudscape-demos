@@ -103,8 +103,8 @@ export function Content() {
               filterSelectedAriaLabel: 'selected',
               legendAriaLabel: 'Legend',
               chartAriaRoleDescription: 'area chart',
-              xTickFormatter: (e) => e.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-              yTickFormatter: (e) => `${e}%`,
+              xTickFormatter: e => e.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+              yTickFormatter: e => `${e}%`,
             }}
             ariaLabel="Network traffic over time"
             errorText="Error loading data."
@@ -152,7 +152,7 @@ export function Content() {
               filterSelectedAriaLabel: 'selected',
               legendAriaLabel: 'Legend',
               chartAriaRoleDescription: 'bar chart',
-              yTickFormatter: (e) => `${e}`,
+              yTickFormatter: e => `${e}`,
             }}
             ariaLabel="Credit usage by day"
             errorText="Error loading data."
@@ -260,17 +260,9 @@ export function Content() {
             </Box>
           }
           filter={
-            <TextFilter
-              filteringText=""
-              filteringPlaceholder="Find devices"
-              filteringAriaLabel="Filter devices"
-            />
+            <TextFilter filteringText="" filteringPlaceholder="Find devices" filteringAriaLabel="Filter devices" />
           }
-          header={
-            <Header counter={mockDevices.length > 0 ? `(${mockDevices.length})` : undefined}>
-              Devices
-            </Header>
-          }
+          header={<Header counter={mockDevices.length > 0 ? `(${mockDevices.length})` : undefined}>Devices</Header>}
           pagination={
             <Pagination
               currentPageIndex={currentPageIndex}
@@ -283,9 +275,7 @@ export function Content() {
               onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
             />
           }
-          preferences={
-            <Button variant="icon" iconName="settings" ariaLabel="Preferences" />
-          }
+          preferences={<Button variant="icon" iconName="settings" ariaLabel="Preferences" />}
         />
       </Container>
     </SpaceBetween>

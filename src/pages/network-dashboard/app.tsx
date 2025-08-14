@@ -35,11 +35,11 @@ export function App() {
           </SpaceBetween>
         }
         breadcrumbs={
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { text: 'Service', href: '#/' },
-              { text: 'Administrative Dashboard', href: '#/network-dashboard' }
-            ]} 
+              { text: 'Administrative Dashboard', href: '#/network-dashboard' },
+            ]}
           />
         }
         navigationHide
