@@ -20,6 +20,7 @@ import Pagination from '@cloudscape-design/components/pagination';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
 
 import { networkTrafficData, creditUsageData, devicesData, deviceColumns } from './data';
+import { NetworkService } from './network-service';
 import styles from './styles.module.scss';
 
 export function NetworkApp() {
@@ -27,9 +28,34 @@ export function NetworkApp() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [filterText, setFilterText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const [networkData, setNetworkData] = useState(networkTrafficData);
+  const [creditData, setCreditData] = useState(creditUsageData);
+  const [devices, setDevices] = useState(devicesData);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const pageSize = 10;
 
-  const filteredItems = devicesData.filter(item =>
+  const networkService = NetworkService.getInstance();
+
+  const handleRefreshData = async () => {
+    setIsRefreshing(true);
+    try {
+      const [newNetworkData, newCreditData, newDeviceData] = await Promise.all([
+        networkService.refreshNetworkTrafficData(),
+        networkService.refreshCreditUsageData(),
+        networkService.refreshDeviceData(devices)
+      ]);
+
+      setNetworkData(newNetworkData);
+      setCreditData(newCreditData);
+      setDevices(newDeviceData);
+    } catch (error) {
+      console.error('Failed to refresh data:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const filteredItems = devices.filter(item =>
     item.name.toLowerCase().includes(filterText.toLowerCase()) ||
     item.type.toLowerCase().includes(filterText.toLowerCase()) ||
     item.status.toLowerCase().includes(filterText.toLowerCase())
@@ -60,7 +86,12 @@ export function NetworkApp() {
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
                 actions={
-                  <Button variant="primary" iconName="refresh">
+                  <Button
+                    variant="primary"
+                    iconName="refresh"
+                    loading={isRefreshing}
+                    onClick={handleRefreshData}
+                  >
                     Refresh Data
                   </Button>
                 }
@@ -91,19 +122,20 @@ export function NetworkApp() {
               >
                 <Box padding="l">
                   <AreaChart
-                    series={networkTrafficData}
+                    series={networkData}
                     xTitle="Day"
                     yTitle=""
                     height={300}
                     hideFilter
-                    statusType="finished"
+                    statusType={isRefreshing ? "loading" : "finished"}
+                    loadingText="Refreshing network data..."
                     ariaLabel="Network traffic area chart showing Site 1 and Site 2 data with performance goal"
                     i18nStrings={{
                       filterLabel: "Filter displayed data",
                       filterPlaceholder: "Filter data",
                       filterSelectedAriaLabel: "selected",
                       legendAriaLabel: "Legend",
-                      chartAriaRoleDescription: "line chart",
+                      chartAriaRoleDescription: "area chart",
                     }}
                   />
                 </Box>
@@ -115,12 +147,13 @@ export function NetworkApp() {
               >
                 <Box padding="l">
                   <BarChart
-                    series={creditUsageData}
+                    series={creditData}
                     xTitle="Day"
                     yTitle=""
                     height={300}
                     hideFilter
-                    statusType="finished"
+                    statusType={isRefreshing ? "loading" : "finished"}
+                    loadingText="Refreshing credit data..."
                     ariaLabel="Credit usage bar chart showing daily usage"
                     i18nStrings={{
                       filterLabel: "Filter displayed data",
