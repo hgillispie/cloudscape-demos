@@ -196,10 +196,7 @@ export function WeatherApp() {
       content={
         <ContentLayout
           header={
-            <Header
-              variant="h1"
-              description="Real-time weather data and forecasts powered by Open-Meteo API"
-            >
+            <Header variant="h1" description="Real-time weather data and forecasts powered by Open-Meteo API">
               Weather Dashboard
             </Header>
           }
@@ -207,7 +204,12 @@ export function WeatherApp() {
           <SpaceBetween size="l">
             {/* Location Input */}
             <Container header={<Header variant="h2">Location Settings</Header>}>
-              <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } }, { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } }]}>
+              <Grid
+                gridDefinition={[
+                  { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } },
+                  { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } },
+                ]}
+              >
                 <SpaceBetween size="m">
                   <FormField label="Popular Locations">
                     <Select
@@ -309,7 +311,13 @@ export function WeatherApp() {
 
             {/* Weather Overview Chart */}
             {forecastData && !loading && (
-              <Container header={<Header variant="h2" description="Temperature and humidity trends over the next 48 hours">Weather Overview</Header>}>
+              <Container
+                header={
+                  <Header variant="h2" description="Temperature and humidity trends over the next 48 hours">
+                    Weather Overview
+                  </Header>
+                }
+              >
                 <AreaChart
                   series={getWeatherOverviewData()}
                   xScaleType="time"
@@ -319,13 +327,13 @@ export function WeatherApp() {
                   hideFilter={false}
                   ariaLabel="48-hour weather overview showing temperature and humidity"
                   i18nStrings={{
-                    xTickFormatter: (date) =>
+                    xTickFormatter: date =>
                       new Date(date).toLocaleTimeString('en-US', {
                         month: 'short',
                         day: 'numeric',
                         hour: '2-digit',
                       }),
-                    yTickFormatter: (value) => `${value}`,
+                    yTickFormatter: value => `${value}`,
                   }}
                 />
               </Container>
@@ -333,7 +341,12 @@ export function WeatherApp() {
 
             {/* Wind and Precipitation Charts */}
             {forecastData && !loading && (
-              <Grid gridDefinition={[{ colspan: { default: 12, s: 6, m: 6, l: 6 } }, { colspan: { default: 12, s: 6, m: 6, l: 6 } }]}>
+              <Grid
+                gridDefinition={[
+                  { colspan: { default: 12, s: 6, m: 6, l: 6 } },
+                  { colspan: { default: 12, s: 6, m: 6, l: 6 } },
+                ]}
+              >
                 <Container header={<Header variant="h3">Wind Speed Forecast</Header>}>
                   <AreaChart
                     series={getWindSpeedData()}
@@ -345,11 +358,11 @@ export function WeatherApp() {
                     hideLegend
                     ariaLabel="48-hour wind speed forecast"
                     i18nStrings={{
-                      xTickFormatter: (date) =>
+                      xTickFormatter: date =>
                         new Date(date).toLocaleTimeString('en-US', {
                           hour: '2-digit',
                         }),
-                      yTickFormatter: (value) => `${value} km/h`,
+                      yTickFormatter: value => `${value} km/h`,
                     }}
                   />
                 </Container>
@@ -365,11 +378,11 @@ export function WeatherApp() {
                     hideLegend
                     ariaLabel="48-hour precipitation forecast"
                     i18nStrings={{
-                      xTickFormatter: (date) =>
+                      xTickFormatter: date =>
                         new Date(date).toLocaleTimeString('en-US', {
                           hour: '2-digit',
                         }),
-                      yTickFormatter: (value) => `${value}mm`,
+                      yTickFormatter: value => `${value}mm`,
                     }}
                   />
                 </Container>
@@ -378,7 +391,13 @@ export function WeatherApp() {
 
             {/* 7-Day Forecast */}
             {forecastData && !loading && (
-              <Container header={<Header variant="h2" description="Maximum and minimum temperatures for the next 7 days">7-Day Temperature Forecast</Header>}>
+              <Container
+                header={
+                  <Header variant="h2" description="Maximum and minimum temperatures for the next 7 days">
+                    7-Day Temperature Forecast
+                  </Header>
+                }
+              >
                 <BarChart
                   series={getDailyForecastData()}
                   xTitle="Day"
@@ -387,7 +406,7 @@ export function WeatherApp() {
                   hideFilter={false}
                   ariaLabel="7-day temperature forecast showing maximum and minimum temperatures"
                   i18nStrings={{
-                    yTickFormatter: (value) => `${value}°C`,
+                    yTickFormatter: value => `${value}°C`,
                   }}
                 />
               </Container>

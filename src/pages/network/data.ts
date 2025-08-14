@@ -248,9 +248,14 @@ export const deviceColumns: TableProps.ColumnDefinition<Device>[] = [
   {
     id: 'status',
     header: 'Status',
-    cell: item => React.createElement(StatusIndicator, {
-      type: item.status === 'Online' ? 'success' : 'error'
-    }, item.status),
+    cell: item =>
+      React.createElement(
+        StatusIndicator,
+        {
+          type: item.status === 'Online' ? 'success' : 'error',
+        },
+        item.status,
+      ),
     sortingField: 'status',
   },
   {

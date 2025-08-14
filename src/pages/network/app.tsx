@@ -42,7 +42,7 @@ export function NetworkApp() {
       const [newNetworkData, newCreditData, newDeviceData] = await Promise.all([
         networkService.refreshNetworkTrafficData(),
         networkService.refreshCreditUsageData(),
-        networkService.refreshDeviceData(devices)
+        networkService.refreshDeviceData(devices),
       ]);
 
       setNetworkData(newNetworkData);
@@ -55,16 +55,14 @@ export function NetworkApp() {
     }
   };
 
-  const filteredItems = devices.filter(item =>
-    item.name.toLowerCase().includes(filterText.toLowerCase()) ||
-    item.type.toLowerCase().includes(filterText.toLowerCase()) ||
-    item.status.toLowerCase().includes(filterText.toLowerCase())
+  const filteredItems = devices.filter(
+    item =>
+      item.name.toLowerCase().includes(filterText.toLowerCase()) ||
+      item.type.toLowerCase().includes(filterText.toLowerCase()) ||
+      item.status.toLowerCase().includes(filterText.toLowerCase()),
   );
 
-  const paginatedItems = filteredItems.slice(
-    (currentPageIndex - 1) * pageSize,
-    currentPageIndex * pageSize
-  );
+  const paginatedItems = filteredItems.slice((currentPageIndex - 1) * pageSize, currentPageIndex * pageSize);
 
   return (
     <AppLayout
@@ -81,17 +79,12 @@ export function NetworkApp() {
                 ]}
                 ariaLabel="Breadcrumbs"
               />
-              
+
               <Header
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
                 actions={
-                  <Button
-                    variant="primary"
-                    iconName="refresh"
-                    loading={isRefreshing}
-                    onClick={handleRefreshData}
-                  >
+                  <Button variant="primary" iconName="refresh" loading={isRefreshing} onClick={handleRefreshData}>
                     Refresh Data
                   </Button>
                 }
@@ -116,10 +109,7 @@ export function NetworkApp() {
           <SpaceBetween size="l">
             {/* Charts Section */}
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              <Container
-                header={<Header variant="h2">Network traffic</Header>}
-                disableContentPaddings={false}
-              >
+              <Container header={<Header variant="h2">Network traffic</Header>} disableContentPaddings={false}>
                 <Box padding="l">
                   <AreaChart
                     series={networkData}
@@ -127,24 +117,21 @@ export function NetworkApp() {
                     yTitle=""
                     height={300}
                     hideFilter
-                    statusType={isRefreshing ? "loading" : "finished"}
+                    statusType={isRefreshing ? 'loading' : 'finished'}
                     loadingText="Refreshing network data..."
                     ariaLabel="Network traffic area chart showing Site 1 and Site 2 data with performance goal"
                     i18nStrings={{
-                      filterLabel: "Filter displayed data",
-                      filterPlaceholder: "Filter data",
-                      filterSelectedAriaLabel: "selected",
-                      legendAriaLabel: "Legend",
-                      chartAriaRoleDescription: "area chart",
+                      filterLabel: 'Filter displayed data',
+                      filterPlaceholder: 'Filter data',
+                      filterSelectedAriaLabel: 'selected',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'area chart',
                     }}
                   />
                 </Box>
               </Container>
 
-              <Container
-                header={<Header variant="h2">Credit Usage</Header>}
-                disableContentPaddings={false}
-              >
+              <Container header={<Header variant="h2">Credit Usage</Header>} disableContentPaddings={false}>
                 <Box padding="l">
                   <BarChart
                     series={creditData}
@@ -152,15 +139,15 @@ export function NetworkApp() {
                     yTitle=""
                     height={300}
                     hideFilter
-                    statusType={isRefreshing ? "loading" : "finished"}
+                    statusType={isRefreshing ? 'loading' : 'finished'}
                     loadingText="Refreshing credit data..."
                     ariaLabel="Credit usage bar chart showing daily usage"
                     i18nStrings={{
-                      filterLabel: "Filter displayed data",
-                      filterPlaceholder: "Filter data",
-                      filterSelectedAriaLabel: "selected",
-                      legendAriaLabel: "Legend",
-                      chartAriaRoleDescription: "bar chart",
+                      filterLabel: 'Filter displayed data',
+                      filterPlaceholder: 'Filter data',
+                      filterSelectedAriaLabel: 'selected',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'bar chart',
                     }}
                   />
                 </Box>
@@ -191,22 +178,20 @@ export function NetworkApp() {
                 onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
                 selectionType="multi"
                 ariaLabels={{
-                  selectionGroupLabel: "Items selection",
+                  selectionGroupLabel: 'Items selection',
                   allItemsSelectionLabel: ({ selectedItems }) =>
-                    `${selectedItems.length} ${
-                      selectedItems.length === 1 ? "item" : "items"
-                    } selected`,
+                    `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
                   itemSelectionLabel: ({ selectedItems }, item) =>
                     `${item.name} is ${
-                      selectedItems.filter(i => i.name === item.name).length
-                        ? "selected"
-                        : "not selected"
-                    }`
+                      selectedItems.filter(i => i.name === item.name).length ? 'selected' : 'not selected'
+                    }`,
                 }}
                 header={
                   <Header
                     counter={
-                      selectedItems.length ? `(${selectedItems.length}/${filteredItems.length})` : `(${filteredItems.length})`
+                      selectedItems.length
+                        ? `(${selectedItems.length}/${filteredItems.length})`
+                        : `(${filteredItems.length})`
                     }
                   >
                     Devices
@@ -231,7 +216,7 @@ export function NetworkApp() {
                     ariaLabels={{
                       nextPageLabel: 'Next page',
                       previousPageLabel: 'Previous page',
-                      pageLabel: pageNumber => `Page ${pageNumber} of all pages`
+                      pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
                     }}
                   />
                 }

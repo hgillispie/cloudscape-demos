@@ -17,7 +17,7 @@ export class NetworkService {
   async refreshNetworkTrafficData() {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     // Return updated data with slight variations
     return [
       {
@@ -53,7 +53,7 @@ export class NetworkService {
   // Simulate refreshing credit usage data
   async refreshCreditUsageData() {
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     return [
       {
         title: 'Site 1',
@@ -70,16 +70,16 @@ export class NetworkService {
   // Simulate device status updates
   async refreshDeviceData(currentDevices: any[]) {
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     // Randomly update some device statuses and last seen times
     return currentDevices.map(device => {
       const shouldUpdate = Math.random() < 0.3; // 30% chance to update
-      
+
       if (shouldUpdate) {
         const now = new Date();
         const secondsAgo = Math.floor(Math.random() * 300); // 0-5 minutes ago
         now.setSeconds(now.getSeconds() - secondsAgo);
-        
+
         let lastSeen;
         if (secondsAgo < 60) {
           lastSeen = `${secondsAgo} seconds ago`;
@@ -87,7 +87,7 @@ export class NetworkService {
           const minutesAgo = Math.floor(secondsAgo / 60);
           lastSeen = `${minutesAgo} minute${minutesAgo === 1 ? '' : 's'} ago`;
         }
-        
+
         return {
           ...device,
           lastSeen,
@@ -95,7 +95,7 @@ export class NetworkService {
           status: Math.random() < 0.05 ? (device.status === 'Online' ? 'Offline' : 'Online') : device.status,
         };
       }
-      
+
       return device;
     });
   }

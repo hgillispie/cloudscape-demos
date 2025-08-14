@@ -128,8 +128,18 @@ const demos = [
   },
   { route: '/wizard', title: 'Wizard', description: 'Multi-step wizard demo.', category: 'Forms' },
   { route: '/write-to-s3', title: 'Write to S3', description: 'Write data to Amazon S3.', category: 'Integration' },
-  { route: '/weather', title: 'Weather Dashboard', description: 'Real-time weather dashboard using Open-meteo API.', category: 'Dashboards' },
-  { route: '/network', title: 'Network Administration Dashboard', description: 'Network traffic monitoring and device management dashboard.', category: 'Dashboards' },
+  {
+    route: '/weather',
+    title: 'Weather Dashboard',
+    description: 'Real-time weather dashboard using Open-meteo API.',
+    category: 'Dashboards',
+  },
+  {
+    route: '/network',
+    title: 'Network Administration Dashboard',
+    description: 'Network traffic monitoring and device management dashboard.',
+    category: 'Dashboards',
+  },
 ];
 
 // Get unique categories

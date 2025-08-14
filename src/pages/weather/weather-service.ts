@@ -47,7 +47,7 @@ export async function fetchWeatherData(latitude: number, longitude: number): Pro
     });
 
     const currentResponse = await fetch(`${OPEN_METEO_BASE_URL}/forecast?${currentParams}`);
-    
+
     if (!currentResponse.ok) {
       throw new Error(`Failed to fetch current weather: ${currentResponse.statusText}`);
     }
@@ -65,7 +65,7 @@ export async function fetchWeatherData(latitude: number, longitude: number): Pro
     });
 
     const forecastResponse = await fetch(`${OPEN_METEO_BASE_URL}/forecast?${forecastParams}`);
-    
+
     if (!forecastResponse.ok) {
       throw new Error(`Failed to fetch forecast data: ${forecastResponse.statusText}`);
     }
@@ -102,9 +102,9 @@ export async function fetchWeatherData(latitude: number, longitude: number): Pro
   } catch (error) {
     console.error('Error fetching weather data:', error);
     throw new Error(
-      error instanceof Error 
-        ? `Weather service error: ${error.message}` 
-        : 'Unknown error occurred while fetching weather data'
+      error instanceof Error
+        ? `Weather service error: ${error.message}`
+        : 'Unknown error occurred while fetching weather data',
     );
   }
 }
@@ -114,9 +114,9 @@ export async function getLocationFromCoordinates(latitude: number, longitude: nu
     // Using a simple geocoding service to get location name
     // In a real application, you might want to use a more robust geocoding service
     const response = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&timezone=auto`
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&timezone=auto`,
     );
-    
+
     if (!response.ok) {
       return `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
     }
@@ -139,32 +139,32 @@ export function getCurrentLocation(): Promise<{ latitude: number; longitude: num
     }
 
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         resolve({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         });
       },
-      (error) => {
+      error => {
         reject(new Error(`Geolocation error: ${error.message}`));
       },
       {
         enableHighAccuracy: true,
         timeout: 10000,
         maximumAge: 600000, // 10 minutes
-      }
+      },
     );
   });
 }
 
 // Predefined locations for easy access
 export const POPULAR_LOCATIONS = [
-  { name: 'New York City', lat: 40.7128, lon: -74.0060 },
+  { name: 'New York City', lat: 40.7128, lon: -74.006 },
   { name: 'London', lat: 51.5074, lon: -0.1278 },
   { name: 'Tokyo', lat: 35.6762, lon: 139.6503 },
   { name: 'Sydney', lat: -33.8688, lon: 151.2093 },
   { name: 'Paris', lat: 48.8566, lon: 2.3522 },
   { name: 'San Francisco', lat: 37.7749, lon: -122.4194 },
-  { name: 'Berlin', lat: 52.5200, lon: 13.4050 },
-  { name: 'Mumbai', lat: 19.0760, lon: 72.8777 },
+  { name: 'Berlin', lat: 52.52, lon: 13.405 },
+  { name: 'Mumbai', lat: 19.076, lon: 72.8777 },
 ];
