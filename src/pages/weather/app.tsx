@@ -17,8 +17,12 @@ import Alert from '@cloudscape-design/components/alert';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import ColumnLayout from '@cloudscape-design/components/column-layout';
+import Select from '@cloudscape-design/components/select';
+import Cards from '@cloudscape-design/components/cards';
+import Badge from '@cloudscape-design/components/badge';
+import Icon from '@cloudscape-design/components/icon';
 
-import { fetchWeatherData, WeatherData, ForecastData } from './weather-service';
+import { fetchWeatherData, WeatherData, ForecastData, POPULAR_LOCATIONS, getCurrentLocation } from './weather-service';
 
 export function WeatherApp() {
   const [location, setLocation] = useState({ lat: '40.7128', lon: '-74.0060' }); // Default to NYC
