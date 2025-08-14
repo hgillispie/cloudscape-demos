@@ -60,12 +60,7 @@ export function Content() {
   return (
     <SpaceBetween size="l">
       {/* Warning Banner */}
-      <Alert
-        type="error"
-        dismissible
-        buttonText="Dismiss"
-        onButtonClick={() => {}}
-      >
+      <Alert type="error" dismissible buttonText="Dismiss" onButtonClick={() => {}}>
         This is a warning message
       </Alert>
 
