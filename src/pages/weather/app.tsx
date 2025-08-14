@@ -107,6 +107,31 @@ export function WeatherApp() {
     ];
   };
 
+  const getWeatherOverviewData = () => {
+    if (!forecastData?.hourly) return [];
+
+    return [
+      {
+        title: 'Temperature (°C)',
+        type: 'area' as const,
+        data: forecastData.hourly.time.slice(0, 48).map((time, index) => ({
+          x: new Date(time),
+          y: forecastData.hourly.temperature_2m[index],
+        })),
+        color: '#FF6B6B',
+      },
+      {
+        title: 'Humidity (%)',
+        type: 'line' as const,
+        data: forecastData.hourly.time.slice(0, 48).map((time, index) => ({
+          x: new Date(time),
+          y: forecastData.hourly.relative_humidity_2m[index],
+        })),
+        color: '#4ECDC4',
+      },
+    ];
+  };
+
   const getPrecipitationChartData = () => {
     if (!forecastData?.hourly) return [];
 
@@ -126,10 +151,42 @@ export function WeatherApp() {
   const getDailyForecastData = () => {
     if (!forecastData?.daily) return [];
 
-    return forecastData.daily.time.slice(0, 7).map((date, index) => ({
-      x: new Date(date).toLocaleDateString('en-US', { weekday: 'short' }),
-      y: forecastData.daily.temperature_2m_max[index],
-    }));
+    return [
+      {
+        title: 'Max Temperature',
+        type: 'bar' as const,
+        data: forecastData.daily.time.slice(0, 7).map((date, index) => ({
+          x: new Date(date).toLocaleDateString('en-US', { weekday: 'short' }),
+          y: forecastData.daily.temperature_2m_max[index],
+        })),
+        color: '#FF6B6B',
+      },
+      {
+        title: 'Min Temperature',
+        type: 'bar' as const,
+        data: forecastData.daily.time.slice(0, 7).map((date, index) => ({
+          x: new Date(date).toLocaleDateString('en-US', { weekday: 'short' }),
+          y: forecastData.daily.temperature_2m_min[index],
+        })),
+        color: '#74B9FF',
+      },
+    ];
+  };
+
+  const getWindSpeedData = () => {
+    if (!forecastData?.hourly) return [];
+
+    return [
+      {
+        title: 'Wind Speed (km/h)',
+        type: 'area' as const,
+        data: forecastData.hourly.time.slice(0, 48).map((time, index) => ({
+          x: new Date(time),
+          y: forecastData.hourly.wind_speed_10m[index],
+        })),
+        color: '#A29BFE',
+      },
+    ];
   };
 
   return (
