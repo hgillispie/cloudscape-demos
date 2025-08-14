@@ -1,0 +1,45 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+.network-dashboard {
+  width: 100%;
+  max-width: 100%;
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+  background: #ffffff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+
+  .chart-content {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+  }
+}
+
+.devices-table {
+  width: 100%;
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+}
+
+/* Custom chart styling to match Figma design */
+:global(.awsui-charts-container) {
+  background: #ffffff;
+}
+
+:global(.awsui-charts-area-series) {
+  opacity: 0.4;
+}
+
+:global(.awsui-charts-threshold) {
+  stroke-dasharray: 4 4;
+}
