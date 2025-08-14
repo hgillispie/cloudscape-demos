@@ -31,6 +31,8 @@ export function WeatherApp() {
   const [forecastData, setForecastData] = useState<ForecastData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<any>(null);
+  const [gettingLocation, setGettingLocation] = useState(false);
 
   const loadWeatherData = async () => {
     setLoading(true);
