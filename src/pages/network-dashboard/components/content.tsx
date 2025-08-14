@@ -60,17 +60,14 @@ export function Content() {
   return (
     <SpaceBetween size="l">
       {/* Warning Banner */}
-      <Flashbar
-        items={[
-          {
-            type: 'error',
-            content: 'This is a warning message',
-            dismissible: true,
-            buttonText: 'Dismiss',
-            onButtonClick: () => {},
-          },
-        ]}
-      />
+      <Alert
+        type="error"
+        dismissible
+        buttonText="Dismiss"
+        onButtonClick={() => {}}
+      >
+        This is a warning message
+      </Alert>
 
       {/* Controls */}
       <NetworkDashboardControls />
