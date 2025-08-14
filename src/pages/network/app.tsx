@@ -17,6 +17,7 @@ import Table from '@cloudscape-design/components/table';
 import Box from '@cloudscape-design/components/box';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
+import StatusIndicator from '@cloudscape-design/components/status-indicator';
 
 import { networkTrafficData, creditUsageData, devicesData, deviceColumns } from './data';
 import styles from './styles.module.scss';
@@ -84,28 +85,52 @@ export function NetworkApp() {
           <SpaceBetween size="l">
             {/* Charts Section */}
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              <Container header={<Header variant="h2">Network traffic</Header>}>
-                <AreaChart
-                  series={networkTrafficData}
-                  xTitle="Day"
-                  yTitle=""
-                  height={300}
-                  hideFilter
-                  statusType="finished"
-                  ariaLabel="Network traffic area chart showing Site 1 and Site 2 data with performance goal"
-                />
+              <Container
+                header={<Header variant="h2">Network traffic</Header>}
+                disableContentPaddings={false}
+              >
+                <Box padding="l">
+                  <AreaChart
+                    series={networkTrafficData}
+                    xTitle="Day"
+                    yTitle=""
+                    height={300}
+                    hideFilter
+                    statusType="finished"
+                    ariaLabel="Network traffic area chart showing Site 1 and Site 2 data with performance goal"
+                    i18nStrings={{
+                      filterLabel: "Filter displayed data",
+                      filterPlaceholder: "Filter data",
+                      filterSelectedAriaLabel: "selected",
+                      legendAriaLabel: "Legend",
+                      chartAriaRoleDescription: "line chart",
+                    }}
+                  />
+                </Box>
               </Container>
 
-              <Container header={<Header variant="h2">Credit Usage</Header>}>
-                <BarChart
-                  series={creditUsageData}
-                  xTitle="Day"
-                  yTitle=""
-                  height={300}
-                  hideFilter
-                  statusType="finished"
-                  ariaLabel="Credit usage bar chart showing daily usage"
-                />
+              <Container
+                header={<Header variant="h2">Credit Usage</Header>}
+                disableContentPaddings={false}
+              >
+                <Box padding="l">
+                  <BarChart
+                    series={creditUsageData}
+                    xTitle="Day"
+                    yTitle=""
+                    height={300}
+                    hideFilter
+                    statusType="finished"
+                    ariaLabel="Credit usage bar chart showing daily usage"
+                    i18nStrings={{
+                      filterLabel: "Filter displayed data",
+                      filterPlaceholder: "Filter data",
+                      filterSelectedAriaLabel: "selected",
+                      legendAriaLabel: "Legend",
+                      chartAriaRoleDescription: "bar chart",
+                    }}
+                  />
+                </Box>
               </Container>
             </Grid>
 
