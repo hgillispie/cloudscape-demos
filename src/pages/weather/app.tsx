@@ -207,32 +207,56 @@ export function WeatherApp() {
           <SpaceBetween size="l">
             {/* Location Input */}
             <Container header={<Header variant="h2">Location Settings</Header>}>
-              <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 4, m: 4, l: 4 } }, { colspan: { default: 12, xs: 12, s: 4, m: 4, l: 4 } }, { colspan: { default: 12, xs: 12, s: 2, m: 2, l: 2 } }, { colspan: { default: 12, xs: 12, s: 2, m: 2, l: 2 } }]}>
-                <FormField label="Location Name">
-                  <Input
-                    value={locationName}
-                    onChange={({ detail }) => setLocationName(detail.value)}
-                    placeholder="Enter location name"
-                  />
-                </FormField>
-                <div></div>
-                <FormField label="Latitude">
-                  <Input
-                    type="number"
-                    value={location.lat}
-                    onChange={({ detail }) => setLocation(prev => ({ ...prev, lat: detail.value }))}
-                    placeholder="40.7128"
-                  />
-                </FormField>
-                <FormField label="Longitude">
-                  <Input
-                    type="number"
-                    value={location.lon}
-                    onChange={({ detail }) => setLocation(prev => ({ ...prev, lon: detail.value }))}
-                    placeholder="-74.0060"
-                  />
-                </FormField>
+              <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } }, { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } }]}>
+                <SpaceBetween size="m">
+                  <FormField label="Popular Locations">
+                    <Select
+                      selectedOption={selectedLocation}
+                      onChange={({ detail }) => handlePopularLocationSelect(detail.selectedOption)}
+                      options={POPULAR_LOCATIONS.map(loc => ({ label: loc.name, value: loc.name }))}
+                      placeholder="Choose a popular location"
+                      empty="No locations available"
+                    />
+                  </FormField>
+                  <Button
+                    variant="normal"
+                    iconName="location"
+                    onClick={handleGetCurrentLocation}
+                    loading={gettingLocation}
+                  >
+                    Use Current Location
+                  </Button>
+                </SpaceBetween>
+
+                <SpaceBetween size="m">
+                  <FormField label="Location Name">
+                    <Input
+                      value={locationName}
+                      onChange={({ detail }) => setLocationName(detail.value)}
+                      placeholder="Enter location name"
+                    />
+                  </FormField>
+                  <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+                    <FormField label="Latitude">
+                      <Input
+                        type="number"
+                        value={location.lat}
+                        onChange={({ detail }) => setLocation(prev => ({ ...prev, lat: detail.value }))}
+                        placeholder="40.7128"
+                      />
+                    </FormField>
+                    <FormField label="Longitude">
+                      <Input
+                        type="number"
+                        value={location.lon}
+                        onChange={({ detail }) => setLocation(prev => ({ ...prev, lon: detail.value }))}
+                        placeholder="-74.0060"
+                      />
+                    </FormField>
+                  </Grid>
+                </SpaceBetween>
               </Grid>
+
               <Box margin={{ top: 'm' }}>
                 <Button variant="primary" onClick={handleLocationSubmit} loading={loading}>
                   Update Weather Data
