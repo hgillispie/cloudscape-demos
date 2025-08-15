@@ -87,42 +87,44 @@ export function App() {
   const fetchWeatherData = async (location: LocationOption) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&timezone=auto&forecast_days=7`
       );
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch weather data');
       }
-      
+
       const data = await response.json();
-      
+      console.log('Weather API Response:', data); // Debug log
+
       setWeatherData({
         current: {
-          temperature: Math.round(data.current.temperature_2m),
-          humidity: data.current.relative_humidity_2m,
-          windSpeed: data.current.wind_speed_10m,
-          weatherCode: data.current.weather_code,
-          time: data.current.time,
+          temperature: Math.round(data.current.temperature_2m || 0),
+          humidity: data.current.relative_humidity_2m || 0,
+          windSpeed: data.current.wind_speed_10m || 0,
+          weatherCode: data.current.weather_code || 0,
+          time: data.current.time || new Date().toISOString(),
         },
         hourly: {
-          time: data.hourly.time.slice(0, 24), // Next 24 hours
-          temperature: data.hourly.temperature_2m.slice(0, 24),
-          humidity: data.hourly.relative_humidity_2m.slice(0, 24),
-          precipitation: data.hourly.precipitation.slice(0, 24),
-          windSpeed: data.hourly.wind_speed_10m.slice(0, 24),
+          time: (data.hourly?.time || []).slice(0, 24), // Next 24 hours
+          temperature: (data.hourly?.temperature_2m || []).slice(0, 24),
+          humidity: (data.hourly?.relative_humidity_2m || []).slice(0, 24),
+          precipitation: (data.hourly?.precipitation || []).slice(0, 24),
+          windSpeed: (data.hourly?.wind_speed_10m || []).slice(0, 24),
         },
         daily: {
-          time: data.daily.time,
-          temperatureMax: data.daily.temperature_2m_max,
-          temperatureMin: data.daily.temperature_2m_min,
-          precipitation: data.daily.precipitation_sum,
-          weatherCode: data.daily.weather_code,
+          time: data.daily?.time || [],
+          temperatureMax: data.daily?.temperature_2m_max || [],
+          temperatureMin: data.daily?.temperature_2m_min || [],
+          precipitation: data.daily?.precipitation_sum || [],
+          weatherCode: data.daily?.weather_code || [],
         },
       });
     } catch (err) {
+      console.error('Weather API Error:', err); // Debug log
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
       setLoading(false);
