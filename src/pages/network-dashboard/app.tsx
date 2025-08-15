@@ -16,7 +16,7 @@ import Pagination from '@cloudscape-design/components/pagination';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import Icon from '@cloudscape-design/components/icon';
 
 // Sample data for the charts
