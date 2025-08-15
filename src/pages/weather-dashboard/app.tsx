@@ -229,6 +229,25 @@ export function App() {
               </Alert>
             )}
 
+            {process.env.NODE_ENV === 'development' && weatherData && (
+              <Container header={<Header variant="h3">Debug Info</Header>}>
+                <SpaceBetween size="s">
+                  <Box>
+                    <strong>Chart Data Length:</strong> Temperature: {temperatureChartData.length}, Precipitation: {precipitationChartData.length}
+                  </Box>
+                  <Box>
+                    <strong>View Mode:</strong> {viewMode}
+                  </Box>
+                  <Box>
+                    <strong>Sample Temperature Data:</strong> {JSON.stringify(temperatureChartData.slice(0, 3), null, 2)}
+                  </Box>
+                  <Box>
+                    <strong>Sample Precipitation Data:</strong> {JSON.stringify(precipitationChartData.slice(0, 3), null, 2)}
+                  </Box>
+                </SpaceBetween>
+              </Container>
+            )}
+
             {currentWeather && currentWeatherInfo && (
               <Container header={<Header variant="h2">Current Conditions</Header>}>
                 <Grid gridDefinition={[
