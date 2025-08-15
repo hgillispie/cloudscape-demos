@@ -155,36 +155,58 @@ export function App() {
   };
 
   const temperatureChartData = React.useMemo(() => {
-    if (!weatherData) return [];
+    if (!weatherData) {
+      console.log('No weather data available for temperature chart');
+      return [];
+    }
 
-    const data = viewMode === 'hourly'
-      ? weatherData.hourly.time.map((time, index) => ({
+    let data: { x: string; y: number }[] = [];
+
+    if (viewMode === 'hourly') {
+      if (weatherData.hourly.time.length > 0 && weatherData.hourly.temperature.length > 0) {
+        data = weatherData.hourly.time.map((time, index) => ({
           x: formatHourlyTime(time),
-          y: Math.round((weatherData.hourly.temperature[index] || 0) * 10) / 10,
-        }))
-      : weatherData.daily.time.map((time, index) => ({
-          x: formatDailyTime(time),
-          y: Math.round(((weatherData.daily.temperatureMax[index] || 0) + (weatherData.daily.temperatureMin[index] || 0)) / 2 * 10) / 10,
+          y: Number(weatherData.hourly.temperature[index]) || 0,
         }));
+      }
+    } else {
+      if (weatherData.daily.time.length > 0 && weatherData.daily.temperatureMax.length > 0) {
+        data = weatherData.daily.time.map((time, index) => ({
+          x: formatDailyTime(time),
+          y: Number(((weatherData.daily.temperatureMax[index] || 0) + (weatherData.daily.temperatureMin[index] || 0)) / 2) || 0,
+        }));
+      }
+    }
 
-    console.log('Temperature chart data:', data); // Debug log
+    console.log('Temperature chart data:', { viewMode, dataLength: data.length, sampleData: data.slice(0, 3) });
     return data;
   }, [weatherData, viewMode]);
 
   const precipitationChartData = React.useMemo(() => {
-    if (!weatherData) return [];
+    if (!weatherData) {
+      console.log('No weather data available for precipitation chart');
+      return [];
+    }
 
-    const data = viewMode === 'hourly'
-      ? weatherData.hourly.time.map((time, index) => ({
+    let data: { x: string; y: number }[] = [];
+
+    if (viewMode === 'hourly') {
+      if (weatherData.hourly.time.length > 0 && weatherData.hourly.precipitation.length > 0) {
+        data = weatherData.hourly.time.map((time, index) => ({
           x: formatHourlyTime(time),
-          y: Math.round((weatherData.hourly.precipitation[index] || 0) * 10) / 10,
-        }))
-      : weatherData.daily.time.map((time, index) => ({
-          x: formatDailyTime(time),
-          y: Math.round((weatherData.daily.precipitation[index] || 0) * 10) / 10,
+          y: Number(weatherData.hourly.precipitation[index]) || 0,
         }));
+      }
+    } else {
+      if (weatherData.daily.time.length > 0 && weatherData.daily.precipitation.length > 0) {
+        data = weatherData.daily.time.map((time, index) => ({
+          x: formatDailyTime(time),
+          y: Number(weatherData.daily.precipitation[index]) || 0,
+        }));
+      }
+    }
 
-    console.log('Precipitation chart data:', data); // Debug log
+    console.log('Precipitation chart data:', { viewMode, dataLength: data.length, sampleData: data.slice(0, 3) });
     return data;
   }, [weatherData, viewMode]);
 
