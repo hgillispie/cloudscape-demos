@@ -349,15 +349,15 @@ export function App() {
                         title: 'Precipitation',
                         type: 'bar',
                         data: precipitationChartData,
-                        color: '#4CAF50',
+                        valueFormatter: (value) => `${value} mm`,
                       },
                     ]}
-                    xDomain={precipitationChartData.map(d => d.x)}
                     yTitle="Precipitation (mm)"
                     xTitle={viewMode === 'hourly' ? 'Hour' : 'Day'}
                     height={300}
                     hideFilter
                     hideLegend
+                    statusType={loading ? 'loading' : precipitationChartData.length === 0 ? 'finished' : 'finished'}
                     empty={
                       <Box textAlign="center" color="inherit">
                         <Box variant="p" color="inherit">
