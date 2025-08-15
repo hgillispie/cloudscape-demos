@@ -51,7 +51,7 @@ interface LocationOption {
 }
 
 const locations: LocationOption[] = [
-  { label: 'New York, NY', value: 'ny', latitude: 40.7128, longitude: -74.0060 },
+  { label: 'New York, NY', value: 'ny', latitude: 40.7128, longitude: -74.006 },
   { label: 'Los Angeles, CA', value: 'la', latitude: 34.0522, longitude: -118.2437 },
   { label: 'Chicago, IL', value: 'chi', latitude: 41.8781, longitude: -87.6298 },
   { label: 'London, UK', value: 'lon', latitude: 51.5074, longitude: -0.1278 },
@@ -90,7 +90,7 @@ export function App() {
 
     try {
       const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&timezone=auto&forecast_days=7`
+        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&timezone=auto&forecast_days=7`,
       );
 
       if (!response.ok) {
@@ -136,17 +136,17 @@ export function App() {
   }, [selectedLocation]);
 
   const formatHourlyTime = (timeStr: string) => {
-    return new Date(timeStr).toLocaleTimeString('en-US', { 
-      hour: 'numeric', 
-      hour12: true 
+    return new Date(timeStr).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      hour12: true,
     });
   };
 
   const formatDailyTime = (timeStr: string) => {
-    return new Date(timeStr).toLocaleDateString('en-US', { 
+    return new Date(timeStr).toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -173,7 +173,10 @@ export function App() {
       if (weatherData.daily.time.length > 0 && weatherData.daily.temperatureMax.length > 0) {
         data = weatherData.daily.time.map((time, index) => ({
           x: formatDailyTime(time),
-          y: Number(((weatherData.daily.temperatureMax[index] || 0) + (weatherData.daily.temperatureMin[index] || 0)) / 2) || 0,
+          y:
+            Number(
+              ((weatherData.daily.temperatureMax[index] || 0) + (weatherData.daily.temperatureMin[index] || 0)) / 2,
+            ) || 0,
         }));
       }
     }
@@ -230,11 +233,7 @@ export function App() {
                     options={locations}
                     placeholder="Select location"
                   />
-                  <Button
-                    iconName="refresh"
-                    loading={loading}
-                    onClick={() => fetchWeatherData(selectedLocation)}
-                  >
+                  <Button iconName="refresh" loading={loading} onClick={() => fetchWeatherData(selectedLocation)}>
                     Refresh
                   </Button>
                 </SpaceBetween>
@@ -255,16 +254,19 @@ export function App() {
               <Container header={<Header variant="h3">Debug Info</Header>}>
                 <SpaceBetween size="s">
                   <Box>
-                    <strong>Chart Data Length:</strong> Temperature: {temperatureChartData.length}, Precipitation: {precipitationChartData.length}
+                    <strong>Chart Data Length:</strong> Temperature: {temperatureChartData.length}, Precipitation:{' '}
+                    {precipitationChartData.length}
                   </Box>
                   <Box>
                     <strong>View Mode:</strong> {viewMode}
                   </Box>
                   <Box>
-                    <strong>Sample Temperature Data:</strong> {JSON.stringify(temperatureChartData.slice(0, 3), null, 2)}
+                    <strong>Sample Temperature Data:</strong>{' '}
+                    {JSON.stringify(temperatureChartData.slice(0, 3), null, 2)}
                   </Box>
                   <Box>
-                    <strong>Sample Precipitation Data:</strong> {JSON.stringify(precipitationChartData.slice(0, 3), null, 2)}
+                    <strong>Sample Precipitation Data:</strong>{' '}
+                    {JSON.stringify(precipitationChartData.slice(0, 3), null, 2)}
                   </Box>
                 </SpaceBetween>
               </Container>
@@ -272,12 +274,14 @@ export function App() {
 
             {currentWeather && currentWeatherInfo && (
               <Container header={<Header variant="h2">Current Conditions</Header>}>
-                <Grid gridDefinition={[
-                  { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
-                  { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
-                  { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
-                  { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
-                ]}>
+                <Grid
+                  gridDefinition={[
+                    { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
+                    { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
+                    { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
+                    { colspan: { default: 12, xs: 6, s: 4, m: 3, l: 3, xl: 3 } },
+                  ]}
+                >
                   <Box textAlign="center">
                     <SpaceBetween size="xs">
                       <Icon name={currentWeatherInfo.icon} size="large" />
@@ -285,31 +289,24 @@ export function App() {
                       <Badge color={currentWeatherInfo.color}>{currentWeatherInfo.label}</Badge>
                     </SpaceBetween>
                   </Box>
-                  
+
+                  <KeyValuePairs columns={1} items={[{ label: 'Humidity', value: `${currentWeather.humidity}%` }]} />
+
                   <KeyValuePairs
                     columns={1}
-                    items={[
-                      { label: 'Humidity', value: `${currentWeather.humidity}%` },
-                    ]}
+                    items={[{ label: 'Wind Speed', value: `${currentWeather.windSpeed} km/h` }]}
                   />
-                  
+
                   <KeyValuePairs
                     columns={1}
                     items={[
-                      { label: 'Wind Speed', value: `${currentWeather.windSpeed} km/h` },
-                    ]}
-                  />
-                  
-                  <KeyValuePairs
-                    columns={1}
-                    items={[
-                      { 
-                        label: 'Last Updated', 
+                      {
+                        label: 'Last Updated',
                         value: new Date(currentWeather.time).toLocaleTimeString('en-US', {
                           hour: 'numeric',
                           minute: '2-digit',
-                          hour12: true
-                        })
+                          hour12: true,
+                        }),
                       },
                     ]}
                   />
@@ -318,9 +315,9 @@ export function App() {
             )}
 
             <Grid gridDefinition={[{ colspan: 12 }]}>
-              <Container 
+              <Container
                 header={
-                  <Header 
+                  <Header
                     variant="h2"
                     actions={
                       <SpaceBetween direction="horizontal" size="xs">
@@ -352,7 +349,7 @@ export function App() {
                         title: 'Temperature',
                         type: 'area',
                         data: temperatureChartData,
-                        valueFormatter: (value) => `${value}°C`,
+                        valueFormatter: value => `${value}°C`,
                       },
                     ]}
                     yTitle="Temperature (°C)"
@@ -374,7 +371,7 @@ export function App() {
             </Grid>
 
             <Grid gridDefinition={[{ colspan: 12 }]}>
-              <Container 
+              <Container
                 header={
                   <Header variant="h2">
                     Precipitation ({viewMode === 'hourly' ? 'Next 24 Hours' : 'Next 7 Days'})
@@ -390,7 +387,7 @@ export function App() {
                         title: 'Precipitation',
                         type: 'bar',
                         data: precipitationChartData,
-                        valueFormatter: (value) => `${value} mm`,
+                        valueFormatter: value => `${value} mm`,
                       },
                     ]}
                     yTitle="Precipitation (mm)"
@@ -413,9 +410,11 @@ export function App() {
 
             {weatherData && viewMode === 'daily' && (
               <Container header={<Header variant="h2">7-Day Forecast</Header>}>
-                <Grid gridDefinition={weatherData.daily.time.map(() => ({ 
-                  colspan: { default: 12, xs: 6, s: 4, m: 3, l: 2, xl: 1.7 } 
-                }))}>
+                <Grid
+                  gridDefinition={weatherData.daily.time.map(() => ({
+                    colspan: { default: 12, xs: 6, s: 4, m: 3, l: 2, xl: 1.7 },
+                  }))}
+                >
                   {weatherData.daily.time.map((time, index) => {
                     const weatherInfo = getWeatherInfo(weatherData.daily.weatherCode[index]);
                     return (

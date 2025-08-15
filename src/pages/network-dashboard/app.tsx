@@ -135,10 +135,7 @@ const columnDefinitions = [
     id: 'status',
     header: 'Status',
     cell: (item: any) => (
-      <Box
-        color={item.status === 'Online' ? 'text-status-success' : 'text-status-error'}
-        fontWeight="bold"
-      >
+      <Box color={item.status === 'Online' ? 'text-status-success' : 'text-status-error'} fontWeight="bold">
         {item.status}
       </Box>
     ),
@@ -177,17 +174,18 @@ export function App() {
       onDismiss: () => setFlashbarItems([]),
     },
   ]);
-  
-  const filteredDevices = deviceData.filter(device =>
-    device.deviceName.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.ipAddress.includes(filterText) ||
-    device.type.toLowerCase().includes(filterText.toLowerCase())
+
+  const filteredDevices = deviceData.filter(
+    device =>
+      device.deviceName.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.ipAddress.includes(filterText) ||
+      device.type.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   const itemsPerPage = 10;
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   return (
@@ -205,7 +203,7 @@ export function App() {
                 ]}
                 ariaLabel="Breadcrumbs"
               />
-              
+
               <Header
                 variant="h1"
                 actions={
@@ -216,7 +214,7 @@ export function App() {
               >
                 Network Administration Dashboard
               </Header>
-              
+
               <Box variant="p" color="text-body-secondary">
                 Network Traffic, Credit Usage, and Your Devices
               </Box>
@@ -248,13 +246,13 @@ export function App() {
                       title: 'Site 1',
                       type: 'area',
                       data: networkTrafficData,
-                      valueFormatter: (value) => `${value}%`,
+                      valueFormatter: value => `${value}%`,
                     },
                     {
                       title: 'Site 2',
                       type: 'area',
                       data: networkTrafficData2,
-                      valueFormatter: (value) => `${value}%`,
+                      valueFormatter: value => `${value}%`,
                     },
                   ]}
                   xTitle="Day"
@@ -280,7 +278,7 @@ export function App() {
                       title: 'Site 1',
                       type: 'bar',
                       data: creditUsageData,
-                      valueFormatter: (value) => `${value} credits`,
+                      valueFormatter: value => `${value} credits`,
                     },
                   ]}
                   xTitle="Day"
@@ -318,7 +316,7 @@ export function App() {
               <Box variant="p" color="text-body-secondary" padding={{ bottom: 'm' }}>
                 Devices on your local network
               </Box>
-              
+
               <Table
                 columnDefinitions={columnDefinitions}
                 items={paginatedDevices}
@@ -338,9 +336,7 @@ export function App() {
                 ariaLabels={{
                   selectionGroupLabel: 'Device selection',
                   allItemsSelectionLabel: ({ selectedItems }) =>
-                    `${selectedItems.length} ${
-                      selectedItems.length === 1 ? 'device' : 'devices'
-                    } selected`,
+                    `${selectedItems.length} ${selectedItems.length === 1 ? 'device' : 'devices'} selected`,
                   itemSelectionLabel: ({ selectedItems }, item) => {
                     const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
                     return `${item.deviceName} is ${isItemSelected ? '' : 'not'} selected`;
