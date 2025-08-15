@@ -224,9 +224,7 @@ export function App() {
           }
         >
           <SpaceBetween size="l">
-            <Alert type="warning" dismissible>
-              This is a warning message
-            </Alert>
+            <Flashbar items={flashbarItems} />
 
             <Container>
               <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } }]}>
