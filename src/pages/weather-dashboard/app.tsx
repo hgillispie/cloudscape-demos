@@ -311,15 +311,15 @@ export function App() {
                         title: 'Temperature',
                         type: 'area',
                         data: temperatureChartData,
-                        color: '#2196F3',
+                        valueFormatter: (value) => `${value}°C`,
                       },
                     ]}
-                    xDomain={temperatureChartData.map(d => d.x)}
                     yTitle="Temperature (°C)"
                     xTitle={viewMode === 'hourly' ? 'Hour' : 'Day'}
                     height={300}
                     hideFilter
                     hideLegend
+                    statusType={loading ? 'loading' : temperatureChartData.length === 0 ? 'finished' : 'finished'}
                     empty={
                       <Box textAlign="center" color="inherit">
                         <Box variant="p" color="inherit">
