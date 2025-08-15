@@ -154,25 +154,39 @@ export function App() {
     return weatherCodeMap[code] || { icon: 'status-info', label: 'Unknown', color: 'grey' };
   };
 
-  const temperatureChartData = viewMode === 'hourly' 
-    ? weatherData?.hourly.time.map((time, index) => ({
-        x: formatHourlyTime(time),
-        y: weatherData.hourly.temperature[index],
-      })) || []
-    : weatherData?.daily.time.map((time, index) => ({
-        x: formatDailyTime(time),
-        y: (weatherData.daily.temperatureMax[index] + weatherData.daily.temperatureMin[index]) / 2,
-      })) || [];
+  const temperatureChartData = React.useMemo(() => {
+    if (!weatherData) return [];
 
-  const precipitationChartData = viewMode === 'hourly'
-    ? weatherData?.hourly.time.map((time, index) => ({
-        x: formatHourlyTime(time),
-        y: weatherData.hourly.precipitation[index],
-      })) || []
-    : weatherData?.daily.time.map((time, index) => ({
-        x: formatDailyTime(time),
-        y: weatherData.daily.precipitation[index],
-      })) || [];
+    const data = viewMode === 'hourly'
+      ? weatherData.hourly.time.map((time, index) => ({
+          x: formatHourlyTime(time),
+          y: Math.round((weatherData.hourly.temperature[index] || 0) * 10) / 10,
+        }))
+      : weatherData.daily.time.map((time, index) => ({
+          x: formatDailyTime(time),
+          y: Math.round(((weatherData.daily.temperatureMax[index] || 0) + (weatherData.daily.temperatureMin[index] || 0)) / 2 * 10) / 10,
+        }));
+
+    console.log('Temperature chart data:', data); // Debug log
+    return data;
+  }, [weatherData, viewMode]);
+
+  const precipitationChartData = React.useMemo(() => {
+    if (!weatherData) return [];
+
+    const data = viewMode === 'hourly'
+      ? weatherData.hourly.time.map((time, index) => ({
+          x: formatHourlyTime(time),
+          y: Math.round((weatherData.hourly.precipitation[index] || 0) * 10) / 10,
+        }))
+      : weatherData.daily.time.map((time, index) => ({
+          x: formatDailyTime(time),
+          y: Math.round((weatherData.daily.precipitation[index] || 0) * 10) / 10,
+        }));
+
+    console.log('Precipitation chart data:', data); // Debug log
+    return data;
+  }, [weatherData, viewMode]);
 
   const currentWeather = weatherData?.current;
   const currentWeatherInfo = currentWeather ? getWeatherInfo(currentWeather.weatherCode) : null;
