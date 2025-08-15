@@ -165,15 +165,6 @@ export function App() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [filterText, setFilterText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
-  const [flashbarItems, setFlashbarItems] = useState([
-    {
-      type: 'error' as const,
-      dismissible: true,
-      content: 'This is a warning message',
-      id: 'warning-message',
-      onDismiss: () => setFlashbarItems([]),
-    },
-  ]);
 
   const filteredDevices = deviceData.filter(
     device =>
