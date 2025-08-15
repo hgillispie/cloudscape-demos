@@ -127,6 +127,12 @@ const demos = [
     category: 'Tables',
   },
   {
+    route: '/network-dashboard',
+    title: 'Network Administration Dashboard',
+    description: 'Network monitoring dashboard with traffic analysis and device management.',
+    category: 'Dashboards',
+  },
+  {
     route: '/weather-dashboard',
     title: 'Weather Dashboard',
     description: 'Interactive weather dashboard with Open-Meteo API integration.',
