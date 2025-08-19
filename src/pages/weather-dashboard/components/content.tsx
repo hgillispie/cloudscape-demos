@@ -11,7 +11,15 @@ import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
 import Spinner from '@cloudscape-design/components/spinner';
 import Badge from '@cloudscape-design/components/badge';
-import { WeatherData, Location, formatTemperature, formatWindSpeed, formatTime, formatDate, getWeatherDescription } from '../weather-service';
+import {
+  WeatherData,
+  Location,
+  formatTemperature,
+  formatWindSpeed,
+  formatTime,
+  formatDate,
+  getWeatherDescription,
+} from '../weather-service';
 
 interface WeatherContentProps {
   weatherData: WeatherData | null;
@@ -25,15 +33,15 @@ interface CurrentWeatherCardProps {
 
 function CurrentWeatherCard({ weatherData }: CurrentWeatherCardProps) {
   const current = weatherData.current;
-  
+
   return (
     <Container header={<Header variant="h2">Current Conditions</Header>}>
-      <Grid 
+      <Grid
         gridDefinition={[
           { colspan: { default: 12, xs: 6, s: 3 } },
           { colspan: { default: 12, xs: 6, s: 3 } },
           { colspan: { default: 12, xs: 6, s: 3 } },
-          { colspan: { default: 12, xs: 6, s: 3 } }
+          { colspan: { default: 12, xs: 6, s: 3 } },
         ]}
       >
         <Box textAlign="center">
@@ -44,7 +52,7 @@ function CurrentWeatherCard({ weatherData }: CurrentWeatherCardProps) {
             Temperature
           </Box>
         </Box>
-        
+
         <Box textAlign="center">
           <Box variant="h3" margin="none">
             {current.humidity}%
@@ -53,7 +61,7 @@ function CurrentWeatherCard({ weatherData }: CurrentWeatherCardProps) {
             Humidity
           </Box>
         </Box>
-        
+
         <Box textAlign="center">
           <Box variant="h3" margin="none">
             {formatWindSpeed(current.windSpeed)}
@@ -62,7 +70,7 @@ function CurrentWeatherCard({ weatherData }: CurrentWeatherCardProps) {
             Wind Speed
           </Box>
         </Box>
-        
+
         <Box textAlign="center">
           <Box variant="h3" margin="none">
             {current.pressure} hPa
@@ -84,7 +92,7 @@ function TemperatureTrendChart({ weatherData }: TemperatureTrendChartProps) {
   const chartData = useMemo(() => {
     return weatherData.hourly.time.slice(0, 24).map((time, index) => ({
       x: new Date(time),
-      y: weatherData.hourly.temperature[index]
+      y: weatherData.hourly.temperature[index],
     }));
   }, [weatherData]);
 
@@ -96,8 +104,8 @@ function TemperatureTrendChart({ weatherData }: TemperatureTrendChartProps) {
             title: 'Temperature',
             type: 'area',
             data: chartData,
-            color: '#FF6B35'
-          }
+            color: '#FF6B35',
+          },
         ]}
         xScaleType="time"
         xTitle="Time"
@@ -112,8 +120,8 @@ function TemperatureTrendChart({ weatherData }: TemperatureTrendChartProps) {
           detailPopoverDismissAriaLabel: 'Dismiss',
           legendAriaLabel: 'Legend',
           chartAriaRoleDescription: 'area chart',
-          xTickFormatter: (value) => formatTime(value.toISOString()),
-          yTickFormatter: (value) => `${value}°C`
+          xTickFormatter: value => formatTime(value.toISOString()),
+          yTickFormatter: value => `${value}°C`,
         }}
       />
     </Container>
@@ -129,7 +137,7 @@ function DailyForecastChart({ weatherData }: DailyForecastChartProps) {
     return weatherData.daily.time.map((time, index) => ({
       x: formatDate(time),
       y1: weatherData.daily.temperatureMax[index],
-      y2: weatherData.daily.temperatureMin[index]
+      y2: weatherData.daily.temperatureMin[index],
     }));
   }, [weatherData]);
 
@@ -141,14 +149,14 @@ function DailyForecastChart({ weatherData }: DailyForecastChartProps) {
             title: 'High',
             type: 'bar',
             data: chartData.map(item => ({ x: item.x, y: item.y1 })),
-            color: '#FF6B35'
+            color: '#FF6B35',
           },
           {
             title: 'Low',
-            type: 'bar', 
+            type: 'bar',
             data: chartData.map(item => ({ x: item.x, y: item.y2 })),
-            color: '#4DABF7'
-          }
+            color: '#4DABF7',
+          },
         ]}
         xTitle="Day"
         yTitle="Temperature (°C)"
@@ -162,7 +170,7 @@ function DailyForecastChart({ weatherData }: DailyForecastChartProps) {
           detailPopoverDismissAriaLabel: 'Dismiss',
           legendAriaLabel: 'Legend',
           chartAriaRoleDescription: 'bar chart',
-          yTickFormatter: (value) => `${value}°C`
+          yTickFormatter: value => `${value}°C`,
         }}
       />
     </Container>
@@ -181,7 +189,7 @@ function HourlyForecastTable({ weatherData }: HourlyForecastTableProps) {
       humidity: weatherData.hourly.humidity[index],
       windSpeed: weatherData.hourly.windSpeed[index],
       precipitation: weatherData.hourly.precipitation[index],
-      weatherCode: weatherData.hourly.weatherCode[index]
+      weatherCode: weatherData.hourly.weatherCode[index],
     }));
   }, [weatherData]);
 
@@ -189,48 +197,44 @@ function HourlyForecastTable({ weatherData }: HourlyForecastTableProps) {
     {
       id: 'time',
       header: 'Time',
-      cell: (item: typeof tableData[0]) => formatTime(item.time),
+      cell: (item: (typeof tableData)[0]) => formatTime(item.time),
       sortingField: 'time',
-      width: 100
+      width: 100,
     },
     {
       id: 'temperature',
       header: 'Temperature',
-      cell: (item: typeof tableData[0]) => formatTemperature(item.temperature),
+      cell: (item: (typeof tableData)[0]) => formatTemperature(item.temperature),
       sortingField: 'temperature',
-      width: 120
+      width: 120,
     },
     {
       id: 'conditions',
       header: 'Conditions',
-      cell: (item: typeof tableData[0]) => (
-        <Badge color="blue">
-          {getWeatherDescription(item.weatherCode)}
-        </Badge>
-      ),
-      width: 150
+      cell: (item: (typeof tableData)[0]) => <Badge color="blue">{getWeatherDescription(item.weatherCode)}</Badge>,
+      width: 150,
     },
     {
       id: 'humidity',
       header: 'Humidity',
-      cell: (item: typeof tableData[0]) => `${item.humidity}%`,
+      cell: (item: (typeof tableData)[0]) => `${item.humidity}%`,
       sortingField: 'humidity',
-      width: 100
+      width: 100,
     },
     {
       id: 'windSpeed',
-      header: 'Wind Speed', 
-      cell: (item: typeof tableData[0]) => formatWindSpeed(item.windSpeed),
+      header: 'Wind Speed',
+      cell: (item: (typeof tableData)[0]) => formatWindSpeed(item.windSpeed),
       sortingField: 'windSpeed',
-      width: 120
+      width: 120,
     },
     {
       id: 'precipitation',
       header: 'Precipitation',
-      cell: (item: typeof tableData[0]) => `${item.precipitation} mm`,
+      cell: (item: (typeof tableData)[0]) => `${item.precipitation} mm`,
       sortingField: 'precipitation',
-      width: 120
-    }
+      width: 120,
+    },
   ];
 
   return (
@@ -276,9 +280,7 @@ export function WeatherContent({ weatherData, location, loading }: WeatherConten
       <Container>
         <Box textAlign="center" padding="xxl">
           <Box variant="h3">No weather data available</Box>
-          <Box variant="p">
-            Unable to load weather data for {location.name}. Please try refreshing the page.
-          </Box>
+          <Box variant="p">Unable to load weather data for {location.name}. Please try refreshing the page.</Box>
         </Box>
       </Container>
     );
@@ -287,17 +289,12 @@ export function WeatherContent({ weatherData, location, loading }: WeatherConten
   return (
     <SpaceBetween size="l">
       <CurrentWeatherCard weatherData={weatherData} />
-      
-      <Grid 
-        gridDefinition={[
-          { colspan: { default: 12, l: 6 } },
-          { colspan: { default: 12, l: 6 } }
-        ]}
-      >
+
+      <Grid gridDefinition={[{ colspan: { default: 12, l: 6 } }, { colspan: { default: 12, l: 6 } }]}>
         <TemperatureTrendChart weatherData={weatherData} />
         <DailyForecastChart weatherData={weatherData} />
       </Grid>
-      
+
       <HourlyForecastTable weatherData={weatherData} />
     </SpaceBetween>
   );

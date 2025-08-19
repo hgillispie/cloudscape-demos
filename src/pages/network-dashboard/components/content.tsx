@@ -30,7 +30,7 @@ function NetworkTrafficChart({ data, loading }: NetworkTrafficChartProps) {
     return data.map(item => ({
       x: item.day,
       y1: item.site1,
-      y2: item.site2
+      y2: item.site2,
     }));
   }, [data]);
 
@@ -42,14 +42,14 @@ function NetworkTrafficChart({ data, loading }: NetworkTrafficChartProps) {
             title: 'Site 1',
             type: 'area',
             data: chartData.map(item => ({ x: item.x, y: item.y1 })),
-            color: '#688AE8'
+            color: '#688AE8',
           },
           {
             title: 'Site 2',
             type: 'area',
             data: chartData.map(item => ({ x: item.x, y: item.y2 })),
-            color: '#C33D69'
-          }
+            color: '#C33D69',
+          },
         ]}
         xTitle="Day"
         yTitle="Traffic"
@@ -63,15 +63,17 @@ function NetworkTrafficChart({ data, loading }: NetworkTrafficChartProps) {
           filterPlaceholder: 'Filter data',
           detailPopoverDismissAriaLabel: 'Dismiss',
           legendAriaLabel: 'Legend',
-          chartAriaRoleDescription: 'area chart'
+          chartAriaRoleDescription: 'area chart',
         }}
         additionalFilters={
-          <div style={{ 
-            borderTop: '2px dashed #5F6B7A', 
-            width: '100%', 
-            position: 'relative',
-            marginTop: '20px'
-          }}>
+          <div
+            style={{
+              borderTop: '2px dashed #5F6B7A',
+              width: '100%',
+              position: 'relative',
+              marginTop: '20px',
+            }}
+          >
             <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: 's' }}>
               Performance goal
             </Box>
@@ -91,7 +93,7 @@ function CreditUsageChart({ data, loading }: CreditUsageChartProps) {
   const chartData = useMemo(() => {
     return data.map(item => ({
       x: item.day,
-      y: item.usage
+      y: item.usage,
     }));
   }, [data]);
 
@@ -103,8 +105,8 @@ function CreditUsageChart({ data, loading }: CreditUsageChartProps) {
             title: 'Site 1',
             type: 'bar',
             data: chartData,
-            color: '#688AE8'
-          }
+            color: '#688AE8',
+          },
         ]}
         xTitle="Day"
         yTitle="Usage"
@@ -118,15 +120,17 @@ function CreditUsageChart({ data, loading }: CreditUsageChartProps) {
           filterPlaceholder: 'Filter data',
           detailPopoverDismissAriaLabel: 'Dismiss',
           legendAriaLabel: 'Legend',
-          chartAriaRoleDescription: 'bar chart'
+          chartAriaRoleDescription: 'bar chart',
         }}
         additionalFilters={
-          <div style={{ 
-            borderTop: '2px dashed #5F6B7A', 
-            width: '100%', 
-            position: 'relative',
-            marginTop: '20px'
-          }}>
+          <div
+            style={{
+              borderTop: '2px dashed #5F6B7A',
+              width: '100%',
+              position: 'relative',
+              marginTop: '20px',
+            }}
+          >
             <Box variant="small" color="text-body-secondary" textAlign="center" margin={{ top: 's' }}>
               Performance goal
             </Box>
@@ -149,10 +153,11 @@ function DevicesTable({ devices, loading }: DevicesTableProps) {
   const pageSize = 10;
 
   const filteredDevices = useMemo(() => {
-    return devices.filter(device =>
-      device.deviceName.toLowerCase().includes(filteringText.toLowerCase()) ||
-      device.ipAddress.includes(filteringText) ||
-      device.deviceType.toLowerCase().includes(filteringText.toLowerCase())
+    return devices.filter(
+      device =>
+        device.deviceName.toLowerCase().includes(filteringText.toLowerCase()) ||
+        device.ipAddress.includes(filteringText) ||
+        device.deviceType.toLowerCase().includes(filteringText.toLowerCase()),
     );
   }, [devices, filteringText]);
 
@@ -167,54 +172,50 @@ function DevicesTable({ devices, loading }: DevicesTableProps) {
       header: 'Device Name',
       cell: (item: DeviceData) => item.deviceName,
       sortingField: 'deviceName',
-      width: 150
+      width: 150,
     },
     {
       id: 'ipAddress',
       header: 'IP Address',
       cell: (item: DeviceData) => item.ipAddress,
       sortingField: 'ipAddress',
-      width: 130
+      width: 130,
     },
     {
       id: 'macAddress',
       header: 'MAC Address',
       cell: (item: DeviceData) => item.macAddress,
       sortingField: 'macAddress',
-      width: 150
+      width: 150,
     },
     {
       id: 'deviceType',
       header: 'Device Type',
       cell: (item: DeviceData) => item.deviceType,
       sortingField: 'deviceType',
-      width: 120
+      width: 120,
     },
     {
       id: 'status',
       header: 'Status',
-      cell: (item: DeviceData) => (
-        <Badge color={item.status === 'Online' ? 'green' : 'red'}>
-          {item.status}
-        </Badge>
-      ),
+      cell: (item: DeviceData) => <Badge color={item.status === 'Online' ? 'green' : 'red'}>{item.status}</Badge>,
       sortingField: 'status',
-      width: 100
+      width: 100,
     },
     {
       id: 'bandwidth',
       header: 'Bandwidth',
       cell: (item: DeviceData) => item.bandwidth,
       sortingField: 'bandwidth',
-      width: 120
+      width: 120,
     },
     {
       id: 'lastSeen',
       header: 'Last Seen',
       cell: (item: DeviceData) => new Date(item.lastSeen).toLocaleString(),
       sortingField: 'lastSeen',
-      width: 160
-    }
+      width: 160,
+    },
   ];
 
   return (
@@ -283,7 +284,11 @@ function DevicesTable({ devices, loading }: DevicesTableProps) {
         }
         header={
           <Header
-            counter={selectedItems.length > 0 ? `(${selectedItems.length}/${filteredDevices.length})` : `(${filteredDevices.length})`}
+            counter={
+              selectedItems.length > 0
+                ? `(${selectedItems.length}/${filteredDevices.length})`
+                : `(${filteredDevices.length})`
+            }
           >
             Network Devices
           </Header>
@@ -296,16 +301,11 @@ function DevicesTable({ devices, loading }: DevicesTableProps) {
 export function NetworkContent({ networkData, loading }: NetworkContentProps) {
   return (
     <SpaceBetween size="l">
-      <Grid 
-        gridDefinition={[
-          { colspan: { default: 12, l: 6 } },
-          { colspan: { default: 12, l: 6 } }
-        ]}
-      >
+      <Grid gridDefinition={[{ colspan: { default: 12, l: 6 } }, { colspan: { default: 12, l: 6 } }]}>
         <NetworkTrafficChart data={networkData.networkTraffic} loading={loading} />
         <CreditUsageChart data={networkData.creditUsage} loading={loading} />
       </Grid>
-      
+
       <DevicesTable devices={networkData.devices} loading={loading} />
     </SpaceBetween>
   );

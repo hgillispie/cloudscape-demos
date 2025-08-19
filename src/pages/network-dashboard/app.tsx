@@ -43,20 +43,10 @@ export function App() {
 
   const headerActions = (
     <SpaceBetween direction="horizontal" size="s">
-      <Button 
-        iconName="external" 
-        iconAlign="right"
-        variant="primary"
-        loading={loading}
-        onClick={handleRefresh}
-      >
+      <Button iconName="external" iconAlign="right" variant="primary" loading={loading} onClick={handleRefresh}>
         Refresh Data
       </Button>
-      {lastUpdated && (
-        <StatusIndicator type="success">
-          Updated {lastUpdated.toLocaleTimeString()}
-        </StatusIndicator>
-      )}
+      {lastUpdated && <StatusIndicator type="success">Updated {lastUpdated.toLocaleTimeString()}</StatusIndicator>}
     </SpaceBetween>
   );
 
@@ -67,7 +57,7 @@ export function App() {
         content={
           <SpaceBetween size="m">
             <NetworkHeader actions={headerActions} />
-            
+
             {showAlert && (
               <Alert
                 type="error"
@@ -79,19 +69,16 @@ export function App() {
                 This is a warning message
               </Alert>
             )}
-            
-            <NetworkContent 
-              networkData={networkData}
-              loading={loading}
-            />
+
+            <NetworkContent networkData={networkData} loading={loading} />
           </SpaceBetween>
         }
         breadcrumbs={
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { text: 'Service', href: '#/' },
-              { text: 'Administrative Dashboard', href: '#/' }
-            ]} 
+              { text: 'Administrative Dashboard', href: '#/' },
+            ]}
           />
         }
         tools={toolsContent}

@@ -15,7 +15,7 @@ interface WeatherHeaderProps {
 
 export function WeatherHeader({ location, weatherData, actions }: WeatherHeaderProps) {
   const currentWeather = weatherData?.current;
-  
+
   return (
     <Header
       variant="h1"
@@ -29,12 +29,8 @@ export function WeatherHeader({ location, weatherData, actions }: WeatherHeaderP
             <Box>
               <strong>{formatTemperature(currentWeather.temperature)}</strong>
             </Box>
-            <Box>
-              {getWeatherDescription(currentWeather.weatherCode)}
-            </Box>
-            <Box>
-              Feels like {formatTemperature(currentWeather.apparentTemperature)}
-            </Box>
+            <Box>{getWeatherDescription(currentWeather.weatherCode)}</Box>
+            <Box>Feels like {formatTemperature(currentWeather.apparentTemperature)}</Box>
           </SpaceBetween>
         ) : (
           `Weather dashboard for ${location.name}`

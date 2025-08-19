@@ -11,7 +11,7 @@ interface WeatherSideNavigationProps {
 
 export function WeatherSideNavigation({ selectedLocation, onLocationChange }: WeatherSideNavigationProps) {
   const locations = getLocations();
-  
+
   const navigationItems = [
     {
       type: 'section' as const,
@@ -24,8 +24,8 @@ export function WeatherSideNavigation({ selectedLocation, onLocationChange }: We
         onClick: (event: React.SyntheticEvent) => {
           event.preventDefault();
           onLocationChange(location);
-        }
-      }))
+        },
+      })),
     },
     { type: 'divider' as const },
     {
@@ -36,22 +36,22 @@ export function WeatherSideNavigation({ selectedLocation, onLocationChange }: We
           type: 'link' as const,
           text: 'Current conditions',
           href: '#current',
-          external: false
+          external: false,
         },
         {
           type: 'link' as const,
           text: 'Hourly forecast',
           href: '#hourly',
-          external: false
+          external: false,
         },
         {
           type: 'link' as const,
           text: '7-day forecast',
           href: '#daily',
-          external: false
-        }
-      ]
-    }
+          external: false,
+        },
+      ],
+    },
   ];
 
   return (

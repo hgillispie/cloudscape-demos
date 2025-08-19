@@ -38,11 +38,11 @@ export interface Location {
 }
 
 const defaultLocations: Location[] = [
-  { name: 'New York', latitude: 40.7128, longitude: -74.0060, timezone: 'America/New_York' },
+  { name: 'New York', latitude: 40.7128, longitude: -74.006, timezone: 'America/New_York' },
   { name: 'London', latitude: 51.5074, longitude: -0.1278, timezone: 'Europe/London' },
   { name: 'Tokyo', latitude: 35.6762, longitude: 139.6503, timezone: 'Asia/Tokyo' },
   { name: 'Sydney', latitude: -33.8688, longitude: 151.2093, timezone: 'Australia/Sydney' },
-  { name: 'San Francisco', latitude: 37.7749, longitude: -122.4194, timezone: 'America/Los_Angeles' }
+  { name: 'San Francisco', latitude: 37.7749, longitude: -122.4194, timezone: 'America/Los_Angeles' },
 ];
 
 export const weatherCodeMap: Record<number, { description: string; icon: string }> = {
@@ -69,7 +69,7 @@ export const weatherCodeMap: Record<number, { description: string; icon: string 
   86: { description: 'Heavy snow showers', icon: 'snowy' },
   95: { description: 'Thunderstorm', icon: 'thunderstorm' },
   96: { description: 'Thunderstorm with slight hail', icon: 'thunderstorm' },
-  99: { description: 'Thunderstorm with heavy hail', icon: 'thunderstorm' }
+  99: { description: 'Thunderstorm with heavy hail', icon: 'thunderstorm' },
 };
 
 export async function fetchWeatherData(location: Location): Promise<WeatherData> {
@@ -78,11 +78,12 @@ export async function fetchWeatherData(location: Location): Promise<WeatherData>
     latitude: location.latitude.toString(),
     longitude: location.longitude.toString(),
     timezone: location.timezone,
-    current: 'temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m',
+    current:
+      'temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m',
     hourly: 'temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,weather_code',
     daily: 'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,weather_code',
     past_days: '1',
-    forecast_days: '7'
+    forecast_days: '7',
   });
 
   try {
@@ -90,9 +91,9 @@ export async function fetchWeatherData(location: Location): Promise<WeatherData>
     if (!response.ok) {
       throw new Error(`Weather API error: ${response.status}`);
     }
-    
+
     const data = await response.json();
-    
+
     return {
       current: {
         time: data.current.time,
@@ -102,7 +103,7 @@ export async function fetchWeatherData(location: Location): Promise<WeatherData>
         weatherCode: data.current.weather_code,
         humidity: Math.round(data.current.relative_humidity_2m),
         pressure: Math.round(data.current.surface_pressure),
-        apparentTemperature: Math.round(data.current.apparent_temperature)
+        apparentTemperature: Math.round(data.current.apparent_temperature),
       },
       hourly: {
         time: data.hourly.time.slice(0, 48), // Next 48 hours
@@ -110,7 +111,7 @@ export async function fetchWeatherData(location: Location): Promise<WeatherData>
         humidity: data.hourly.relative_humidity_2m.slice(0, 48).map((humidity: number) => Math.round(humidity)),
         windSpeed: data.hourly.wind_speed_10m.slice(0, 48).map((speed: number) => Math.round(speed)),
         precipitation: data.hourly.precipitation.slice(0, 48),
-        weatherCode: data.hourly.weather_code.slice(0, 48)
+        weatherCode: data.hourly.weather_code.slice(0, 48),
       },
       daily: {
         time: data.daily.time,
@@ -118,8 +119,8 @@ export async function fetchWeatherData(location: Location): Promise<WeatherData>
         temperatureMin: data.daily.temperature_2m_min.map((temp: number) => Math.round(temp)),
         precipitationSum: data.daily.precipitation_sum,
         windSpeedMax: data.daily.wind_speed_10m_max.map((speed: number) => Math.round(speed)),
-        weatherCode: data.daily.weather_code
-      }
+        weatherCode: data.daily.weather_code,
+      },
     };
   } catch (error) {
     console.error('Error fetching weather data:', error);
@@ -151,7 +152,7 @@ export function formatTime(timeString: string): string {
   return new Date(timeString).toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
-    hour12: false
+    hour12: false,
   });
 }
 
@@ -159,6 +160,6 @@ export function formatDate(timeString: string): string {
   return new Date(timeString).toLocaleDateString('en-US', {
     weekday: 'short',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 }

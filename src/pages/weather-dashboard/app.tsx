@@ -19,7 +19,9 @@ import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
 export function App() {
   const [toolsOpen, setToolsOpen] = useState(false);
-  const [toolsContent, setToolsContent] = useState<React.ReactNode>(() => <div>Weather information will appear here</div>);
+  const [toolsContent, setToolsContent] = useState<React.ReactNode>(() => (
+    <div>Weather information will appear here</div>
+  ));
   const [selectedLocation, setSelectedLocation] = useState<Location>(getLocations()[0]);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -64,29 +66,24 @@ export function App() {
 
   // Auto-refresh every 5 minutes
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!loading) {
-        loadWeatherData(selectedLocation);
-      }
-    }, 5 * 60 * 1000); // 5 minutes
+    const interval = setInterval(
+      () => {
+        if (!loading) {
+          loadWeatherData(selectedLocation);
+        }
+      },
+      5 * 60 * 1000,
+    ); // 5 minutes
 
     return () => clearInterval(interval);
   }, [selectedLocation, loading]);
 
   const headerActions = (
     <SpaceBetween direction="horizontal" size="s">
-      <Button 
-        iconName="refresh" 
-        loading={loading}
-        onClick={handleRefresh}
-      >
+      <Button iconName="refresh" loading={loading} onClick={handleRefresh}>
         Refresh
       </Button>
-      {lastUpdated && (
-        <StatusIndicator type="success">
-          Updated {lastUpdated.toLocaleTimeString()}
-        </StatusIndicator>
-      )}
+      {lastUpdated && <StatusIndicator type="success">Updated {lastUpdated.toLocaleTimeString()}</StatusIndicator>}
     </SpaceBetween>
   );
 
@@ -96,48 +93,33 @@ export function App() {
         ref={appLayout}
         content={
           <SpaceBetween size="m">
-            <WeatherHeader 
-              location={selectedLocation}
-              weatherData={weatherData}
-              actions={headerActions}
-            />
-            
+            <WeatherHeader location={selectedLocation} weatherData={weatherData} actions={headerActions} />
+
             {error && (
               <Alert
                 type="error"
                 header="Weather data unavailable"
                 dismissible
                 onDismiss={() => setError(null)}
-                action={
-                  <Button onClick={handleRefresh}>
-                    Try again
-                  </Button>
-                }
+                action={<Button onClick={handleRefresh}>Try again</Button>}
               >
                 {error}
               </Alert>
             )}
-            
-            <WeatherContent 
-              weatherData={weatherData} 
-              location={selectedLocation}
-              loading={loading}
-            />
+
+            <WeatherContent weatherData={weatherData} location={selectedLocation} loading={loading} />
           </SpaceBetween>
         }
         breadcrumbs={
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { text: 'Weather Dashboard', href: '#/' },
-              { text: selectedLocation.name, href: '#/' }
-            ]} 
+              { text: selectedLocation.name, href: '#/' },
+            ]}
           />
         }
         navigation={
-          <WeatherSideNavigation 
-            selectedLocation={selectedLocation}
-            onLocationChange={handleLocationChange}
-          />
+          <WeatherSideNavigation selectedLocation={selectedLocation} onLocationChange={handleLocationChange} />
         }
         tools={toolsContent}
         toolsOpen={toolsOpen}

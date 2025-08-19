@@ -9,11 +9,7 @@ interface NetworkHeaderProps {
 
 export function NetworkHeader({ actions }: NetworkHeaderProps) {
   return (
-    <Header
-      variant="h1"
-      actions={actions}
-      description="Network Traffic, Credit Usage, and Your Devices"
-    >
+    <Header variant="h1" actions={actions} description="Network Traffic, Credit Usage, and Your Devices">
       Network Administration Dashboard
     </Header>
   );

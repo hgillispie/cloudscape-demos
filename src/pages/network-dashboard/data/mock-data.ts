@@ -31,16 +31,16 @@ export interface NetworkData {
 
 export function generateMockData(): NetworkData {
   const days = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12'];
-  
+
   const networkTraffic: NetworkTrafficData[] = days.map(day => ({
     day,
     site1: Math.floor(Math.random() * 50) + 20,
-    site2: Math.floor(Math.random() * 40) + 30
+    site2: Math.floor(Math.random() * 40) + 30,
   }));
 
   const creditUsage: CreditUsageData[] = ['x1', 'x2', 'x3', 'x4', 'x5'].map(day => ({
     day,
-    usage: Math.floor(Math.random() * 100) + 50
+    usage: Math.floor(Math.random() * 100) + 50,
   }));
 
   const devices: DeviceData[] = Array.from({ length: 12 }, (_, i) => ({
@@ -51,12 +51,12 @@ export function generateMockData(): NetworkData {
     deviceType: ['Desktop', 'Laptop', 'Mobile', 'Tablet', 'Server'][Math.floor(Math.random() * 5)],
     status: Math.random() > 0.2 ? 'Online' : 'Offline',
     lastSeen: new Date(Date.now() - Math.random() * 86400000).toISOString(),
-    bandwidth: `${Math.floor(Math.random() * 100) + 10} Mbps`
+    bandwidth: `${Math.floor(Math.random() * 100) + 10} Mbps`,
   }));
 
   return {
     networkTraffic,
     creditUsage,
-    devices
+    devices,
   };
 }
