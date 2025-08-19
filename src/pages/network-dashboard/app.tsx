@@ -73,14 +73,10 @@ export function NetworkDashboardApp() {
                 </Grid>
 
                 {showAlert && (
-                <Alert
-                  type="warning"
-                  dismissible
-                  onDismiss={() => setShowAlert(false)}
-                >
-                  This is a warning message
-                </Alert>
-              )}
+                  <Alert type="warning" dismissible onDismiss={() => setShowAlert(false)}>
+                    This is a warning message
+                  </Alert>
+                )}
               </SpaceBetween>
             }
           >
