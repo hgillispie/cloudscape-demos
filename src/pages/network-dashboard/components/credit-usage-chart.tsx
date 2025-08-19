@@ -44,6 +44,7 @@ export function CreditUsageChart() {
         height={300}
         hideFilter
         hideLegend={false}
+        xScaleType="categorical"
         xTitle="Day"
         yTitle=""
         ariaLabel="Credit usage bar chart"
