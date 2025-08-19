@@ -37,6 +37,12 @@ const demos = [
     category: 'Dashboards',
   },
   {
+    route: '/network-dashboard',
+    title: 'Network Administration Dashboard',
+    description: 'Network traffic monitoring, credit usage tracking, and device management dashboard.',
+    category: 'Dashboards',
+  },
+  {
     route: '/delete-one-click',
     title: 'One-click Delete',
     description: 'Delete with a single click.',
