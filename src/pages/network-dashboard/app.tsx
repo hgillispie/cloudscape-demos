@@ -70,11 +70,11 @@ export function App() {
             
             {showAlert && (
               <Alert
-                type="warning"
+                type="error"
                 header=""
                 dismissible
                 onDismiss={() => setShowAlert(false)}
-                dismissAriaLabel="Dismiss warning"
+                dismissAriaLabel="Dismiss error"
               >
                 This is a warning message
               </Alert>
