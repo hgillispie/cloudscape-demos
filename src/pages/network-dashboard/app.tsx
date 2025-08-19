@@ -16,6 +16,8 @@ import { NetworkTrafficChart } from './components/network-traffic-chart';
 import { CreditUsageChart } from './components/credit-usage-chart';
 import { DevicesTable } from './components/devices-table';
 
+import '../../styles/network-dashboard.scss';
+
 export function NetworkDashboardApp() {
   const [filteringText, setFilteringText] = useState('');
   const [flashbarItems, setFlashbarItems] = useState([
