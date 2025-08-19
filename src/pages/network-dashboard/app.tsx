@@ -59,15 +59,19 @@ export function App() {
             <NetworkHeader actions={headerActions} />
 
             <Flashbar
-              items={showAlert ? [
-                {
-                  type: 'error',
-                  content: 'This is a warning message',
-                  dismissible: true,
-                  onDismiss: () => setShowAlert(false),
-                  id: 'error-message'
-                }
-              ] : []}
+              items={
+                showAlert
+                  ? [
+                      {
+                        type: 'error',
+                        content: 'This is a warning message',
+                        dismissible: true,
+                        onDismiss: () => setShowAlert(false),
+                        id: 'error-message',
+                      },
+                    ]
+                  : []
+              }
             />
 
             <NetworkContent networkData={networkData} loading={loading} />
