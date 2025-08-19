@@ -46,7 +46,7 @@ export function NetworkTrafficChart() {
         </Header>
       }
     >
-      <AreaChart
+      <LineChart
         series={series}
         xDomain={sampleData.map(item => item.x)}
         yDomain={[0, 100]}
