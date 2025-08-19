@@ -134,16 +134,18 @@ export function App() {
                 Network Administration Dashboard
               </Header>
 
-              <Flashbar
-                items={[
-                  {
-                    type: 'error',
-                    content: 'This is a warning message',
-                    dismissible: true,
-                    buttonText: 'Dismiss',
-                  },
-                ]}
-              />
+              <Alert
+                type="error"
+                dismissible
+                dismissAriaLabel="Close alert"
+                action={
+                  <Button variant="link">
+                    Dismiss
+                  </Button>
+                }
+              >
+                This is a warning message
+              </Alert>
             </SpaceBetween>
           }
         >
