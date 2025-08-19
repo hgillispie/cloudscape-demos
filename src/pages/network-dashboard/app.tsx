@@ -138,11 +138,7 @@ export function App() {
                 type="error"
                 dismissible
                 dismissAriaLabel="Close alert"
-                action={
-                  <Button variant="link">
-                    Dismiss
-                  </Button>
-                }
+                action={<Button variant="link">Dismiss</Button>}
               >
                 This is a warning message
               </Alert>
