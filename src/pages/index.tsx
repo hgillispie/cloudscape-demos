@@ -62,6 +62,12 @@ const demos = [
   { route: '/form-validation', title: 'Form Validation', description: 'Form validation demo.', category: 'Forms' },
   { route: '/manage-tags', title: 'Manage Tags', description: 'Tag management demo.', category: 'Components' },
   {
+    route: '/network-dashboard',
+    title: 'Network Administration Dashboard',
+    description: 'Network traffic monitoring and device management dashboard.',
+    category: 'Dashboards',
+  },
+  {
     route: '/non-console',
     title: 'Top Navigation',
     description: 'Non-console top navigation.',
@@ -125,6 +131,12 @@ const demos = [
     title: 'Table Select Filter',
     description: 'Table with select filter.',
     category: 'Tables',
+  },
+  {
+    route: '/weather-dashboard',
+    title: 'Weather Dashboard',
+    description: 'Weather forecast dashboard using Open-Meteo API.',
+    category: 'Dashboards',
   },
   { route: '/wizard', title: 'Wizard', description: 'Multi-step wizard demo.', category: 'Forms' },
   { route: '/write-to-s3', title: 'Write to S3', description: 'Write data to Amazon S3.', category: 'Integration' },
