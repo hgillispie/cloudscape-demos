@@ -76,7 +76,7 @@ export function getWeatherDescription(code: number): { description: string; icon
 }
 
 export const SAMPLE_LOCATIONS: WeatherLocation[] = [
-  { name: 'New York', latitude: 40.7128, longitude: -74.0060, timezone: 'America/New_York' },
+  { name: 'New York', latitude: 40.7128, longitude: -74.006, timezone: 'America/New_York' },
   { name: 'London', latitude: 51.5074, longitude: -0.1278, timezone: 'Europe/London' },
   { name: 'Tokyo', latitude: 35.6762, longitude: 139.6503, timezone: 'Asia/Tokyo' },
   { name: 'Sydney', latitude: -33.8688, longitude: 151.2093, timezone: 'Australia/Sydney' },
@@ -94,7 +94,7 @@ export async function fetchWeatherData(location: WeatherLocation): Promise<Weath
     'cloud_cover',
     'pressure_msl',
     'wind_speed_10m',
-    'wind_direction_10m'
+    'wind_direction_10m',
   ].join(',');
 
   const hourlyParams = [
@@ -102,7 +102,7 @@ export async function fetchWeatherData(location: WeatherLocation): Promise<Weath
     'relative_humidity_2m',
     'precipitation',
     'weather_code',
-    'wind_speed_10m'
+    'wind_speed_10m',
   ].join(',');
 
   const dailyParams = [
@@ -113,7 +113,7 @@ export async function fetchWeatherData(location: WeatherLocation): Promise<Weath
     'apparent_temperature_min',
     'precipitation_sum',
     'wind_speed_10m_max',
-    'wind_gusts_10m_max'
+    'wind_gusts_10m_max',
   ].join(',');
 
   const url = new URL('https://api.open-meteo.com/v1/forecast');

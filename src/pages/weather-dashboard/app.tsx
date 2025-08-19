@@ -17,12 +17,12 @@ import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 
 import { Breadcrumbs } from '../commons';
-import { 
-  WeatherLocation, 
-  WeatherResponse, 
-  SAMPLE_LOCATIONS, 
+import {
+  WeatherLocation,
+  WeatherResponse,
+  SAMPLE_LOCATIONS,
   fetchWeatherData,
-  getWeatherDescription 
+  getWeatherDescription,
 } from './weather-service';
 
 export function App() {
@@ -35,7 +35,7 @@ export function App() {
   const loadWeatherData = async (location: WeatherLocation) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const data = await fetchWeatherData(location);
       setWeatherData(data);
@@ -65,25 +65,27 @@ export function App() {
   // Prepare chart data
   const prepareHourlyTemperatureData = () => {
     if (!weatherData) return [];
-    
-    return [{
-      title: 'Temperature (°C)',
-      type: 'area',
-      data: weatherData.hourly.time.slice(0, 24).map((time, index) => ({
-        x: new Date(time),
-        y: weatherData.hourly.temperature_2m[index]
-      }))
-    }];
+
+    return [
+      {
+        title: 'Temperature (°C)',
+        type: 'area',
+        data: weatherData.hourly.time.slice(0, 24).map((time, index) => ({
+          x: new Date(time),
+          y: weatherData.hourly.temperature_2m[index],
+        })),
+      },
+    ];
   };
 
   const prepareDailyData = () => {
     if (!weatherData) return [];
-    
+
     return weatherData.daily.time.map((date, index) => ({
       name: new Date(date).toLocaleDateString('en-US', { weekday: 'short' }),
       max: weatherData.daily.temperature_2m_max[index],
       min: weatherData.daily.temperature_2m_min[index],
-      precipitation: weatherData.daily.precipitation_sum[index]
+      precipitation: weatherData.daily.precipitation_sum[index],
     }));
   };
 
@@ -110,11 +112,7 @@ export function App() {
                       options={SAMPLE_LOCATIONS.map(loc => ({ value: loc.name, label: loc.name }))}
                       placeholder="Select location"
                     />
-                    <Button
-                      iconName="refresh"
-                      onClick={handleRefresh}
-                      loading={loading}
-                    >
+                    <Button iconName="refresh" onClick={handleRefresh} loading={loading}>
                       Refresh
                     </Button>
                   </SpaceBetween>
@@ -122,15 +120,17 @@ export function App() {
               >
                 Weather Dashboard
               </Header>
-              
+
               {error && (
                 <Flashbar
-                  items={[{
-                    type: 'error',
-                    content: error,
-                    dismissible: true,
-                    onDismiss: () => setError(null)
-                  }]}
+                  items={[
+                    {
+                      type: 'error',
+                      content: error,
+                      dismissible: true,
+                      onDismiss: () => setError(null),
+                    },
+                  ]}
                 />
               )}
             </SpaceBetween>
@@ -141,7 +141,9 @@ export function App() {
               <Container>
                 <Box textAlign="center" padding="l">
                   <Spinner size="large" />
-                  <Box variant="p" margin={{ top: 's' }}>Loading weather data...</Box>
+                  <Box variant="p" margin={{ top: 's' }}>
+                    Loading weather data...
+                  </Box>
                 </Box>
               </Container>
             )}
@@ -154,11 +156,7 @@ export function App() {
                     <Header
                       variant="h2"
                       description={`Current weather in ${selectedLocation.name}`}
-                      info={lastUpdated && (
-                        <Box variant="small">
-                          Last updated: {lastUpdated.toLocaleTimeString()}
-                        </Box>
-                      )}
+                      info={lastUpdated && <Box variant="small">Last updated: {lastUpdated.toLocaleTimeString()}</Box>}
                     >
                       Current Conditions
                     </Header>
@@ -169,27 +167,25 @@ export function App() {
                       { colspan: { default: 12, xs: 6, s: 3 } },
                       { colspan: { default: 12, xs: 6, s: 3 } },
                       { colspan: { default: 12, xs: 6, s: 3 } },
-                      { colspan: { default: 12, xs: 6, s: 3 } }
+                      { colspan: { default: 12, xs: 6, s: 3 } },
                     ]}
                   >
                     <Container>
                       <Box variant="h3">{Math.round(weatherData.current.temperature_2m)}°C</Box>
                       <Box variant="p">Temperature</Box>
-                      <StatusIndicator type="success">
-                        {getCurrentCondition()?.description}
-                      </StatusIndicator>
+                      <StatusIndicator type="success">{getCurrentCondition()?.description}</StatusIndicator>
                     </Container>
-                    
+
                     <Container>
                       <Box variant="h3">{weatherData.current.relative_humidity_2m}%</Box>
                       <Box variant="p">Humidity</Box>
                     </Container>
-                    
+
                     <Container>
                       <Box variant="h3">{Math.round(weatherData.current.wind_speed_10m)} km/h</Box>
                       <Box variant="p">Wind Speed</Box>
                     </Container>
-                    
+
                     <Container>
                       <Box variant="h3">{Math.round(weatherData.current.pressure_msl)} hPa</Box>
                       <Box variant="p">Pressure</Box>
@@ -198,19 +194,13 @@ export function App() {
                 </Container>
 
                 {/* Hourly Temperature Chart */}
-                <Container
-                  header={
-                    <Header variant="h2">
-                      24-Hour Temperature Trend
-                    </Header>
-                  }
-                >
+                <Container header={<Header variant="h2">24-Hour Temperature Trend</Header>}>
                   <AreaChart
                     series={prepareHourlyTemperatureData()}
                     xDomain={weatherData.hourly.time.slice(0, 24).map(time => new Date(time))}
                     yDomain={[
                       Math.min(...weatherData.hourly.temperature_2m.slice(0, 24)) - 2,
-                      Math.max(...weatherData.hourly.temperature_2m.slice(0, 24)) + 2
+                      Math.max(...weatherData.hourly.temperature_2m.slice(0, 24)) + 2,
                     ]}
                     height={300}
                     xTitle="Time"
@@ -222,25 +212,19 @@ export function App() {
                 </Container>
 
                 {/* 7-Day Forecast */}
-                <Container
-                  header={
-                    <Header variant="h2">
-                      7-Day Forecast
-                    </Header>
-                  }
-                >
+                <Container header={<Header variant="h2">7-Day Forecast</Header>}>
                   <BarChart
                     series={[
                       {
                         title: 'Max Temperature (°C)',
                         type: 'bar',
-                        data: prepareDailyData().map(day => ({ x: day.name, y: day.max }))
+                        data: prepareDailyData().map(day => ({ x: day.name, y: day.max })),
                       },
                       {
                         title: 'Min Temperature (°C)',
                         type: 'bar',
-                        data: prepareDailyData().map(day => ({ x: day.name, y: day.min }))
-                      }
+                        data: prepareDailyData().map(day => ({ x: day.name, y: day.min })),
+                      },
                     ]}
                     xDomain={prepareDailyData().map(day => day.name)}
                     yTitle="Temperature (°C)"
@@ -251,19 +235,15 @@ export function App() {
                 </Container>
 
                 {/* Precipitation Forecast */}
-                <Container
-                  header={
-                    <Header variant="h2">
-                      7-Day Precipitation Forecast
-                    </Header>
-                  }
-                >
+                <Container header={<Header variant="h2">7-Day Precipitation Forecast</Header>}>
                   <BarChart
-                    series={[{
-                      title: 'Precipitation (mm)',
-                      type: 'bar',
-                      data: prepareDailyData().map(day => ({ x: day.name, y: day.precipitation }))
-                    }]}
+                    series={[
+                      {
+                        title: 'Precipitation (mm)',
+                        type: 'bar',
+                        data: prepareDailyData().map(day => ({ x: day.name, y: day.precipitation })),
+                      },
+                    ]}
                     xDomain={prepareDailyData().map(day => day.name)}
                     yTitle="Precipitation (mm)"
                     height={300}
@@ -278,11 +258,11 @@ export function App() {
         </ContentLayout>
       }
       breadcrumbs={
-        <Breadcrumbs 
+        <Breadcrumbs
           items={[
             { text: 'Home', href: '/' },
-            { text: 'Weather Dashboard', href: '#' }
-          ]} 
+            { text: 'Weather Dashboard', href: '#' },
+          ]}
         />
       }
     />
