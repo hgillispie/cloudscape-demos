@@ -58,17 +58,17 @@ export function App() {
           <SpaceBetween size="m">
             <NetworkHeader actions={headerActions} />
 
-            {showAlert && (
-              <Alert
-                type="error"
-                header=""
-                dismissible
-                onDismiss={() => setShowAlert(false)}
-                dismissAriaLabel="Dismiss error"
-              >
-                This is a warning message
-              </Alert>
-            )}
+            <Flashbar
+              items={showAlert ? [
+                {
+                  type: 'error',
+                  content: 'This is a warning message',
+                  dismissible: true,
+                  onDismiss: () => setShowAlert(false),
+                  id: 'error-message'
+                }
+              ] : []}
+            />
 
             <NetworkContent networkData={networkData} loading={loading} />
           </SpaceBetween>
