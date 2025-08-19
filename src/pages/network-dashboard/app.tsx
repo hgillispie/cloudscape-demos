@@ -6,7 +6,7 @@ import { AppLayoutProps } from '@cloudscape-design/components/app-layout';
 import Button from '@cloudscape-design/components/button';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 
 import { Breadcrumbs, HelpPanelProvider, Notifications } from '../commons';
 import { CustomAppLayout } from '../commons/common-components';
