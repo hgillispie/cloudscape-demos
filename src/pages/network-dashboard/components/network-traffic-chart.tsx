@@ -53,6 +53,7 @@ export function NetworkTrafficChart() {
         height={300}
         hideFilter
         hideLegend={false}
+        xScaleType="categorical"
         xTitle="Day"
         yTitle=""
         ariaLabel="Network traffic area chart"
