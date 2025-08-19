@@ -12,7 +12,7 @@ const generateSampleData = () => {
     { x: 'x2', y: 95 },
     { x: 'x3', y: 85 },
     { x: 'x4', y: 45 },
-    { x: 'x5', y: 80 }
+    { x: 'x5', y: 80 },
   ];
 };
 
@@ -24,19 +24,13 @@ const series = [
     type: 'bar' as const,
     data: sampleData,
     color: '#688AE8',
-    valueFormatter: (value: number) => `${value}%`
-  }
+    valueFormatter: (value: number) => `${value}%`,
+  },
 ];
 
 export function CreditUsageChart() {
   return (
-    <Container
-      header={
-        <Header variant="h2">
-          Credit Usage
-        </Header>
-      }
-    >
+    <Container header={<Header variant="h2">Credit Usage</Header>}>
       <BarChart
         series={series}
         xDomain={sampleData.map(item => item.x)}
@@ -54,42 +48,50 @@ export function CreditUsageChart() {
           filterPlaceholder: 'Filter data',
           legendAriaLabel: 'Legend',
           chartAriaRoleDescription: 'bar chart',
-          xTickFormatter: (value) => value,
-          yTickFormatter: (value) => `y${value}`,
+          xTickFormatter: value => value,
+          yTickFormatter: value => `y${value}`,
         }}
       />
-      
+
       {/* Custom Legend */}
       <Box margin={{ top: 'm' }}>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <div style={{
-              width: '14px',
-              height: '14px',
-              borderRadius: '2px',
-              backgroundColor: '#688AE8'
-            }} />
+            <div
+              style={{
+                width: '14px',
+                height: '14px',
+                borderRadius: '2px',
+                backgroundColor: '#688AE8',
+              }}
+            />
             <span style={{ fontFamily: 'Open Sans', fontSize: '14px', color: '#000716' }}>Site 1</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <div style={{ 
-              width: '12px', 
-              height: '3px',
-              display: 'flex',
-              gap: '2px'
-            }}>
-              <div style={{
-                width: '6px',
+            <div
+              style={{
+                width: '12px',
                 height: '3px',
-                borderRadius: '1px',
-                backgroundColor: '#5F6B7A'
-              }} />
-              <div style={{
-                width: '6px',
-                height: '3px',
-                borderRadius: '1px',
-                backgroundColor: '#5F6B7A'
-              }} />
+                display: 'flex',
+                gap: '2px',
+              }}
+            >
+              <div
+                style={{
+                  width: '6px',
+                  height: '3px',
+                  borderRadius: '1px',
+                  backgroundColor: '#5F6B7A',
+                }}
+              />
+              <div
+                style={{
+                  width: '6px',
+                  height: '3px',
+                  borderRadius: '1px',
+                  backgroundColor: '#5F6B7A',
+                }}
+              />
             </div>
             <span style={{ fontFamily: 'Open Sans', fontSize: '14px', color: '#000716' }}>Performance goal</span>
           </div>

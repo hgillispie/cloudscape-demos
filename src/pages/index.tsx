@@ -34,7 +34,7 @@ const demos = [
     route: '/network-dashboard',
     title: 'Network Administration Dashboard',
     description: 'Network traffic, credit usage, and device management dashboard.',
-    category: 'Dashboards'
+    category: 'Dashboards',
   },
   {
     route: '/delete-one-click',

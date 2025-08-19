@@ -26,26 +26,20 @@ const series = [
     type: 'area' as const,
     data: sampleData.map(item => ({ x: item.x, y: item.site1 })),
     color: '#688AE8',
-    valueFormatter: (value: number) => `${value}%`
+    valueFormatter: (value: number) => `${value}%`,
   },
   {
-    title: 'Site 2', 
+    title: 'Site 2',
     type: 'area' as const,
     data: sampleData.map(item => ({ x: item.x, y: item.site2 })),
     color: '#C33D69',
-    valueFormatter: (value: number) => `${value}%`
-  }
+    valueFormatter: (value: number) => `${value}%`,
+  },
 ];
 
 export function NetworkTrafficChart() {
   return (
-    <Container
-      header={
-        <Header variant="h2">
-          Network traffic
-        </Header>
-      }
-    >
+    <Container header={<Header variant="h2">Network traffic</Header>}>
       <LineChart
         series={series}
         xDomain={sampleData.map(item => item.x)}
@@ -63,53 +57,63 @@ export function NetworkTrafficChart() {
           filterPlaceholder: 'Filter data',
           legendAriaLabel: 'Legend',
           chartAriaRoleDescription: 'area chart',
-          xTickFormatter: (value) => value,
-          yTickFormatter: (value) => `y${value}`,
+          xTickFormatter: value => value,
+          yTickFormatter: value => `y${value}`,
         }}
       />
-      
+
       {/* Custom Legend */}
       <Box margin={{ top: 'm' }}>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <div style={{
-              width: '14px',
-              height: '14px',
-              borderRadius: '2px',
-              border: '1px solid #688AE8',
-              backgroundColor: 'rgba(104, 138, 232, 0.4)'
-            }} />
+            <div
+              style={{
+                width: '14px',
+                height: '14px',
+                borderRadius: '2px',
+                border: '1px solid #688AE8',
+                backgroundColor: 'rgba(104, 138, 232, 0.4)',
+              }}
+            />
             <span style={{ fontFamily: 'Open Sans', fontSize: '14px', color: '#000716' }}>Site 1</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <div style={{
-              width: '14px',
-              height: '14px',
-              borderRadius: '2px',
-              border: '1px solid #C33D69',
-              backgroundColor: 'rgba(195, 61, 105, 0.4)'
-            }} />
+            <div
+              style={{
+                width: '14px',
+                height: '14px',
+                borderRadius: '2px',
+                border: '1px solid #C33D69',
+                backgroundColor: 'rgba(195, 61, 105, 0.4)',
+              }}
+            />
             <span style={{ fontFamily: 'Open Sans', fontSize: '14px', color: '#000716' }}>Site 2</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <div style={{ 
-              width: '12px', 
-              height: '3px',
-              display: 'flex',
-              gap: '2px'
-            }}>
-              <div style={{
-                width: '6px',
+            <div
+              style={{
+                width: '12px',
                 height: '3px',
-                borderRadius: '1px',
-                backgroundColor: '#5F6B7A'
-              }} />
-              <div style={{
-                width: '6px',
-                height: '3px',
-                borderRadius: '1px',
-                backgroundColor: '#5F6B7A'
-              }} />
+                display: 'flex',
+                gap: '2px',
+              }}
+            >
+              <div
+                style={{
+                  width: '6px',
+                  height: '3px',
+                  borderRadius: '1px',
+                  backgroundColor: '#5F6B7A',
+                }}
+              />
+              <div
+                style={{
+                  width: '6px',
+                  height: '3px',
+                  borderRadius: '1px',
+                  backgroundColor: '#5F6B7A',
+                }}
+              />
             </div>
             <span style={{ fontFamily: 'Open Sans', fontSize: '14px', color: '#000716' }}>Performance goal</span>
           </div>

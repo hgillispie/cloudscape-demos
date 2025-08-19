@@ -63,7 +63,7 @@ const columnDefinitions: TableProps.ColumnDefinition<DeviceItem>[] = [
   },
   {
     id: 'column3',
-    header: 'Column header', 
+    header: 'Column header',
     cell: item => item.column3,
     sortingField: 'column3',
   },
@@ -96,13 +96,13 @@ const columnDefinitions: TableProps.ColumnDefinition<DeviceItem>[] = [
     header: 'Column header',
     cell: item => item.column8,
     sortingField: 'column8',
-  }
+  },
 ];
 
 export function DevicesTable() {
   const [selectedItems, setSelectedItems] = useState<DeviceItem[]>([]);
   const [sortingColumn, setSortingColumn] = useState<TableProps.SortingColumn<DeviceItem>>({
-    sortingField: 'column1'
+    sortingField: 'column1',
   });
 
   return (
@@ -113,11 +113,7 @@ export function DevicesTable() {
             variant="h2"
             description="Devices on your local network"
             actions={
-              <Button 
-                variant="primary" 
-                iconAlign="right" 
-                iconName="external"
-              >
+              <Button variant="primary" iconAlign="right" iconName="external">
                 Add Device
               </Button>
             }

@@ -27,82 +27,76 @@ export function NetworkDashboardApp() {
       dismissible: true,
       dismissLabel: 'Dismiss',
       onDismiss: () => setFlashbarItems([]),
-      id: 'warning-message'
-    }
+      id: 'warning-message',
+    },
   ]);
 
   return (
     <div className="network-dashboard">
       <AppLayout
-      navigationHide
-      toolsHide
-      content={
-        <ContentLayout
-          header={
-            <SpaceBetween size="m">
-              <BreadcrumbGroup
-                items={[
-                  { text: 'Service', href: '#' },
-                  { text: 'Administrative Dashboard', href: '#' }
-                ]}
-              />
-              
-              <Header
-                variant="h1"
-                description="Network Traffic, Credit Usage, and Your Devices"
-                actions={
-                  <Button 
-                    variant="primary" 
-                    iconAlign="right" 
-                    iconName="external"
-                  >
-                    Refresh Data
-                  </Button>
-                }
-              >
-                Network Administration Dashboard
-              </Header>
-
-              <Grid gridDefinition={[{ colspan: 8 }, { colspan: 4 }]}>
-                <TextFilter
-                  filteringText={filteringText}
-                  filteringPlaceholder="Placeholder"
-                  filteringAriaLabel="Filter devices"
-                  onChange={({ detail }) => setFilteringText(detail.filteringText)}
+        navigationHide
+        toolsHide
+        content={
+          <ContentLayout
+            header={
+              <SpaceBetween size="m">
+                <BreadcrumbGroup
+                  items={[
+                    { text: 'Service', href: '#' },
+                    { text: 'Administrative Dashboard', href: '#' },
+                  ]}
                 />
-                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
-                  <Pagination
-                    currentPageIndex={1}
-                    pagesCount={5}
-                    ariaLabels={{
-                      nextPageLabel: 'Next page',
-                      previousPageLabel: 'Previous page',
-                      pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
-                    }}
+
+                <Header
+                  variant="h1"
+                  description="Network Traffic, Credit Usage, and Your Devices"
+                  actions={
+                    <Button variant="primary" iconAlign="right" iconName="external">
+                      Refresh Data
+                    </Button>
+                  }
+                >
+                  Network Administration Dashboard
+                </Header>
+
+                <Grid gridDefinition={[{ colspan: 8 }, { colspan: 4 }]}>
+                  <TextFilter
+                    filteringText={filteringText}
+                    filteringPlaceholder="Placeholder"
+                    filteringAriaLabel="Filter devices"
+                    onChange={({ detail }) => setFilteringText(detail.filteringText)}
                   />
-                  <div style={{ width: '2px', height: '32px', backgroundColor: '#414D5C' }} />
-                  <Button variant="icon" iconName="settings" />
-                </div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
+                    <Pagination
+                      currentPageIndex={1}
+                      pagesCount={5}
+                      ariaLabels={{
+                        nextPageLabel: 'Next page',
+                        previousPageLabel: 'Previous page',
+                        pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
+                      }}
+                    />
+                    <div style={{ width: '2px', height: '32px', backgroundColor: '#414D5C' }} />
+                    <Button variant="icon" iconName="settings" />
+                  </div>
+                </Grid>
+
+                {flashbarItems.length > 0 && <Flashbar items={flashbarItems} />}
+              </SpaceBetween>
+            }
+          >
+            <SpaceBetween size="l">
+              {/* Charts Section */}
+              <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+                <NetworkTrafficChart />
+                <CreditUsageChart />
               </Grid>
 
-              {flashbarItems.length > 0 && (
-                <Flashbar items={flashbarItems} />
-              )}
+              {/* Devices Section */}
+              <DevicesTable />
             </SpaceBetween>
-          }
-        >
-          <SpaceBetween size="l">
-            {/* Charts Section */}
-            <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              <NetworkTrafficChart />
-              <CreditUsageChart />
-            </Grid>
-
-            {/* Devices Section */}
-            <DevicesTable />
-          </SpaceBetween>
-        </ContentLayout>
-      }
+          </ContentLayout>
+        }
       />
     </div>
   );
