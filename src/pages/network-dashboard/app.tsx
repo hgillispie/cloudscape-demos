@@ -32,7 +32,8 @@ export function NetworkDashboardApp() {
   ]);
 
   return (
-    <AppLayout
+    <div className="network-dashboard">
+      <AppLayout
       navigationHide
       toolsHide
       content={
@@ -102,6 +103,7 @@ export function NetworkDashboardApp() {
           </SpaceBetween>
         </ContentLayout>
       }
-    />
+      />
+    </div>
   );
 }
