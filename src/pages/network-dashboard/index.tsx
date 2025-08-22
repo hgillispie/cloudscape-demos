@@ -237,12 +237,13 @@ export default function NetworkDashboard() {
       }
     >
       <SpaceBetween size="l">
-        {/* Warning Alert */}
-        {showAlert && (
-          <Alert dismissible onDismiss={() => setShowAlert(false)} type="error" header="System Alert">
-            This is a warning message
-          </Alert>
-        )}
+        {/* System Alerts */}
+        <Flashbar
+          items={flashbarItems}
+          onDismiss={({ detail }) => {
+            setFlashbarItems(items => items.filter(item => item.id !== detail.id));
+          }}
+        />
 
         {/* Search and Pagination Controls */}
         <Container>
