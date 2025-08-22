@@ -166,7 +166,7 @@ export default function NetworkDashboard() {
           <Alert
             dismissible
             onDismiss={() => setShowAlert(false)}
-            type="warning"
+            type="error"
             header="System Alert"
           >
             This is a warning message
