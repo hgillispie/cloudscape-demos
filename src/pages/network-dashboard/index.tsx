@@ -41,14 +41,86 @@ const creditUsageData = [
 
 // Sample table data
 const deviceTableItems = [
-  { id: '1', name: 'Router-01', type: 'Router', status: 'Active', location: 'Building A', ip: '192.168.1.1', uptime: '15 days', bandwidth: '1 Gbps' },
-  { id: '2', name: 'Switch-01', type: 'Switch', status: 'Active', location: 'Building A', ip: '192.168.1.2', uptime: '12 days', bandwidth: '10 Gbps' },
-  { id: '3', name: 'AP-01', type: 'Access Point', status: 'Warning', location: 'Floor 1', ip: '192.168.1.10', uptime: '8 days', bandwidth: '300 Mbps' },
-  { id: '4', name: 'Router-02', type: 'Router', status: 'Active', location: 'Building B', ip: '192.168.2.1', uptime: '22 days', bandwidth: '1 Gbps' },
-  { id: '5', name: 'Switch-02', type: 'Switch', status: 'Inactive', location: 'Building B', ip: '192.168.2.2', uptime: '0 days', bandwidth: '10 Gbps' },
-  { id: '6', name: 'AP-02', type: 'Access Point', status: 'Active', location: 'Floor 2', ip: '192.168.1.11', uptime: '5 days', bandwidth: '300 Mbps' },
-  { id: '7', name: 'Firewall-01', type: 'Firewall', status: 'Active', location: 'DMZ', ip: '192.168.0.1', uptime: '45 days', bandwidth: '2 Gbps' },
-  { id: '8', name: 'Router-03', type: 'Router', status: 'Active', location: 'Building C', ip: '192.168.3.1', uptime: '30 days', bandwidth: '1 Gbps' },
+  {
+    id: '1',
+    name: 'Router-01',
+    type: 'Router',
+    status: 'Active',
+    location: 'Building A',
+    ip: '192.168.1.1',
+    uptime: '15 days',
+    bandwidth: '1 Gbps',
+  },
+  {
+    id: '2',
+    name: 'Switch-01',
+    type: 'Switch',
+    status: 'Active',
+    location: 'Building A',
+    ip: '192.168.1.2',
+    uptime: '12 days',
+    bandwidth: '10 Gbps',
+  },
+  {
+    id: '3',
+    name: 'AP-01',
+    type: 'Access Point',
+    status: 'Warning',
+    location: 'Floor 1',
+    ip: '192.168.1.10',
+    uptime: '8 days',
+    bandwidth: '300 Mbps',
+  },
+  {
+    id: '4',
+    name: 'Router-02',
+    type: 'Router',
+    status: 'Active',
+    location: 'Building B',
+    ip: '192.168.2.1',
+    uptime: '22 days',
+    bandwidth: '1 Gbps',
+  },
+  {
+    id: '5',
+    name: 'Switch-02',
+    type: 'Switch',
+    status: 'Inactive',
+    location: 'Building B',
+    ip: '192.168.2.2',
+    uptime: '0 days',
+    bandwidth: '10 Gbps',
+  },
+  {
+    id: '6',
+    name: 'AP-02',
+    type: 'Access Point',
+    status: 'Active',
+    location: 'Floor 2',
+    ip: '192.168.1.11',
+    uptime: '5 days',
+    bandwidth: '300 Mbps',
+  },
+  {
+    id: '7',
+    name: 'Firewall-01',
+    type: 'Firewall',
+    status: 'Active',
+    location: 'DMZ',
+    ip: '192.168.0.1',
+    uptime: '45 days',
+    bandwidth: '2 Gbps',
+  },
+  {
+    id: '8',
+    name: 'Router-03',
+    type: 'Router',
+    status: 'Active',
+    location: 'Building C',
+    ip: '192.168.3.1',
+    uptime: '30 days',
+    bandwidth: '1 Gbps',
+  },
 ];
 
 const tableColumnDefinitions = [
@@ -70,9 +142,11 @@ const tableColumnDefinitions = [
     cell: (item: any) => (
       <Box
         color={
-          item.status === 'Active' ? 'text-status-success' :
-          item.status === 'Warning' ? 'text-status-warning' :
-          'text-status-error'
+          item.status === 'Active'
+            ? 'text-status-success'
+            : item.status === 'Warning'
+              ? 'text-status-warning'
+              : 'text-status-error'
         }
       >
         {item.status}
@@ -111,18 +185,16 @@ export default function NetworkDashboard() {
   const [searchValue, setSearchValue] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
-  
+
   const pageSize = 10;
-  const filteredItems = deviceTableItems.filter(item =>
-    item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-    item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-    item.location.toLowerCase().includes(searchValue.toLowerCase())
+  const filteredItems = deviceTableItems.filter(
+    item =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.location.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
-  const paginatedItems = filteredItems.slice(
-    (currentPageIndex - 1) * pageSize,
-    currentPageIndex * pageSize
-  );
+  const paginatedItems = filteredItems.slice((currentPageIndex - 1) * pageSize, currentPageIndex * pageSize);
 
   const breadcrumbItems = [
     { text: 'Service', href: '/' },
@@ -147,11 +219,7 @@ export default function NetworkDashboard() {
           variant="h1"
           description="Network Traffic, Credit Usage, and Your Devices"
           actions={
-            <Button 
-              variant="primary" 
-              iconName="external"
-              onClick={handleRefreshData}
-            >
+            <Button variant="primary" iconName="external" onClick={handleRefreshData}>
               Refresh Data
             </Button>
           }
@@ -163,12 +231,7 @@ export default function NetworkDashboard() {
       <SpaceBetween size="l">
         {/* Warning Alert */}
         {showAlert && (
-          <Alert
-            dismissible
-            onDismiss={() => setShowAlert(false)}
-            type="error"
-            header="System Alert"
-          >
+          <Alert dismissible onDismiss={() => setShowAlert(false)} type="error" header="System Alert">
             This is a warning message
           </Alert>
         )}
@@ -203,7 +266,7 @@ export default function NetworkDashboard() {
                   color: '#688AE8',
                 },
                 {
-                  title: 'Site 2', 
+                  title: 'Site 2',
                   type: 'area',
                   data: networkTrafficData.map(d => ({ x: d.x, y: d.site2 })),
                   color: '#C33D69',
@@ -223,8 +286,9 @@ export default function NetworkDashboard() {
                 filterSelectedAriaLabel: 'selected',
                 legendAriaLabel: 'Legend',
                 chartAriaRoleDescription: 'area chart',
-                xTickFormatter: (value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-                yTickFormatter: (value) => `${value}%`,
+                xTickFormatter: value =>
+                  new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                yTickFormatter: value => `${value}%`,
               }}
               ariaLabel="Network traffic over time"
               height={300}
@@ -256,7 +320,7 @@ export default function NetworkDashboard() {
                 filterSelectedAriaLabel: 'selected',
                 legendAriaLabel: 'Legend',
                 chartAriaRoleDescription: 'bar chart',
-                yTickFormatter: (value) => `${value}%`,
+                yTickFormatter: value => `${value}%`,
               }}
               ariaLabel="Credit usage by day"
               height={300}
@@ -277,11 +341,7 @@ export default function NetworkDashboard() {
               variant="h2"
               description="Devices on your local network"
               actions={
-                <Button 
-                  variant="primary" 
-                  iconName="add-plus"
-                  onClick={handleAddDevice}
-                >
+                <Button variant="primary" iconName="add-plus" onClick={handleAddDevice}>
                   Add Device
                 </Button>
               }
