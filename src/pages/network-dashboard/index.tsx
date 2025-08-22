@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Alert,
+  Flashbar,
   AreaChart,
   BarChart,
   BreadcrumbGroup,
