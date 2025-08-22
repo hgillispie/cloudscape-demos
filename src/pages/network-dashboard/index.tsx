@@ -181,7 +181,15 @@ const tableColumnDefinitions = [
 ];
 
 export default function NetworkDashboard() {
-  const [showAlert, setShowAlert] = useState(true);
+  const [flashbarItems, setFlashbarItems] = useState([
+    {
+      type: 'error',
+      dismissible: true,
+      header: 'System Alert',
+      content: 'This is a warning message',
+      id: 'system-alert',
+    },
+  ]);
   const [searchValue, setSearchValue] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
