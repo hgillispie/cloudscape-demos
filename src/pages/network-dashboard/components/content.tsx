@@ -38,11 +38,7 @@ export function NetworkContent() {
 
   return (
     <SpaceBetween size="l">
-      <Alert
-        type="error"
-        dismissible
-        onDismiss={() => {}}
-      >
+      <Alert type="error" dismissible onDismiss={() => {}}>
         This is an error message
       </Alert>
 
