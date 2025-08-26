@@ -8,7 +8,7 @@ import Box from '@cloudscape-design/components/box';
 import Button from '@cloudscape-design/components/button';
 import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Container from '@cloudscape-design/components/container';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Grid from '@cloudscape-design/components/grid';
 import Header from '@cloudscape-design/components/header';
 import Pagination from '@cloudscape-design/components/pagination';
@@ -38,16 +38,13 @@ export function NetworkContent() {
 
   return (
     <SpaceBetween size="l">
-      <Flashbar
-        items={[
-          {
-            type: 'error',
-            content: 'This is an error message',
-            dismissible: true,
-            id: 'error-message',
-          },
-        ]}
-      />
+      <Alert
+        type="error"
+        dismissible
+        onDismiss={() => {}}
+      >
+        This is an error message
+      </Alert>
 
       <Grid gridDefinition={[{ colspan: { l: 6, m: 12, default: 12 } }, { colspan: { l: 6, m: 12, default: 12 } }]}>
         <Container header={<Header variant="h2">Network traffic</Header>}>
