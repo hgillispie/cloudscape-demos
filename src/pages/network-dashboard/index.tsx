@@ -293,17 +293,14 @@ export default function NetworkDashboard() {
               </Header>
 
               {showAlert && (
-                <Flashbar
-                  items={[
-                    {
-                      type: 'error',
-                      content: 'This is a warning message',
-                      dismissible: true,
-                      onDismiss: () => setShowAlert(false),
-                      dismissLabel: 'Dismiss',
-                    },
-                  ]}
-                />
+                <Alert
+                  type="error"
+                  dismissible
+                  onDismiss={() => setShowAlert(false)}
+                  dismissAriaLabel="Dismiss"
+                >
+                  This is a warning message
+                </Alert>
               )}
 
               <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } }]}>
