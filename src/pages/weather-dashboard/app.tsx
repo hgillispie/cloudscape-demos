@@ -31,12 +31,12 @@ export function App() {
         ref={appLayout}
         content={
           <SpaceBetween size="m">
-            <WeatherDashboardHeader 
+            <WeatherDashboardHeader
               actions={
                 <Button variant="primary" iconName="refresh">
                   Refresh data
                 </Button>
-              } 
+              }
             />
             <WeatherContent />
           </SpaceBetween>

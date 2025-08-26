@@ -7,25 +7,25 @@ import { BarChartProps } from '@cloudscape-design/components/bar-chart';
 const generateWeatherData = () => {
   const now = new Date();
   const data = [];
-  
+
   for (let i = 0; i < 7; i++) {
     const date = new Date(now);
     date.setDate(now.getDate() + i);
-    
+
     // Generate realistic temperature variations
     const baseTemp = 20 + Math.sin(i * 0.5) * 8; // Temperature varies between 12-28°C
     const tempVariation = Math.random() * 4 - 2; // ±2°C variation
     const temperature = Math.round((baseTemp + tempVariation) * 10) / 10;
-    
+
     // Generate precipitation (0-20mm with some days having no rain)
     const precipitation = Math.random() > 0.6 ? Math.round(Math.random() * 20 * 10) / 10 : 0;
-    
+
     // Generate humidity (40-90%)
     const humidity = Math.round((40 + Math.random() * 50) * 10) / 10;
-    
+
     // Generate wind speed (5-25 km/h)
     const windSpeed = Math.round((5 + Math.random() * 20) * 10) / 10;
-    
+
     data.push({
       date,
       temperature,
@@ -35,7 +35,7 @@ const generateWeatherData = () => {
       condition: precipitation > 5 ? 'Rainy' : precipitation > 0 ? 'Drizzle' : 'Clear',
     });
   }
-  
+
   return data;
 };
 
@@ -78,15 +78,15 @@ export const weeklyForecast = weatherData.map(day => ({
 export const fetchWeatherData = async (latitude = 52.52, longitude = 13.41) => {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 500));
-  
+
   // Return mock data that matches Open-Meteo API structure
   return {
     latitude,
     longitude,
     generationtime_ms: 0.123,
     utc_offset_seconds: 0,
-    timezone: "GMT",
-    timezone_abbreviation: "GMT",
+    timezone: 'GMT',
+    timezone_abbreviation: 'GMT',
     elevation: 38.0,
     current_weather: currentWeather,
     daily: {
@@ -94,7 +94,7 @@ export const fetchWeatherData = async (latitude = 52.52, longitude = 13.41) => {
       temperature_2m_max: weatherData.map(d => d.temperature + 3),
       temperature_2m_min: weatherData.map(d => d.temperature - 3),
       precipitation_sum: weatherData.map(d => d.precipitation),
-      weathercode: weatherData.map(d => d.precipitation > 5 ? 61 : d.precipitation > 0 ? 51 : 0),
+      weathercode: weatherData.map(d => (d.precipitation > 5 ? 61 : d.precipitation > 0 ? 51 : 0)),
     },
     hourly: {
       time: [],
@@ -102,6 +102,6 @@ export const fetchWeatherData = async (latitude = 52.52, longitude = 13.41) => {
       precipitation: [],
       relativehumidity_2m: [],
       windspeed_10m: [],
-    }
+    },
   };
 };

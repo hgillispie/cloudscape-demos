@@ -31,22 +31,22 @@ export function App() {
         ref={appLayout}
         content={
           <SpaceBetween size="m">
-            <NetworkDashboardHeader 
+            <NetworkDashboardHeader
               actions={
                 <Button variant="primary" iconName="refresh">
                   Refresh Data
                 </Button>
-              } 
+              }
             />
             <NetworkContent />
           </SpaceBetween>
         }
         breadcrumbs={
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { text: 'Service', href: '#/' },
-              { text: 'Administrative Dashboard', href: '#/network-dashboard' }
-            ]} 
+              { text: 'Administrative Dashboard', href: '#/network-dashboard' },
+            ]}
           />
         }
         navigation={<NetworkSideNavigation />}

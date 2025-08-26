@@ -13,13 +13,7 @@ import StatusIndicator from '@cloudscape-design/components/status-indicator';
 
 import { barChartInstructions, commonChartProps, dateFormatter, lineChartInstructions } from '../chart-commons';
 import { WidgetConfig } from '../interfaces';
-import { 
-  currentWeather, 
-  precipitationSeries, 
-  temperatureSeries, 
-  weatherDomain, 
-  weeklyForecast 
-} from './data';
+import { currentWeather, precipitationSeries, temperatureSeries, weatherDomain, weeklyForecast } from './data';
 
 function WeatherHeader() {
   return (
@@ -86,11 +80,11 @@ function WeatherContent() {
           <Box fontSize="body-s" color="text-body-secondary">
             {weeklyForecast.slice(1, 4).map((day, index) => (
               <Box key={index} margin={{ bottom: 'xs' }}>
-                {day.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}: {' '}
+                {day.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}:{' '}
                 <Box component="span" fontWeight="bold">
                   {formatTemperature(day.temperature)}
-                </Box>
-                {' '}- {day.condition}
+                </Box>{' '}
+                - {day.condition}
               </Box>
             ))}
           </Box>

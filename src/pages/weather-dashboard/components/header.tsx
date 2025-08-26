@@ -37,14 +37,10 @@ export function WeatherMainInfo() {
           <h3>Learn more</h3>
           <ul>
             <li>
-              <ExternalLink href="https://open-meteo.com/">
-                Open-Meteo Weather API
-              </ExternalLink>
+              <ExternalLink href="https://open-meteo.com/">Open-Meteo Weather API</ExternalLink>
             </li>
             <li>
-              <ExternalLink href="https://cloudscape.design/components/">
-                Cloudscape Design System
-              </ExternalLink>
+              <ExternalLink href="https://cloudscape.design/components/">Cloudscape Design System</ExternalLink>
             </li>
           </ul>
         </div>
@@ -52,23 +48,28 @@ export function WeatherMainInfo() {
     >
       <SpaceBetween size="m">
         <div>
-          <Box variant="p">
-            The Weather Dashboard provides comprehensive weather forecasting data including:
-          </Box>
+          <Box variant="p">The Weather Dashboard provides comprehensive weather forecasting data including:</Box>
           <ul>
-            <li><strong>Current conditions</strong> - Real-time temperature, humidity, wind speed, and weather conditions</li>
-            <li><strong>7-day forecast</strong> - Extended weather outlook with daily predictions</li>
-            <li><strong>Temperature trends</strong> - Visual representation of temperature changes over time</li>
-            <li><strong>Precipitation data</strong> - Rainfall and precipitation forecasts</li>
+            <li>
+              <strong>Current conditions</strong> - Real-time temperature, humidity, wind speed, and weather conditions
+            </li>
+            <li>
+              <strong>7-day forecast</strong> - Extended weather outlook with daily predictions
+            </li>
+            <li>
+              <strong>Temperature trends</strong> - Visual representation of temperature changes over time
+            </li>
+            <li>
+              <strong>Precipitation data</strong> - Rainfall and precipitation forecasts
+            </li>
           </ul>
         </div>
 
         <div>
           <Box variant="h3">Data Source</Box>
           <Box variant="p">
-            Weather data is provided by the Open-Meteo API, which offers free weather forecasts 
-            without requiring API keys. The dashboard displays forecasts for major cities and 
-            updates automatically.
+            Weather data is provided by the Open-Meteo API, which offers free weather forecasts without requiring API
+            keys. The dashboard displays forecasts for major cities and updates automatically.
           </Box>
         </div>
 

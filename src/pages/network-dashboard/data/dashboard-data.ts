@@ -20,7 +20,7 @@ export const networkTrafficData = {
         { x: 'x9', y: 58 },
         { x: 'x10', y: 62 },
         { x: 'x11', y: 59 },
-        { x: 'x12', y: 65 }
+        { x: 'x12', y: 65 },
       ],
     },
     {
@@ -38,10 +38,10 @@ export const networkTrafficData = {
         { x: 'x9', y: 40 },
         { x: 'x10', y: 45 },
         { x: 'x11', y: 48 },
-        { x: 'x12', y: 50 }
+        { x: 'x12', y: 50 },
       ],
-    }
-  ]
+    },
+  ],
 };
 
 // Mock data for credit usage bar chart
@@ -56,10 +56,10 @@ export const creditUsageData = {
         { x: 'x2', y: 85 },
         { x: 'x3', y: 68 },
         { x: 'x4', y: 45 },
-        { x: 'x5', y: 72 }
+        { x: 'x5', y: 72 },
       ],
-    }
-  ]
+    },
+  ],
 };
 
 // Mock data for devices table
@@ -72,7 +72,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3A:B7',
     status: 'Online',
     lastSeen: '2024-01-15 14:30:00',
-    bandwidth: '15.2 MB/s'
+    bandwidth: '15.2 MB/s',
   },
   {
     id: '2',
@@ -82,7 +82,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3A:C8',
     status: 'Online',
     lastSeen: '2024-01-15 14:29:45',
-    bandwidth: '45.8 MB/s'
+    bandwidth: '45.8 MB/s',
   },
   {
     id: '3',
@@ -92,7 +92,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3A:D9',
     status: 'Online',
     lastSeen: '2024-01-15 14:28:12',
-    bandwidth: '8.3 MB/s'
+    bandwidth: '8.3 MB/s',
   },
   {
     id: '4',
@@ -102,7 +102,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3A:EA',
     status: 'Offline',
     lastSeen: '2024-01-15 13:45:00',
-    bandwidth: '0 MB/s'
+    bandwidth: '0 MB/s',
   },
   {
     id: '5',
@@ -112,7 +112,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3A:FB',
     status: 'Online',
     lastSeen: '2024-01-15 14:30:00',
-    bandwidth: '125.4 MB/s'
+    bandwidth: '125.4 MB/s',
   },
   {
     id: '6',
@@ -122,7 +122,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:0C',
     status: 'Online',
     lastSeen: '2024-01-15 14:27:30',
-    bandwidth: '12.7 MB/s'
+    bandwidth: '12.7 MB/s',
   },
   {
     id: '7',
@@ -132,7 +132,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:1D',
     status: 'Online',
     lastSeen: '2024-01-15 14:29:55',
-    bandwidth: '3.2 MB/s'
+    bandwidth: '3.2 MB/s',
   },
   {
     id: '8',
@@ -142,7 +142,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:2E',
     status: 'Online',
     lastSeen: '2024-01-15 14:25:18',
-    bandwidth: '28.9 MB/s'
+    bandwidth: '28.9 MB/s',
   },
   {
     id: '9',
@@ -152,7 +152,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:3F',
     status: 'Online',
     lastSeen: '2024-01-15 14:28:45',
-    bandwidth: '0.5 MB/s'
+    bandwidth: '0.5 MB/s',
   },
   {
     id: '10',
@@ -162,7 +162,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:40',
     status: 'Online',
     lastSeen: '2024-01-15 14:29:00',
-    bandwidth: '18.6 MB/s'
+    bandwidth: '18.6 MB/s',
   },
   {
     id: '11',
@@ -172,7 +172,7 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:51',
     status: 'Offline',
     lastSeen: '2024-01-15 12:15:30',
-    bandwidth: '0 MB/s'
+    bandwidth: '0 MB/s',
   },
   {
     id: '12',
@@ -182,6 +182,6 @@ export const deviceData = [
     macAddress: '00:1B:44:11:3B:62',
     status: 'Online',
     lastSeen: '2024-01-15 14:29:58',
-    bandwidth: '67.3 MB/s'
-  }
+    bandwidth: '67.3 MB/s',
+  },
 ];

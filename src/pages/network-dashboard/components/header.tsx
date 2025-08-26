@@ -43,9 +43,7 @@ export function NetworkMainInfo() {
               </ExternalLink>
             </li>
             <li>
-              <ExternalLink href="https://cloudscape.design/components/">
-                Cloudscape Design System
-              </ExternalLink>
+              <ExternalLink href="https://cloudscape.design/components/">Cloudscape Design System</ExternalLink>
             </li>
           </ul>
         </div>
@@ -54,13 +52,22 @@ export function NetworkMainInfo() {
       <SpaceBetween size="m">
         <div>
           <Box variant="p">
-            The Network Administration Dashboard provides comprehensive monitoring and management capabilities including:
+            The Network Administration Dashboard provides comprehensive monitoring and management capabilities
+            including:
           </Box>
           <ul>
-            <li><strong>Network Traffic</strong> - Real-time monitoring of traffic patterns across multiple sites</li>
-            <li><strong>Credit Usage</strong> - Track and analyze credit consumption over time</li>
-            <li><strong>Device Management</strong> - View and manage devices on your local network</li>
-            <li><strong>Performance Metrics</strong> - Monitor performance against established goals</li>
+            <li>
+              <strong>Network Traffic</strong> - Real-time monitoring of traffic patterns across multiple sites
+            </li>
+            <li>
+              <strong>Credit Usage</strong> - Track and analyze credit consumption over time
+            </li>
+            <li>
+              <strong>Device Management</strong> - View and manage devices on your local network
+            </li>
+            <li>
+              <strong>Performance Metrics</strong> - Monitor performance against established goals
+            </li>
           </ul>
         </div>
 
@@ -78,9 +85,9 @@ export function NetworkMainInfo() {
         <div>
           <Box variant="h3">Monitoring Capabilities</Box>
           <Box variant="p">
-            Monitor network performance in real-time with visual indicators for traffic patterns, 
-            credit utilization trends, and device status. The dashboard provides actionable insights 
-            to help optimize network performance and resource allocation.
+            Monitor network performance in real-time with visual indicators for traffic patterns, credit utilization
+            trends, and device status. The dashboard provides actionable insights to help optimize network performance
+            and resource allocation.
           </Box>
         </div>
       </SpaceBetween>

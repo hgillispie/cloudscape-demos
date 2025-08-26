@@ -23,16 +23,17 @@ export function NetworkContent() {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [filterText, setFilterText] = useState('');
 
-  const filteredDevices = deviceData.filter(device =>
-    device.name.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.ipAddress.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.type.toLowerCase().includes(filterText.toLowerCase())
+  const filteredDevices = deviceData.filter(
+    device =>
+      device.name.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.ipAddress.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.type.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   const itemsPerPage = 10;
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   return (
@@ -43,24 +44,13 @@ export function NetworkContent() {
             type: 'error',
             content: 'This is an error message',
             dismissible: true,
-            id: 'error-message'
-          }
+            id: 'error-message',
+          },
         ]}
       />
 
-      <Grid
-        gridDefinition={[
-          { colspan: { l: 6, m: 12, default: 12 } },
-          { colspan: { l: 6, m: 12, default: 12 } }
-        ]}
-      >
-        <Container
-          header={
-            <Header variant="h2">
-              Network traffic
-            </Header>
-          }
-        >
+      <Grid gridDefinition={[{ colspan: { l: 6, m: 12, default: 12 } }, { colspan: { l: 6, m: 12, default: 12 } }]}>
+        <Container header={<Header variant="h2">Network traffic</Header>}>
           <AreaChart
             series={networkTrafficData.series}
             xDomain={networkTrafficData.domain}
@@ -83,13 +73,7 @@ export function NetworkContent() {
           />
         </Container>
 
-        <Container
-          header={
-            <Header variant="h2">
-              Credit Usage
-            </Header>
-          }
-        >
+        <Container header={<Header variant="h2">Credit Usage</Header>}>
           <BarChart
             series={creditUsageData.series}
             xDomain={creditUsageData.domain}
@@ -129,12 +113,7 @@ export function NetworkContent() {
         }
       >
         <SpaceBetween size="m">
-          <Grid
-            gridDefinition={[
-              { colspan: { l: 8, m: 8, default: 12 } },
-              { colspan: { l: 4, m: 4, default: 12 } }
-            ]}
-          >
+          <Grid gridDefinition={[{ colspan: { l: 8, m: 8, default: 12 } }, { colspan: { l: 4, m: 4, default: 12 } }]}>
             <TextFilter
               filteringText={filterText}
               filteringPlaceholder="Search devices..."
@@ -202,7 +181,7 @@ export function NetworkContent() {
                 header: 'Bandwidth Usage',
                 cell: item => item.bandwidth,
                 sortingField: 'bandwidth',
-              }
+              },
             ]}
             items={paginatedDevices}
             loadingText="Loading devices"
@@ -223,15 +202,15 @@ export function NetworkContent() {
             }
             header={
               <Header
-                counter={selectedItems.length ? `(${selectedItems.length}/${filteredDevices.length})` : `(${filteredDevices.length})`}
+                counter={
+                  selectedItems.length
+                    ? `(${selectedItems.length}/${filteredDevices.length})`
+                    : `(${filteredDevices.length})`
+                }
                 actions={
                   <SpaceBetween direction="horizontal" size="xs">
-                    <Button disabled={selectedItems.length === 0}>
-                      Remove
-                    </Button>
-                    <Button disabled={selectedItems.length === 0}>
-                      Edit
-                    </Button>
+                    <Button disabled={selectedItems.length === 0}>Remove</Button>
+                    <Button disabled={selectedItems.length === 0}>Edit</Button>
                   </SpaceBetween>
                 }
               >

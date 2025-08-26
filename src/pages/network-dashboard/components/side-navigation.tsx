@@ -22,7 +22,7 @@ export function NetworkSideNavigation() {
               href: '#/network-dashboard',
             },
             {
-              type: 'link', 
+              type: 'link',
               text: 'Network Traffic',
               href: '#/network-dashboard',
             },

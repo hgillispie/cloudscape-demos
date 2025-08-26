@@ -8,11 +8,7 @@ import { BaseStaticWidget, weatherForecast } from '../../dashboard/widgets';
 
 export function WeatherContent() {
   return (
-    <Grid
-      gridDefinition={[
-        { colspan: { l: 12, m: 12, default: 12 } },
-      ]}
-    >
+    <Grid gridDefinition={[{ colspan: { l: 12, m: 12, default: 12 } }]}>
       <BaseStaticWidget config={weatherForecast.data} />
     </Grid>
   );
