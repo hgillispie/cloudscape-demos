@@ -7,7 +7,7 @@ import Header from '@cloudscape-design/components/header';
 import HelpPanel from '@cloudscape-design/components/help-panel';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 
-import { ExternalLinkItem, InfoLink, useHelpPanel } from '../../commons';
+import { ExternalLink, InfoLink, useHelpPanel } from '../../commons';
 
 export function WeatherDashboardHeader({ actions }: { actions?: React.ReactNode }) {
   const loadHelpPanelContent = useHelpPanel();
@@ -37,16 +37,14 @@ export function WeatherMainInfo() {
           <h3>Learn more</h3>
           <ul>
             <li>
-              <ExternalLinkItem
-                href="https://open-meteo.com/"
-                text="Open-Meteo Weather API"
-              />
+              <ExternalLink href="https://open-meteo.com/">
+                Open-Meteo Weather API
+              </ExternalLink>
             </li>
             <li>
-              <ExternalLinkItem
-                href="https://cloudscape.design/components/"
-                text="Cloudscape Design System"
-              />
+              <ExternalLink href="https://cloudscape.design/components/">
+                Cloudscape Design System
+              </ExternalLink>
             </li>
           </ul>
         </div>
