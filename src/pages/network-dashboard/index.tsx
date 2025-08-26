@@ -293,12 +293,7 @@ export default function NetworkDashboard() {
               </Header>
 
               {showAlert && (
-                <Alert
-                  type="error"
-                  dismissible
-                  onDismiss={() => setShowAlert(false)}
-                  dismissAriaLabel="Dismiss"
-                >
+                <Alert type="error" dismissible onDismiss={() => setShowAlert(false)} dismissAriaLabel="Dismiss">
                   This is a warning message
                 </Alert>
               )}
