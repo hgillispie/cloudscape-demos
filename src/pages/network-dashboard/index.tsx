@@ -261,13 +261,13 @@ export default function NetworkDashboard() {
       device.ipAddress.toLowerCase().includes(filterText.toLowerCase()) ||
       device.status.toLowerCase().includes(filterText.toLowerCase()) ||
       device.type.toLowerCase().includes(filterText.toLowerCase()) ||
-      device.location.toLowerCase().includes(filterText.toLowerCase())
+      device.location.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   // Paginate the filtered devices
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   return (
@@ -278,13 +278,8 @@ export default function NetworkDashboard() {
         <ContentLayout
           header={
             <SpaceBetween size="m">
-              <BreadcrumbGroup
-                items={[
-                  { text: 'Service', href: '/' },
-                  { text: 'Administrative Dashboard' },
-                ]}
-              />
-              
+              <BreadcrumbGroup items={[{ text: 'Service', href: '/' }, { text: 'Administrative Dashboard' }]} />
+
               <Header
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
@@ -413,18 +408,12 @@ export default function NetworkDashboard() {
                 selectedItems={selectedItems}
                 onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
                 ariaLabels={{
-                  selectionGroupLabel: "Items selection",
+                  selectionGroupLabel: 'Items selection',
                   allItemsSelectionLabel: ({ selectedItems }) =>
-                    `${selectedItems.length} ${
-                      selectedItems.length === 1 ? "item" : "items"
-                    } selected`,
+                    `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
                   itemSelectionLabel: ({ selectedItems }, item) => {
-                    const isItemSelected = selectedItems.filter(
-                      (i) => i.id === item.id
-                    ).length;
-                    return `${item.deviceName} is ${
-                      isItemSelected ? "" : "not"
-                    } selected`;
+                    const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
+                    return `${item.deviceName} is ${isItemSelected ? '' : 'not'} selected`;
                   },
                 }}
                 trackBy="id"
