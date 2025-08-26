@@ -40,10 +40,10 @@ export function NetworkContent() {
       <Flashbar
         items={[
           {
-            type: 'warning',
-            content: 'This is a warning message',
+            type: 'error',
+            content: 'This is an error message',
             dismissible: true,
-            id: 'warning-message'
+            id: 'error-message'
           }
         ]}
       />
