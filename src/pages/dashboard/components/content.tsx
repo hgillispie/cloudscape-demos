@@ -14,6 +14,7 @@ import {
   networkTraffic,
   serviceHealth,
   serviceOverview,
+  weatherForecast,
   zoneStatus,
 } from '../widgets';
 
@@ -23,6 +24,8 @@ export function Content() {
       gridDefinition={[
         { colspan: { l: 8, m: 8, default: 12 } },
         { colspan: { l: 4, m: 4, default: 12 } },
+        { colspan: { l: 9, m: 9, default: 12 } },
+        { colspan: { l: 3, m: 3, default: 12 } },
         { colspan: { l: 6, m: 6, default: 12 } },
         { colspan: { l: 6, m: 6, default: 12 } },
         { colspan: { l: 6, m: 6, default: 12 } },
@@ -36,6 +39,7 @@ export function Content() {
       {[
         serviceOverview,
         serviceHealth,
+        weatherForecast,
         instanceHours,
         networkTraffic,
         alarms,

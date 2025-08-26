@@ -10,4 +10,5 @@ export { networkTraffic } from './network-traffic';
 export { operationalMetrics } from './operational-metrics';
 export { serviceHealth } from './service-health';
 export { serviceOverview } from './service-overview';
+export { weatherForecast } from './weather-forecast';
 export { zoneStatus } from './zone-status';
