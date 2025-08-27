@@ -230,7 +230,7 @@ export default function NetworkDashboard() {
               </div>
             </SpaceBetween>
 
-            {/* Warning Alert */}
+            {/* Error Alert */}
             {showAlert && (
               <div className={styles.customAlert}>
                 <Alert
