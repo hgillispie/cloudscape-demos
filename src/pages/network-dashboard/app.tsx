@@ -218,12 +218,8 @@ export function App() {
         ref={appLayout}
         content={
           <SpaceBetween size="l">
-            {/* Alert Banner */}
-            {showAlert && (
-              <Alert statusIconAriaLabel="Error" type="error" dismissible onDismiss={() => setShowAlert(false)}>
-                This is a warning message
-              </Alert>
-            )}
+            {/* Flashbar Banner */}
+            <Flashbar items={flashbarItems} />
 
             {/* Main Header */}
             <Header
