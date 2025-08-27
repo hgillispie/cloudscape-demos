@@ -110,38 +110,51 @@ const deviceColumns = [
   {
     id: 'name',
     header: 'Device Name',
-    cell: (item: any) => item.name,
+    cell: (item: any) => <strong>{item.name}</strong>,
     sortingField: 'name',
+    width: 180,
   },
   {
     id: 'ipAddress',
     header: 'IP Address',
-    cell: (item: any) => item.ipAddress,
+    cell: (item: any) => <code style={{ fontFamily: 'monospace', backgroundColor: '#f5f5f5', padding: '2px 4px', borderRadius: '3px' }}>{item.ipAddress}</code>,
     sortingField: 'ipAddress',
+    width: 140,
   },
   {
     id: 'status',
     header: 'Status',
-    cell: (item: any) => item.status,
+    cell: (item: any) => (
+      <span style={{
+        color: item.status === 'Online' ? '#16a34a' : '#dc2626',
+        fontWeight: 'medium'
+      }}>
+        {item.status}
+      </span>
+    ),
     sortingField: 'status',
+    width: 100,
   },
   {
     id: 'type',
-    header: 'Type',
+    header: 'Device Type',
     cell: (item: any) => item.type,
     sortingField: 'type',
+    width: 140,
   },
   {
     id: 'location',
     header: 'Location',
     cell: (item: any) => item.location,
     sortingField: 'location',
+    width: 120,
   },
   {
     id: 'lastSeen',
     header: 'Last Seen',
     cell: (item: any) => item.lastSeen,
     sortingField: 'lastSeen',
+    width: 110,
   },
 ];
 
