@@ -232,13 +232,15 @@ export default function NetworkDashboard() {
 
             {/* Warning Alert */}
             {showAlert && (
-              <Alert
-                type="warning"
-                dismissible
-                onDismiss={() => setShowAlert(false)}
-              >
-                This is a warning message
-              </Alert>
+              <div className={styles.customAlert}>
+                <Alert
+                  type="warning"
+                  dismissible
+                  onDismiss={() => setShowAlert(false)}
+                >
+                  This is a warning message
+                </Alert>
+              </div>
             )}
 
             {/* Charts Section */}
