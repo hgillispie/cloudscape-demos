@@ -214,8 +214,8 @@ export function App() {
             {/* Alert Banner */}
             {showAlert && (
               <Alert
-                statusIconAriaLabel="Warning"
-                type="warning"
+                statusIconAriaLabel="Error"
+                type="error"
                 dismissible
                 onDismiss={() => setShowAlert(false)}
               >
