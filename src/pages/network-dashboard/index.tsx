@@ -237,12 +237,14 @@ export default function NetworkDashboard() {
               }
             >
               <AreaChart
-                series={networkTrafficData}
+                series={[...networkTrafficData, thresholdData]}
                 xTitle="Day"
                 yTitle=""
                 height={300}
                 hideLegend={false}
                 hideFilter={false}
+                yDomain={[0, 100]}
+                statusType="finished"
               />
             </Container>
 
