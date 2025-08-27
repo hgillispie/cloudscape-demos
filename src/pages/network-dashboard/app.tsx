@@ -272,11 +272,13 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (e) =>
-                      e.toLocaleDateString('en-US', {
+                    xTickFormatter: (e) => {
+                      const date = e instanceof Date ? e : new Date(e);
+                      return date.toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
-                      }),
+                      });
+                    },
                     yTickFormatter: function o(e) {
                       return Math.abs(e) >= 1e9
                         ? (e / 1e9).toFixed(1).replace(/\.0$/, '') + 'G'
