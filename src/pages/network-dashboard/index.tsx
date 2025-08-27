@@ -91,7 +91,7 @@ const generateDeviceData = () => {
   ];
   const deviceTypes = ['Router', 'Switch', 'Access Point', 'Firewall', 'Load Balancer'];
   const locations = ['Data Center', 'Floor 1', 'Floor 2', 'Floor 3', 'DMZ'];
-
+  
   for (let i = 1; i <= 15; i++) {
     devices.push({
       id: `device-${i}`,
@@ -186,170 +186,163 @@ export default function NetworkDashboard() {
   return (
     <AppLayout
       content={
-        <SpaceBetween size="l">
-          {/* Breadcrumbs and Header */}
-          <SpaceBetween size="m">
-            <BreadcrumbGroup
-              items={[
-                { text: 'Service', href: '#' },
-                { text: 'Administrative Dashboard', href: '#' },
-              ]}
-            />
-
-            <Header
-              variant="h1"
-              description="Network Traffic, Credit Usage, and Your Devices"
-              actions={
-                <Button
-                  variant="primary"
-                  loading={loading}
-                  onClick={handleRefreshData}
-                  iconName="external"
-                >
-                  Refresh Data
-                </Button>
-              }
-            >
-              Network Administration Dashboard
-            </Header>
-
-            {/* Search and Pagination Controls */}
-            <Grid
-              gridDefinition={[
-                { colspan: { default: 12, xs: 12, s: 8, m: 8, l: 8 } },
-                { colspan: { default: 12, xs: 12, s: 4, m: 4, l: 4 } }
-              ]}
-            >
-              <Box></Box>
-              <Box>
-                <SpaceBetween direction="vertical" size="s">
-                  <Input
-                    type="search"
-                    placeholder="Placeholder"
-                    value={searchText}
-                    onChange={({ detail }) => setSearchText(detail.value)}
-                  />
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    pagesCount={5}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                  />
-                </SpaceBetween>
-              </Box>
-            </Grid>
-          </SpaceBetween>
-
-          {/* Warning Alert */}
-          {showAlert && (
-            <Alert
-              type="warning"
-              dismissible
-              onDismiss={() => setShowAlert(false)}
-            >
-              This is a warning message
-            </Alert>
-          )}
-
-          {/* Charts Section */}
-          <Grid
-            gridDefinition={[
-              { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } },
-              { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } }
-            ]}
-          >
-            {/* Network Traffic Chart */}
-            <Container
-              header={
-                <Header variant="h2">
-                  Network traffic
-                </Header>
-              }
-            >
-              <AreaChart
-                series={[...networkTrafficData, thresholdData]}
-                xTitle="Day"
-                yTitle=""
-                height={300}
-                hideLegend={false}
-                hideFilter={false}
-                yDomain={[0, 100]}
-                statusType="finished"
-              />
-            </Container>
-
-            {/* Credit Usage Chart */}
-            <Container
-              header={
-                <Header variant="h2">
-                  Credit Usage
-                </Header>
-              }
-            >
-              <BarChart
-                series={[
-                  ...creditUsageData,
-                  {
-                    title: 'Performance goal',
-                    type: 'threshold' as const,
-                    data: Array.from({ length: 5 }, (_, i) => ({ x: `x${i + 1}`, y: 75 })),
-                    color: '#5F6B7A',
-                  }
+        <div className={styles.dashboardContainer}>
+          <SpaceBetween size="l">
+            {/* Breadcrumbs and Header */}
+            <SpaceBetween size="m">
+              <BreadcrumbGroup
+                items={[
+                  { text: 'Service', href: '#' },
+                  { text: 'Administrative Dashboard', href: '#' },
                 ]}
-                xTitle="Day"
-                yTitle=""
-                height={360}
-                hideLegend={false}
-                hideFilter={false}
-                yDomain={[0, 120]}
-                statusType="finished"
               />
-            </Container>
-          </Grid>
-
-          {/* My Devices Section */}
-          <Container
-            header={
+              
               <Header
-                variant="h2"
-                description="Devices on your local network"
+                variant="h1"
+                description="Network Traffic, Credit Usage, and Your Devices"
                 actions={
                   <Button
                     variant="primary"
-                    onClick={handleAddDevice}
+                    loading={loading}
+                    onClick={handleRefreshData}
                     iconName="external"
                   >
-                    Add Device
+                    Refresh Data
                   </Button>
                 }
               >
-                My Devices
+                Network Administration Dashboard
               </Header>
-            }
-          >
-            <Table
-              columnDefinitions={deviceColumns}
-              items={paginatedDevices}
-              selectionType="multi"
-              selectedItems={selectedItems}
-              onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
-              empty={
-                <Box textAlign="center" color="inherit">
-                  <b>No devices</b>
-                  <Box variant="p" color="inherit">
-                    No devices to display.
-                  </Box>
-                </Box>
-              }
-              footer={
+
+              {/* Search and Pagination Controls */}
+              <div className={styles.searchContainer}>
+                <Input
+                  type="search"
+                  placeholder="Placeholder"
+                  value={searchText}
+                  onChange={({ detail }) => setSearchText(detail.value)}
+                />
                 <Pagination
                   currentPageIndex={currentPageIndex}
-                  pagesCount={totalPages}
+                  pagesCount={5}
                   onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
                 />
+              </div>
+            </SpaceBetween>
+
+            {/* Warning Alert */}
+            {showAlert && (
+              <Alert
+                type="warning"
+                dismissible
+                onDismiss={() => setShowAlert(false)}
+              >
+                This is a warning message
+              </Alert>
+            )}
+
+            {/* Charts Section */}
+            <Grid 
+              gridDefinition={[
+                { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } }, 
+                { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } }
+              ]}
+            >
+              {/* Network Traffic Chart */}
+              <Container
+                header={
+                  <Header variant="h2">
+                    Network traffic
+                  </Header>
+                }
+              >
+                <AreaChart
+                  series={[...networkTrafficData, thresholdData]}
+                  xTitle="Day"
+                  yTitle=""
+                  height={300}
+                  hideLegend={false}
+                  hideFilter={false}
+                  yDomain={[0, 100]}
+                  statusType="finished"
+                />
+              </Container>
+
+              {/* Credit Usage Chart */}
+              <Container
+                header={
+                  <Header variant="h2">
+                    Credit Usage
+                  </Header>
+                }
+              >
+                <BarChart
+                  series={[
+                    ...creditUsageData,
+                    {
+                      title: 'Performance goal',
+                      type: 'threshold' as const,
+                      data: Array.from({ length: 5 }, (_, i) => ({ x: `x${i + 1}`, y: 75 })),
+                      color: '#5F6B7A',
+                    }
+                  ]}
+                  xTitle="Day"
+                  yTitle=""
+                  height={360}
+                  hideLegend={false}
+                  hideFilter={false}
+                  yDomain={[0, 120]}
+                  statusType="finished"
+                />
+              </Container>
+            </Grid>
+
+            {/* My Devices Section */}
+            <Container
+              header={
+                <Header
+                  variant="h2"
+                  description="Devices on your local network"
+                  actions={
+                    <Button
+                      variant="primary"
+                      onClick={handleAddDevice}
+                      iconName="external"
+                    >
+                      Add Device
+                    </Button>
+                  }
+                >
+                  My Devices
+                </Header>
               }
-            />
-          </Container>
-        </SpaceBetween>
+            >
+              <Table
+                className={styles.deviceTable}
+                columnDefinitions={deviceColumns}
+                items={paginatedDevices}
+                selectionType="multi"
+                selectedItems={selectedItems}
+                onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
+                empty={
+                  <Box textAlign="center" color="inherit">
+                    <b>No devices</b>
+                    <Box variant="p" color="inherit">
+                      No devices to display.
+                    </Box>
+                  </Box>
+                }
+                footer={
+                  <Pagination
+                    currentPageIndex={currentPageIndex}
+                    pagesCount={totalPages}
+                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                  />
+                }
+              />
+            </Container>
+          </SpaceBetween>
+        </div>
       }
       navigationHide
       toolsHide
