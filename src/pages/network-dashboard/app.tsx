@@ -194,7 +194,15 @@ export function App() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [filterText, setFilterText] = useState('');
-  const [showAlert, setShowAlert] = useState(true);
+  const [flashbarItems, setFlashbarItems] = useState([
+    {
+      type: 'error',
+      content: 'This is a warning message',
+      dismissible: true,
+      onDismiss: () => setFlashbarItems([]),
+      id: 'warning-message',
+    },
+  ]);
   const appLayout = useRef<AppLayoutProps.Ref>(null);
 
   const filteredItems = devicesData.filter(
