@@ -257,12 +257,22 @@ export default function NetworkDashboard() {
               }
             >
               <BarChart
-                series={creditUsageData}
+                series={[
+                  ...creditUsageData,
+                  {
+                    title: 'Performance goal',
+                    type: 'threshold' as const,
+                    data: Array.from({ length: 5 }, (_, i) => ({ x: `x${i + 1}`, y: 75 })),
+                    color: '#5F6B7A',
+                  }
+                ]}
                 xTitle="Day"
                 yTitle=""
                 height={360}
                 hideLegend={false}
                 hideFilter={false}
+                yDomain={[0, 120]}
+                statusType="finished"
               />
             </Container>
           </Grid>
