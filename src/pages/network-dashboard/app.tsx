@@ -171,9 +171,7 @@ const columnDefinitions = [
     id: 'status',
     header: 'Status',
     cell: (item: any) => (
-      <Box color={item.status === 'Online' ? 'text-status-success' : 'text-status-error'}>
-        {item.status}
-      </Box>
+      <Box color={item.status === 'Online' ? 'text-status-success' : 'text-status-error'}>{item.status}</Box>
     ),
     sortingField: 'status',
   },
@@ -199,10 +197,11 @@ export function App() {
   const [showAlert, setShowAlert] = useState(true);
   const appLayout = useRef<AppLayoutProps.Ref>(null);
 
-  const filteredItems = devicesData.filter(item =>
-    item.name.toLowerCase().includes(filterText.toLowerCase()) ||
-    item.ipAddress.includes(filterText) ||
-    item.type.toLowerCase().includes(filterText.toLowerCase())
+  const filteredItems = devicesData.filter(
+    item =>
+      item.name.toLowerCase().includes(filterText.toLowerCase()) ||
+      item.ipAddress.includes(filterText) ||
+      item.type.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   return (
@@ -213,12 +212,7 @@ export function App() {
           <SpaceBetween size="l">
             {/* Alert Banner */}
             {showAlert && (
-              <Alert
-                statusIconAriaLabel="Error"
-                type="error"
-                dismissible
-                onDismiss={() => setShowAlert(false)}
-              >
+              <Alert statusIconAriaLabel="Error" type="error" dismissible onDismiss={() => setShowAlert(false)}>
                 This is a warning message
               </Alert>
             )}
@@ -228,11 +222,7 @@ export function App() {
               variant="h1"
               description="Network Traffic, Credit Usage, and Your Devices"
               actions={
-                <Button
-                  variant="primary"
-                  iconName="external"
-                  iconAlign="right"
-                >
+                <Button variant="primary" iconName="external" iconAlign="right">
                   Refresh Data
                 </Button>
               }
@@ -261,10 +251,7 @@ export function App() {
               <Container>
                 <AreaChart
                   series={networkTrafficData}
-                  xDomain={[
-                    new Date('2024-01-01'),
-                    new Date('2024-01-12'),
-                  ]}
+                  xDomain={[new Date('2024-01-01'), new Date('2024-01-12')]}
                   yDomain={[0, 60]}
                   i18nStrings={{
                     filterLabel: 'Filter displayed data',
@@ -272,7 +259,7 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (e) => {
+                    xTickFormatter: e => {
                       const date = e instanceof Date ? e : new Date(e);
                       return date.toLocaleDateString('en-US', {
                         month: 'short',
@@ -283,10 +270,10 @@ export function App() {
                       return Math.abs(e) >= 1e9
                         ? (e / 1e9).toFixed(1).replace(/\.0$/, '') + 'G'
                         : Math.abs(e) >= 1e6
-                        ? (e / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
-                        : Math.abs(e) >= 1e3
-                        ? (e / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'
-                        : e.toString();
+                          ? (e / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
+                          : Math.abs(e) >= 1e3
+                            ? (e / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'
+                            : e.toString();
                     },
                   }}
                   ariaLabel="Network traffic"
@@ -313,10 +300,10 @@ export function App() {
                       return Math.abs(e) >= 1e9
                         ? (e / 1e9).toFixed(1).replace(/\.0$/, '') + 'G'
                         : Math.abs(e) >= 1e6
-                        ? (e / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
-                        : Math.abs(e) >= 1e3
-                        ? (e / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'
-                        : e.toString();
+                          ? (e / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
+                          : Math.abs(e) >= 1e3
+                            ? (e / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'
+                            : e.toString();
                     },
                   }}
                   ariaLabel="Credit Usage"
@@ -345,11 +332,7 @@ export function App() {
                     variant="h2"
                     description="Devices on your local network"
                     actions={
-                      <Button
-                        variant="primary"
-                        iconName="external"
-                        iconAlign="right"
-                      >
+                      <Button variant="primary" iconName="external" iconAlign="right">
                         Add Device
                       </Button>
                     }
@@ -360,11 +343,7 @@ export function App() {
                 empty={
                   <Box textAlign="center" color="inherit">
                     <b>No devices</b>
-                    <Box
-                      padding={{ bottom: 's' }}
-                      variant="p"
-                      color="inherit"
-                    >
+                    <Box padding={{ bottom: 's' }} variant="p" color="inherit">
                       No devices to display.
                     </Box>
                   </Box>
