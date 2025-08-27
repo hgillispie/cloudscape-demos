@@ -84,15 +84,23 @@ const creditUsageData = [
 // Sample data for devices table
 const generateDeviceData = () => {
   const devices = [];
+  const deviceNames = [
+    'Main Router', 'Core Switch', 'WiFi AP-01', 'Firewall-01', 'Switch-Floor2',
+    'WiFi AP-02', 'Backup Router', 'Switch-Floor3', 'WiFi AP-03', 'Load Balancer',
+    'Switch-Floor4', 'WiFi AP-04', 'DMZ Switch', 'WiFi AP-05', 'Edge Router'
+  ];
+  const deviceTypes = ['Router', 'Switch', 'Access Point', 'Firewall', 'Load Balancer'];
+  const locations = ['Data Center', 'Floor 1', 'Floor 2', 'Floor 3', 'DMZ'];
+
   for (let i = 1; i <= 15; i++) {
     devices.push({
       id: `device-${i}`,
-      name: `Device ${i}`,
-      ipAddress: `192.168.1.${i + 100}`,
-      status: i % 3 === 0 ? 'Offline' : 'Online',
-      type: ['Router', 'Switch', 'Access Point'][i % 3],
-      location: ['Building A', 'Building B', 'Building C'][i % 3],
-      lastSeen: `2024-01-${String(15 + (i % 16)).padStart(2, '0')}`,
+      name: deviceNames[i - 1] || `Device ${i}`,
+      ipAddress: `192.168.${Math.floor(i / 10) + 1}.${(i % 100) + 10}`,
+      status: i % 4 === 0 ? 'Offline' : 'Online',
+      type: deviceTypes[i % deviceTypes.length],
+      location: locations[i % locations.length],
+      lastSeen: `2024-01-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
     });
   }
   return devices;
