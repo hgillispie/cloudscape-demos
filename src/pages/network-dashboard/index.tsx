@@ -85,13 +85,25 @@ const creditUsageData = [
 const generateDeviceData = () => {
   const devices = [];
   const deviceNames = [
-    'Main Router', 'Core Switch', 'WiFi AP-01', 'Firewall-01', 'Switch-Floor2',
-    'WiFi AP-02', 'Backup Router', 'Switch-Floor3', 'WiFi AP-03', 'Load Balancer',
-    'Switch-Floor4', 'WiFi AP-04', 'DMZ Switch', 'WiFi AP-05', 'Edge Router'
+    'Main Router',
+    'Core Switch',
+    'WiFi AP-01',
+    'Firewall-01',
+    'Switch-Floor2',
+    'WiFi AP-02',
+    'Backup Router',
+    'Switch-Floor3',
+    'WiFi AP-03',
+    'Load Balancer',
+    'Switch-Floor4',
+    'WiFi AP-04',
+    'DMZ Switch',
+    'WiFi AP-05',
+    'Edge Router',
   ];
   const deviceTypes = ['Router', 'Switch', 'Access Point', 'Firewall', 'Load Balancer'];
   const locations = ['Data Center', 'Floor 1', 'Floor 2', 'Floor 3', 'DMZ'];
-  
+
   for (let i = 1; i <= 15; i++) {
     devices.push({
       id: `device-${i}`,
@@ -178,10 +190,7 @@ export default function NetworkDashboard() {
     console.log('Add device clicked');
   };
 
-  const paginatedDevices = deviceData.slice(
-    (currentPageIndex - 1) * pageSize,
-    currentPageIndex * pageSize
-  );
+  const paginatedDevices = deviceData.slice((currentPageIndex - 1) * pageSize, currentPageIndex * pageSize);
 
   return (
     <AppLayout
@@ -196,17 +205,12 @@ export default function NetworkDashboard() {
                   { text: 'Administrative Dashboard', href: '#' },
                 ]}
               />
-              
+
               <Header
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
                 actions={
-                  <Button
-                    variant="primary"
-                    loading={loading}
-                    onClick={handleRefreshData}
-                    iconName="external"
-                  >
+                  <Button variant="primary" loading={loading} onClick={handleRefreshData} iconName="external">
                     Refresh Data
                   </Button>
                 }
@@ -233,31 +237,21 @@ export default function NetworkDashboard() {
             {/* Error Alert */}
             {showAlert && (
               <div className={styles.customAlert}>
-                <Alert
-                  type="error"
-                  dismissible
-                  onDismiss={() => setShowAlert(false)}
-                >
+                <Alert type="error" dismissible onDismiss={() => setShowAlert(false)}>
                   This is a warning message
                 </Alert>
               </div>
             )}
 
             {/* Charts Section */}
-            <Grid 
+            <Grid
               gridDefinition={[
-                { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } }, 
-                { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } }
+                { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } },
+                { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } },
               ]}
             >
               {/* Network Traffic Chart */}
-              <Container
-                header={
-                  <Header variant="h2">
-                    Network traffic
-                  </Header>
-                }
-              >
+              <Container header={<Header variant="h2">Network traffic</Header>}>
                 <AreaChart
                   series={[...networkTrafficData, thresholdData]}
                   xTitle="Day"
@@ -271,13 +265,7 @@ export default function NetworkDashboard() {
               </Container>
 
               {/* Credit Usage Chart */}
-              <Container
-                header={
-                  <Header variant="h2">
-                    Credit Usage
-                  </Header>
-                }
-              >
+              <Container header={<Header variant="h2">Credit Usage</Header>}>
                 <BarChart
                   series={[
                     ...creditUsageData,
@@ -286,7 +274,7 @@ export default function NetworkDashboard() {
                       type: 'threshold' as const,
                       data: Array.from({ length: 5 }, (_, i) => ({ x: `x${i + 1}`, y: 75 })),
                       color: '#5F6B7A',
-                    }
+                    },
                   ]}
                   xTitle="Day"
                   yTitle=""
@@ -306,11 +294,7 @@ export default function NetworkDashboard() {
                   variant="h2"
                   description="Devices on your local network"
                   actions={
-                    <Button
-                      variant="primary"
-                      onClick={handleAddDevice}
-                      iconName="external"
-                    >
+                    <Button variant="primary" onClick={handleAddDevice} iconName="external">
                       Add Device
                     </Button>
                   }

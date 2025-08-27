@@ -25,7 +25,9 @@
 .chart-container {
   background: white;
   border-radius: 8px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -110,13 +112,13 @@
   .charts-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .search-container {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
   }
-  
+
   .header-actions {
     flex-direction: column;
     align-items: stretch;
@@ -135,7 +137,9 @@
   background: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 // Responsive table
