@@ -197,21 +197,20 @@ export default function NetworkDashboard() {
               </Header>
 
               {/* Search and Pagination Controls */}
-              <Box float="right">
-                <SpaceBetween direction="horizontal" size="m">
-                  <Input
-                    type="search"
-                    placeholder="Placeholder"
-                    value={searchText}
-                    onChange={({ detail }) => setSearchText(detail.value)}
-                  />
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    pagesCount={5}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                  />
-                </SpaceBetween>
-              </Box>
+              <SpaceBetween direction="horizontal" size="m" alignItems="center">
+                <div style={{ flexGrow: 1 }}></div>
+                <Input
+                  type="search"
+                  placeholder="Placeholder"
+                  value={searchText}
+                  onChange={({ detail }) => setSearchText(detail.value)}
+                />
+                <Pagination
+                  currentPageIndex={currentPageIndex}
+                  pagesCount={5}
+                  onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                />
+              </SpaceBetween>
             </SpaceBetween>
           </Container>
 
