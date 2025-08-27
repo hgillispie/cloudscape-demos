@@ -216,21 +216,29 @@ export default function NetworkDashboard() {
             </Header>
 
             {/* Search and Pagination Controls */}
-            <Box textAlign="right">
-              <SpaceBetween direction="horizontal" size="m" alignItems="center">
-                <Input
-                  type="search"
-                  placeholder="Placeholder"
-                  value={searchText}
-                  onChange={({ detail }) => setSearchText(detail.value)}
-                />
-                <Pagination
-                  currentPageIndex={currentPageIndex}
-                  pagesCount={5}
-                  onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                />
-              </SpaceBetween>
-            </Box>
+            <Grid
+              gridDefinition={[
+                { colspan: { default: 12, xs: 12, s: 8, m: 8, l: 8 } },
+                { colspan: { default: 12, xs: 12, s: 4, m: 4, l: 4 } }
+              ]}
+            >
+              <Box></Box>
+              <Box>
+                <SpaceBetween direction="vertical" size="s">
+                  <Input
+                    type="search"
+                    placeholder="Placeholder"
+                    value={searchText}
+                    onChange={({ detail }) => setSearchText(detail.value)}
+                  />
+                  <Pagination
+                    currentPageIndex={currentPageIndex}
+                    pagesCount={5}
+                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                  />
+                </SpaceBetween>
+              </Box>
+            </Grid>
           </SpaceBetween>
 
           {/* Warning Alert */}
