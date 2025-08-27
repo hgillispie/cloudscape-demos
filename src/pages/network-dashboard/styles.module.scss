@@ -5,21 +5,19 @@
   min-height: 100vh;
 }
 
-.custom-alert {
-  // Custom styling for the error alert
-  :global(.awsui-alert) {
-    background-color: rgba(224, 43, 28, 1) !important;
-  }
+// Custom styling for the error flashbar
+:global(.awsui-flashbar-item) {
+  background-color: rgba(224, 43, 28, 1) !important;
+}
 
-  // Update text color for better contrast on red background
-  :global(.awsui-alert .awsui-alert__content) {
-    color: white !important;
-  }
+// Update text color for better contrast on red background
+:global(.awsui-flashbar-item .awsui-flashbar-item__content) {
+  color: white !important;
+}
 
-  // Update dismiss button color for visibility on red background
-  :global(.awsui-alert .awsui-alert__dismiss) {
-    color: white !important;
-  }
+// Update dismiss button color for visibility on red background
+:global(.awsui-flashbar-item .awsui-flashbar-item__dismiss) {
+  color: white !important;
 }
 
 .chart-container {
