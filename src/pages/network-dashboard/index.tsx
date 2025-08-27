@@ -236,15 +236,19 @@ export default function NetworkDashboard() {
 
             {/* Error Flashbar */}
             <Flashbar
-              items={showAlert ? [
-                {
-                  type: 'error',
-                  content: 'This is a warning message',
-                  dismissible: true,
-                  onDismiss: () => setShowAlert(false),
-                  id: 'error-message'
-                }
-              ] : []}
+              items={
+                showAlert
+                  ? [
+                      {
+                        type: 'error',
+                        content: 'This is a warning message',
+                        dismissible: true,
+                        onDismiss: () => setShowAlert(false),
+                        id: 'error-message',
+                      },
+                    ]
+                  : []
+              }
             />
 
             {/* Charts Section */}
