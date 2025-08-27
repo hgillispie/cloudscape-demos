@@ -191,35 +191,34 @@ export default function NetworkDashboard() {
       content={
         <SpaceBetween size="l">
           {/* Breadcrumbs and Header */}
-          <Container>
-            <SpaceBetween size="m">
-              <BreadcrumbGroup
-                items={[
-                  { text: 'Service', href: '#' },
-                  { text: 'Administrative Dashboard', href: '#' },
-                ]}
-              />
-              
-              <Header
-                variant="h1"
-                description="Network Traffic, Credit Usage, and Your Devices"
-                actions={
-                  <Button
-                    variant="primary"
-                    loading={loading}
-                    onClick={handleRefreshData}
-                    iconName="external"
-                  >
-                    Refresh Data
-                  </Button>
-                }
-              >
-                Network Administration Dashboard
-              </Header>
+          <SpaceBetween size="m">
+            <BreadcrumbGroup
+              items={[
+                { text: 'Service', href: '#' },
+                { text: 'Administrative Dashboard', href: '#' },
+              ]}
+            />
 
-              {/* Search and Pagination Controls */}
+            <Header
+              variant="h1"
+              description="Network Traffic, Credit Usage, and Your Devices"
+              actions={
+                <Button
+                  variant="primary"
+                  loading={loading}
+                  onClick={handleRefreshData}
+                  iconName="external"
+                >
+                  Refresh Data
+                </Button>
+              }
+            >
+              Network Administration Dashboard
+            </Header>
+
+            {/* Search and Pagination Controls */}
+            <Box textAlign="right">
               <SpaceBetween direction="horizontal" size="m" alignItems="center">
-                <div style={{ flexGrow: 1 }}></div>
                 <Input
                   type="search"
                   placeholder="Placeholder"
@@ -232,8 +231,8 @@ export default function NetworkDashboard() {
                   onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
                 />
               </SpaceBetween>
-            </SpaceBetween>
-          </Container>
+            </Box>
+          </SpaceBetween>
 
           {/* Warning Alert */}
           {showAlert && (
