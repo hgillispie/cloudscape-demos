@@ -5,6 +5,23 @@
   min-height: 100vh;
 }
 
+.custom-alert {
+  // Override the background color of the alert to red
+  :global(.awsui-alert) {
+    background-color: rgba(224, 43, 28, 1) !important;
+  }
+
+  // Also update text color for better contrast on red background
+  :global(.awsui-alert .awsui-alert__content) {
+    color: white !important;
+  }
+
+  // Update dismiss button color for visibility on red background
+  :global(.awsui-alert .awsui-alert__dismiss) {
+    color: white !important;
+  }
+}
+
 .chart-container {
   background: white;
   border-radius: 8px;
