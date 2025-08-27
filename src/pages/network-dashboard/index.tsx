@@ -7,7 +7,7 @@ import {
   SpaceBetween,
   Container,
   Grid,
-  Alert,
+  Flashbar,
   Input,
   Pagination,
   Table,
@@ -235,13 +235,17 @@ export default function NetworkDashboard() {
             </SpaceBetween>
 
             {/* Error Alert */}
-            {showAlert && (
-              <div className={styles.customAlert}>
-                <Alert type="error" dismissible onDismiss={() => setShowAlert(false)}>
-                  This is a warning message
-                </Alert>
-              </div>
-            )}
+            <Flashbar
+              items={showAlert ? [
+                {
+                  type: 'error',
+                  content: 'This is a warning message',
+                  dismissible: true,
+                  onDismiss: () => setShowAlert(false),
+                  id: 'error-message'
+                }
+              ] : []}
+            />
 
             {/* Charts Section */}
             <Grid
