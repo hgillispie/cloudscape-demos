@@ -110,14 +110,14 @@ const deviceColumns = [
   {
     id: 'name',
     header: 'Device Name',
-    cell: (item: any) => <strong>{item.name}</strong>,
+    cell: (item: any) => <span className={styles.deviceName}>{item.name}</span>,
     sortingField: 'name',
     width: 180,
   },
   {
     id: 'ipAddress',
     header: 'IP Address',
-    cell: (item: any) => <code style={{ fontFamily: 'monospace', backgroundColor: '#f5f5f5', padding: '2px 4px', borderRadius: '3px' }}>{item.ipAddress}</code>,
+    cell: (item: any) => <code className={styles.ipAddress}>{item.ipAddress}</code>,
     sortingField: 'ipAddress',
     width: 140,
   },
@@ -125,10 +125,7 @@ const deviceColumns = [
     id: 'status',
     header: 'Status',
     cell: (item: any) => (
-      <span style={{
-        color: item.status === 'Online' ? '#16a34a' : '#dc2626',
-        fontWeight: 'medium'
-      }}>
+      <span className={item.status === 'Online' ? styles.deviceStatusOnline : styles.deviceStatusOffline}>
         {item.status}
       </span>
     ),
