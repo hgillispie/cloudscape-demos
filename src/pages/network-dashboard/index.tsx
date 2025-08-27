@@ -234,7 +234,7 @@ export default function NetworkDashboard() {
             {showAlert && (
               <div className={styles.customAlert}>
                 <Alert
-                  type="warning"
+                  type="error"
                   dismissible
                   onDismiss={() => setShowAlert(false)}
                 >
