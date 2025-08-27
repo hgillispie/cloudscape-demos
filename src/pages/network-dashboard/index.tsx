@@ -15,6 +15,7 @@ import {
   BarChart,
   Box,
 } from '@cloudscape-design/components';
+import styles from './styles.module.scss';
 
 // Sample data for charts - matching Figma design more closely
 const networkTrafficData = [
