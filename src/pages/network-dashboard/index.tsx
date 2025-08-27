@@ -14,7 +14,6 @@ import {
   AreaChart,
   BarChart,
   Box,
-  Flashbar,
 } from '@cloudscape-design/components';
 
 // Sample data for charts - matching Figma design more closely
