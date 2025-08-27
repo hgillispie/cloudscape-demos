@@ -245,7 +245,12 @@ export default function NetworkDashboard() {
           )}
 
           {/* Charts Section */}
-          <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } },
+              { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6 } }
+            ]}
+          >
             {/* Network Traffic Chart */}
             <Container
               header={
