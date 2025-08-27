@@ -234,7 +234,7 @@ export default function NetworkDashboard() {
               </div>
             </SpaceBetween>
 
-            {/* Error Alert */}
+            {/* Error Flashbar */}
             <Flashbar
               items={showAlert ? [
                 {
