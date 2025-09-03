@@ -217,7 +217,10 @@ function CreditUsageChart() {
 
 export function NetworkCharts() {
   return (
-    <ColumnLayout columns={2} variant="text-grid">
+    <ColumnLayout
+      columns={{ default: 1, s: 1, m: 2, l: 2, xl: 2 }}
+      variant="text-grid"
+    >
       <NetworkTrafficChart />
       <CreditUsageChart />
     </ColumnLayout>

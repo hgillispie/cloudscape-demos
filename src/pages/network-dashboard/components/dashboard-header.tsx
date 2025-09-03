@@ -40,16 +40,23 @@ export function DashboardHeader() {
         Network Administration Dashboard
       </Header>
 
-      <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 8, m: 8, l: 8, xl: 8 } }, { colspan: { default: 12, xs: 12, s: 4, m: 4, l: 4, xl: 4 } }]}>
+      <Grid gridDefinition={[
+        { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
+        { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } }
+      ]}>
         <TextFilter
           filteringText={filterText}
           filteringPlaceholder="Placeholder"
           filteringAriaLabel="Filter items"
           onChange={({ detail }) => setFilterText(detail.filteringText)}
         />
-        
-        <Box textAlign="right">
-          <SpaceBetween direction="horizontal" size="xs" alignItems="center">
+
+        <Box textAlign={{ default: 'left', s: 'left', m: 'right' }}>
+          <SpaceBetween
+            direction={{ default: 'vertical', s: 'horizontal' }}
+            size="xs"
+            alignItems={{ default: 'stretch', s: 'center' }}
+          >
             <Pagination
               currentPageIndex={currentPageIndex}
               onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
@@ -60,8 +67,10 @@ export function DashboardHeader() {
                 pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
               }}
             />
-            <div style={{ width: '2px', height: '32px', backgroundColor: '#414D5C' }} />
-            <Button variant="icon" iconName="settings" />
+            <SpaceBetween direction="horizontal" size="xs" alignItems="center">
+              <div style={{ width: '2px', height: '32px', backgroundColor: '#414D5C' }} />
+              <Button variant="icon" iconName="settings" />
+            </SpaceBetween>
           </SpaceBetween>
         </Box>
       </Grid>
