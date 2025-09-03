@@ -44,7 +44,9 @@ export function App() {
       navigationHide // Hide side navigation for full-width dashboard view
       toolsHide // Hide tools panel to maximize content area
       content={
-        <ContentLayout header={<DashboardHeader />}> {/* Dashboard header with breadcrumbs and actions */}
+        <ContentLayout header={<DashboardHeader />}>
+          {' '}
+          {/* Dashboard header with breadcrumbs and actions */}
           {/* Main dashboard content with consistent spacing */}
           <SpaceBetween size="l">
             {/* Conditional rendering of alert banner - only show if not dismissed */}
