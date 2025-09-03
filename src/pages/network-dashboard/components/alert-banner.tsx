@@ -10,19 +10,21 @@ interface AlertBannerProps {
 
 export function AlertBanner({ onDismiss }: AlertBannerProps) {
   return (
-    <Alert
-      statusIconAriaLabel="Warning"
-      type="warning"
-      dismissible
-      onDismiss={onDismiss}
-      dismissAriaLabel="Close alert"
-      action={
-        <Button onClick={onDismiss} variant="link">
-          Dismiss
-        </Button>
-      }
-    >
-      This is a warning message
-    </Alert>
+    <div style={{ backgroundColor: 'rgba(249, 80, 55, 1)', borderRadius: '12px' }}>
+      <Alert
+        statusIconAriaLabel="Warning"
+        type="warning"
+        dismissible
+        onDismiss={onDismiss}
+        dismissAriaLabel="Close alert"
+        action={
+          <Button onClick={onDismiss} variant="link">
+            Dismiss
+          </Button>
+        }
+      >
+        This is a warning message
+      </Alert>
+    </div>
   );
 }
