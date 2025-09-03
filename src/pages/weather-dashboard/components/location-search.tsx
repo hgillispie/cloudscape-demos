@@ -70,6 +70,9 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
                 key={city.name}
                 variant="normal"
                 onClick={() => handleCitySelect(city)}
+                {...(city.name === 'Paris, France' && {
+                  style: { fontWeight: '900' }
+                })}
               >
                 {city.name}
               </Button>
