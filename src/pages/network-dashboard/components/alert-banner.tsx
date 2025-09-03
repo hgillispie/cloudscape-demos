@@ -12,7 +12,8 @@ export function AlertBanner({ onDismiss }: AlertBannerProps) {
   return (
     <>
       <style>{`
-        .custom-red-alert .awsui_alert_1eq8q_1gd75_140 {
+        .custom-red-alert [data-awsui-theme="dark"] [data-awsui-theme="dark"] [data-awsui-theme="dark"] div[style*="background-color"],
+        .custom-red-alert div[style*="background-color"] {
           background-color: rgba(249, 80, 55, 1) !important;
         }
       `}</style>
