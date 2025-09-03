@@ -10,7 +10,16 @@ interface AlertBannerProps {
 
 export function AlertBanner({ onDismiss }: AlertBannerProps) {
   return (
-    <div style={{ backgroundColor: 'rgba(249, 80, 55, 1)', borderRadius: '12px' }}>
+    <div
+      style={{
+        '--alert-background-color': 'rgba(249, 80, 55, 1)'
+      } as React.CSSProperties}
+    >
+      <style>{`
+        div[style*="background-color"] {
+          background-color: rgba(249, 80, 55, 1) !important;
+        }
+      `}</style>
       <Alert
         statusIconAriaLabel="Warning"
         type="warning"
