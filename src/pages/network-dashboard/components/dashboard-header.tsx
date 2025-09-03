@@ -19,20 +19,16 @@ export function DashboardHeader() {
       <BreadcrumbGroup
         items={[
           { text: 'Service', href: '#' },
-          { text: 'Administrative Dashboard', href: '#' }
+          { text: 'Administrative Dashboard', href: '#' },
         ]}
         ariaLabel="Breadcrumbs"
       />
-      
+
       <Header
         variant="h1"
         description="Network Traffic, Credit Usage, and Your Devices"
         actions={
-          <Button
-            variant="primary"
-            iconAlign="right"
-            iconName="external"
-          >
+          <Button variant="primary" iconAlign="right" iconName="external">
             Refresh Data
           </Button>
         }
@@ -40,10 +36,12 @@ export function DashboardHeader() {
         Network Administration Dashboard
       </Header>
 
-      <Grid gridDefinition={[
-        { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
-        { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } }
-      ]}>
+      <Grid
+        gridDefinition={[
+          { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
+          { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } },
+        ]}
+      >
         <TextFilter
           filteringText={filterText}
           filteringPlaceholder="Placeholder"

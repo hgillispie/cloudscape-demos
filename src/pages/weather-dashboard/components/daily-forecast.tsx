@@ -43,10 +43,10 @@ export function DailyForecast({ weatherData }: DailyForecastProps) {
     } else if (date.toDateString() === tomorrow.toDateString()) {
       return 'Tomorrow';
     } else {
-      return date.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        month: 'short', 
-        day: 'numeric' 
+      return date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'short',
+        day: 'numeric',
       });
     }
   };
@@ -59,16 +59,12 @@ export function DailyForecast({ weatherData }: DailyForecastProps) {
           selectionGroupLabel: 'Daily forecast selection',
         }}
         cardDefinition={{
-          header: (item: DailyData) => (
-            <Box variant="h3">{formatDate(item.date)}</Box>
-          ),
+          header: (item: DailyData) => <Box variant="h3">{formatDate(item.date)}</Box>,
           sections: [
             {
               id: 'weather',
               content: (item: DailyData) => (
-                <StatusIndicator 
-                  type={WeatherApiService.getWeatherIcon(item.weatherCode) as any}
-                >
+                <StatusIndicator type={WeatherApiService.getWeatherIcon(item.weatherCode) as any}>
                   {WeatherApiService.getWeatherDescription(item.weatherCode)}
                 </StatusIndicator>
               ),

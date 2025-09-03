@@ -11,10 +11,10 @@ import { WeatherContent } from './components/weather-content';
 import { LocationSearch } from './components/location-search';
 
 export function App() {
-  const [location, setLocation] = useState({ 
-    latitude: 40.7128, 
-    longitude: -74.0060, 
-    name: 'New York, NY' 
+  const [location, setLocation] = useState({
+    latitude: 40.7128,
+    longitude: -74.006,
+    name: 'New York, NY',
   });
 
   return (

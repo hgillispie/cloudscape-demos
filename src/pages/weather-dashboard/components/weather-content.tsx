@@ -67,11 +67,7 @@ export function WeatherContent({ location }: WeatherContentProps) {
 
   if (!weatherData) {
     return (
-      <Alert
-        statusIconAriaLabel="Warning"
-        type="warning"
-        header="No weather data"
-      >
+      <Alert statusIconAriaLabel="Warning" type="warning" header="No weather data">
         Weather data is not available for this location.
       </Alert>
     );

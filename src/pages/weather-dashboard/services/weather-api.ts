@@ -42,36 +42,26 @@ export class WeatherApiService {
     const params = new URLSearchParams({
       latitude: location.latitude.toString(),
       longitude: location.longitude.toString(),
-      current: [
-        'temperature_2m',
-        'relative_humidity_2m',
-        'wind_speed_10m',
-        'wind_direction_10m',
-        'weather_code'
-      ].join(','),
-      hourly: [
-        'temperature_2m',
-        'relative_humidity_2m',
-        'precipitation',
-        'wind_speed_10m',
-        'weather_code'
-      ].join(','),
+      current: ['temperature_2m', 'relative_humidity_2m', 'wind_speed_10m', 'wind_direction_10m', 'weather_code'].join(
+        ',',
+      ),
+      hourly: ['temperature_2m', 'relative_humidity_2m', 'precipitation', 'wind_speed_10m', 'weather_code'].join(','),
       daily: [
         'temperature_2m_max',
         'temperature_2m_min',
         'precipitation_sum',
         'wind_speed_10m_max',
-        'weather_code'
+        'weather_code',
       ].join(','),
       temperature_unit: 'fahrenheit',
       wind_speed_unit: 'mph',
       precipitation_unit: 'inch',
       timezone: 'auto',
-      forecast_days: '7'
+      forecast_days: '7',
     });
 
     const response = await fetch(`${this.BASE_URL}?${params}`);
-    
+
     if (!response.ok) {
       throw new Error(`Weather API error: ${response.status}`);
     }
@@ -103,7 +93,7 @@ export class WeatherApiService {
         windSpeedMax: data.daily.wind_speed_10m_max,
         weatherCode: data.daily.weather_code,
       },
-      timezone: data.timezone
+      timezone: data.timezone,
     };
   }
 
@@ -136,7 +126,7 @@ export class WeatherApiService {
       86: 'Heavy snow showers',
       95: 'Thunderstorm',
       96: 'Thunderstorm with slight hail',
-      99: 'Thunderstorm with heavy hail'
+      99: 'Thunderstorm with heavy hail',
     };
 
     return weatherCodes[code] || 'Unknown';

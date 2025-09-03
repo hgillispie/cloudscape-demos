@@ -23,22 +23,20 @@ interface HourlyData {
 
 export function HourlyForecast({ weatherData }: HourlyForecastProps) {
   // Show next 24 hours
-  const hourlyData: HourlyData[] = weatherData.hourly.time
-    .slice(0, 24)
-    .map((time, index) => ({
-      time,
-      temperature: weatherData.hourly.temperature[index],
-      humidity: weatherData.hourly.humidity[index],
-      precipitation: weatherData.hourly.precipitation[index],
-      windSpeed: weatherData.hourly.windSpeed[index],
-      weatherCode: weatherData.hourly.weatherCode[index],
-    }));
+  const hourlyData: HourlyData[] = weatherData.hourly.time.slice(0, 24).map((time, index) => ({
+    time,
+    temperature: weatherData.hourly.temperature[index],
+    humidity: weatherData.hourly.humidity[index],
+    precipitation: weatherData.hourly.precipitation[index],
+    windSpeed: weatherData.hourly.windSpeed[index],
+    weatherCode: weatherData.hourly.weatherCode[index],
+  }));
 
   const formatHour = (timeString: string) => {
     const date = new Date(timeString);
-    return date.toLocaleTimeString('en-US', { 
-      hour: 'numeric', 
-      hour12: true 
+    return date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      hour12: true,
     });
   };
 
@@ -57,9 +55,7 @@ export function HourlyForecast({ weatherData }: HourlyForecastProps) {
             id: 'weather',
             header: 'Weather',
             cell: (item: HourlyData) => (
-              <StatusIndicator 
-                type={WeatherApiService.getWeatherIcon(item.weatherCode) as any}
-              >
+              <StatusIndicator type={WeatherApiService.getWeatherIcon(item.weatherCode) as any}>
                 {WeatherApiService.getWeatherDescription(item.weatherCode)}
               </StatusIndicator>
             ),

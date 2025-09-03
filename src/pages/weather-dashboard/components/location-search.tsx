@@ -20,7 +20,7 @@ interface LocationSearchProps {
 
 // Predefined popular cities for demo purposes
 const POPULAR_CITIES: Location[] = [
-  { latitude: 40.7128, longitude: -74.0060, name: 'New York, NY' },
+  { latitude: 40.7128, longitude: -74.006, name: 'New York, NY' },
   { latitude: 34.0522, longitude: -118.2437, name: 'Los Angeles, CA' },
   { latitude: 41.8781, longitude: -87.6298, name: 'Chicago, IL' },
   { latitude: 29.7604, longitude: -95.3698, name: 'Houston, TX' },
@@ -36,7 +36,7 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
   const [customLocation, setCustomLocation] = useState({
     name: '',
     latitude: '',
-    longitude: ''
+    longitude: '',
   });
 
   const handleCitySelect = (city: Location) => {
@@ -46,12 +46,12 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
   const handleCustomLocationSubmit = () => {
     const lat = parseFloat(customLocation.latitude);
     const lng = parseFloat(customLocation.longitude);
-    
+
     if (!isNaN(lat) && !isNaN(lng) && customLocation.name.trim()) {
       onLocationChange({
         latitude: lat,
         longitude: lng,
-        name: customLocation.name.trim()
+        name: customLocation.name.trim(),
       });
       setCustomLocation({ name: '', latitude: '', longitude: '' });
     }
@@ -65,13 +65,13 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
             Popular cities
           </Box>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-            {POPULAR_CITIES.map((city) => (
+            {POPULAR_CITIES.map(city => (
               <Button
                 key={city.name}
                 variant="normal"
                 onClick={() => handleCitySelect(city)}
                 {...(city.name === 'Paris, France' && {
-                  style: { fontWeight: '900' }
+                  style: { fontWeight: '900' },
                 })}
               >
                 {city.name}
@@ -88,9 +88,7 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
             <FormField label="Location name">
               <Input
                 value={customLocation.name}
-                onChange={({ detail }) =>
-                  setCustomLocation({ ...customLocation, name: detail.value })
-                }
+                onChange={({ detail }) => setCustomLocation({ ...customLocation, name: detail.value })}
                 placeholder="e.g., Austin, TX"
               />
             </FormField>
@@ -98,9 +96,7 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
               <FormField label="Latitude">
                 <Input
                   value={customLocation.latitude}
-                  onChange={({ detail }) =>
-                    setCustomLocation({ ...customLocation, latitude: detail.value })
-                  }
+                  onChange={({ detail }) => setCustomLocation({ ...customLocation, latitude: detail.value })}
                   placeholder="e.g., 30.2672"
                   type="number"
                 />
@@ -108,9 +104,7 @@ export function LocationSearch({ onLocationChange }: LocationSearchProps) {
               <FormField label="Longitude">
                 <Input
                   value={customLocation.longitude}
-                  onChange={({ detail }) =>
-                    setCustomLocation({ ...customLocation, longitude: detail.value })
-                  }
+                  onChange={({ detail }) => setCustomLocation({ ...customLocation, longitude: detail.value })}
                   placeholder="e.g., -97.7431"
                   type="number"
                 />

@@ -92,7 +92,7 @@ export function DeviceManagement() {
   const [selectedItems, setSelectedItems] = useState<Device[]>([]);
   const [sortingColumn, setSortingColumn] = useState<any>(null);
   const [sortingDescending, setSortingDescending] = useState(false);
-  
+
   const devices = generateDevices();
 
   const handleSortingChange = ({ detail }: any) => {
@@ -106,11 +106,7 @@ export function DeviceManagement() {
         variant="h1"
         description="Devices on your local network"
         actions={
-          <Button
-            variant="primary"
-            iconAlign="right"
-            iconName="external"
-          >
+          <Button variant="primary" iconAlign="right" iconName="external">
             Add Device
           </Button>
         }
@@ -147,11 +143,7 @@ export function DeviceManagement() {
             </Box>
           </Box>
         }
-        footer={
-          <Box textAlign="center">
-            Showing {devices.length} devices
-          </Box>
-        }
+        footer={<Box textAlign="center">Showing {devices.length} devices</Box>}
       />
     </SpaceBetween>
   );

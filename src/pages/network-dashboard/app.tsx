@@ -19,13 +19,9 @@ export function App() {
       navigationHide
       toolsHide
       content={
-        <ContentLayout
-          header={<DashboardHeader />}
-        >
+        <ContentLayout header={<DashboardHeader />}>
           <SpaceBetween size="l">
-            {alertVisible && (
-              <AlertBanner onDismiss={() => setAlertVisible(false)} />
-            )}
+            {alertVisible && <AlertBanner onDismiss={() => setAlertVisible(false)} />}
             <NetworkCharts />
             <DeviceManagement />
           </SpaceBetween>
