@@ -11,7 +11,13 @@ function NetworkTrafficChart() {
   return (
     <Container header={<Box variant="h2">Network traffic</Box>}>
       <SpaceBetween size="m">
-        <div style={{ height: '300px', position: 'relative', background: '#fff' }}>
+        <div style={{
+          height: '300px',
+          position: 'relative',
+          background: '#fff',
+          minWidth: '300px',
+          overflowX: 'auto'
+        }}>
           {/* Y-axis labels */}
           <div style={{ 
             position: 'absolute', 
@@ -132,7 +138,13 @@ function CreditUsageChart() {
   return (
     <Container header={<Box variant="h2">Credit Usage</Box>}>
       <SpaceBetween size="m">
-        <div style={{ height: '360px', position: 'relative', background: '#fff' }}>
+        <div style={{
+          height: '360px',
+          position: 'relative',
+          background: '#fff',
+          minWidth: '300px',
+          overflowX: 'auto'
+        }}>
           {/* Y-axis labels */}
           <div style={{ 
             position: 'absolute', 
