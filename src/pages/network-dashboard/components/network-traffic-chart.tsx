@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import AreaChart from '@cloudscape-design/components/area-chart';
+import LineChart from '@cloudscape-design/components/line-chart';
 import Box from '@cloudscape-design/components/box';
 import Container from '@cloudscape-design/components/container';
 import Header from '@cloudscape-design/components/header';
