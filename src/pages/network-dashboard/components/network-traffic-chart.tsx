@@ -65,7 +65,7 @@ export function NetworkTrafficChart() {
         </Header>
       }
     >
-      <AreaChart
+      <LineChart
         {...commonChartProps}
         series={networkTrafficSeries}
         xDomain={[networkTrafficData[0].date, networkTrafficData[networkTrafficData.length - 1].date]}
@@ -80,7 +80,7 @@ export function NetworkTrafficChart() {
             return value.toString();
           },
         }}
-        ariaLabel="Network traffic area chart"
+        ariaLabel="Network traffic line chart"
         errorText="Error loading data."
         height={300}
         xScaleType="time"
