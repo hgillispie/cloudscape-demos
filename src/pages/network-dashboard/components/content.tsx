@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import Box from '@cloudscape-design/components/box';
 import Button from '@cloudscape-design/components/button';
 import Container from '@cloudscape-design/components/container';
