@@ -32,11 +32,7 @@ export function Content() {
           dismissible
           dismissAriaLabel="Close alert"
           onDismiss={() => setShowAlert(false)}
-          action={
-            <Button variant="link">
-              Dismiss
-            </Button>
-          }
+          action={<Button variant="link">Dismiss</Button>}
         >
           This is a warning message
         </Alert>
@@ -45,10 +41,12 @@ export function Content() {
       {/* Search Bar */}
       <Container>
         <SpaceBetween size="m" direction="vertical">
-          <Grid gridDefinition={[
-            { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
-            { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } }
-          ]}>
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
+              { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } },
+            ]}
+          >
             <TextFilter
               filteringText={filterText}
               filteringPlaceholder="Placeholder"
@@ -72,10 +70,12 @@ export function Content() {
       </Container>
 
       {/* Charts Section */}
-      <Grid gridDefinition={[
-        { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
-        { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } }
-      ]}>
+      <Grid
+        gridDefinition={[
+          { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+          { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+        ]}
+      >
         <NetworkTrafficChart />
         <CreditUsageChart />
       </Grid>

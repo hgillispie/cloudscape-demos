@@ -14,22 +14,22 @@ import { commonChartProps, dateFormatter } from '../../dashboard/widgets/chart-c
 const generateNetworkData = () => {
   const now = new Date();
   const data = [];
-  
+
   for (let i = 12; i >= 0; i--) {
     const date = new Date(now);
     date.setHours(date.getHours() - i);
-    
+
     // Generate varying data that roughly matches the Figma design pattern
     const site1Base = 60000 + Math.random() * 20000;
     const site2Base = 40000 + Math.random() * 15000;
-    
+
     data.push({
       date,
       site1: Math.floor(site1Base + Math.sin(i * 0.5) * 10000),
       site2: Math.floor(site2Base + Math.cos(i * 0.3) * 8000),
     });
   }
-  
+
   return data;
 };
 
@@ -58,13 +58,7 @@ const networkTrafficSeries = [
 
 export function NetworkTrafficChart() {
   return (
-    <Container
-      header={
-        <Header variant="h2">
-          Network traffic
-        </Header>
-      }
-    >
+    <Container header={<Header variant="h2">Network traffic</Header>}>
       <LineChart
         {...commonChartProps}
         series={networkTrafficSeries}

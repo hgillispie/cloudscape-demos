@@ -35,7 +35,17 @@ const generateDeviceData = (): Device[] => {
       id: `device-${i}`,
       deviceName: `Device-${i.toString().padStart(3, '0')}`,
       ipAddress: `192.168.1.${100 + i}`,
-      macAddress: `00:${Math.floor(Math.random() * 256).toString(16).padStart(2, '0')}:${Math.floor(Math.random() * 256).toString(16).padStart(2, '0')}:${Math.floor(Math.random() * 256).toString(16).padStart(2, '0')}:${Math.floor(Math.random() * 256).toString(16).padStart(2, '0')}:${Math.floor(Math.random() * 256).toString(16).padStart(2, '0')}`,
+      macAddress: `00:${Math.floor(Math.random() * 256)
+        .toString(16)
+        .padStart(2, '0')}:${Math.floor(Math.random() * 256)
+        .toString(16)
+        .padStart(2, '0')}:${Math.floor(Math.random() * 256)
+        .toString(16)
+        .padStart(2, '0')}:${Math.floor(Math.random() * 256)
+        .toString(16)
+        .padStart(2, '0')}:${Math.floor(Math.random() * 256)
+        .toString(16)
+        .padStart(2, '0')}`,
       deviceType: deviceTypes[Math.floor(Math.random() * deviceTypes.length)],
       status: statuses[Math.floor(Math.random() * statuses.length)],
       lastSeen: new Date(Date.now() - Math.random() * 86400000).toLocaleString(),
@@ -81,11 +91,11 @@ const columnDefinitions = [
     cell: (item: Device) => (
       <Box
         color={
-          item.status === 'Online' 
-            ? 'text-status-success' 
-            : item.status === 'Warning' 
-            ? 'text-status-warning'
-            : 'text-status-error'
+          item.status === 'Online'
+            ? 'text-status-success'
+            : item.status === 'Warning'
+              ? 'text-status-warning'
+              : 'text-status-error'
         }
       >
         {item.status}
@@ -109,39 +119,36 @@ const columnDefinitions = [
 
 export function DevicesTable() {
   const [selectedItems, setSelectedItems] = useState<Device[]>([]);
-  
-  const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(
-    devices,
-    {
-      filtering: {
-        empty: (
-          <Box textAlign="center" color="inherit">
-            <Box variant="strong" textAlign="center" color="inherit">
-              No devices
-            </Box>
-            <Box variant="p" padding={{ bottom: 's' }} color="inherit">
-              No devices to display.
-            </Box>
-            <Button>Add device</Button>
+
+  const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(devices, {
+    filtering: {
+      empty: (
+        <Box textAlign="center" color="inherit">
+          <Box variant="strong" textAlign="center" color="inherit">
+            No devices
           </Box>
-        ),
-        noMatch: (
-          <Box textAlign="center" color="inherit">
-            <Box variant="strong" textAlign="center" color="inherit">
-              No matches
-            </Box>
-            <Box variant="p" padding={{ bottom: 's' }} color="inherit">
-              We can't find a match.
-            </Box>
-            <Button onClick={() => actions.setFiltering('')}>Clear filter</Button>
+          <Box variant="p" padding={{ bottom: 's' }} color="inherit">
+            No devices to display.
           </Box>
-        ),
-      },
-      pagination: { pageSize: 10 },
-      sorting: { defaultState: { sortingColumn: columnDefinitions[0] } },
-      selection: {},
-    }
-  );
+          <Button>Add device</Button>
+        </Box>
+      ),
+      noMatch: (
+        <Box textAlign="center" color="inherit">
+          <Box variant="strong" textAlign="center" color="inherit">
+            No matches
+          </Box>
+          <Box variant="p" padding={{ bottom: 's' }} color="inherit">
+            We can't find a match.
+          </Box>
+          <Button onClick={() => actions.setFiltering('')}>Clear filter</Button>
+        </Box>
+      ),
+    },
+    pagination: { pageSize: 10 },
+    sorting: { defaultState: { sortingColumn: columnDefinitions[0] } },
+    selection: {},
+  });
 
   return (
     <Table
@@ -172,9 +179,7 @@ export function DevicesTable() {
       }
       header={
         <Header
-          counter={
-            selectedItems.length ? `(${selectedItems.length}/${devices.length})` : `(${devices.length})`
-          }
+          counter={selectedItems.length ? `(${selectedItems.length}/${devices.length})` : `(${devices.length})`}
           actions={
             <SpaceBetween direction="horizontal" size="xs">
               <Button disabled={selectedItems.length === 0}>Remove</Button>
@@ -192,9 +197,7 @@ export function DevicesTable() {
       ariaLabels={{
         selectionGroupLabel: 'Items selection',
         allItemsSelectionLabel: ({ selectedItems }) =>
-          `${selectedItems.length} ${
-            selectedItems.length === 1 ? 'item' : 'items'
-          } selected`,
+          `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
         itemSelectionLabel: ({ selectedItems }, item) => {
           const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
           return `${item.deviceName} is ${isItemSelected ? '' : 'not'} selected`;
