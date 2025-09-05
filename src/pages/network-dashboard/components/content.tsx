@@ -69,8 +69,8 @@ export function Content() {
 
       {/* Charts Section */}
       <Grid gridDefinition={[
-        { colspan: { default: 12, s: 12, m: 6 } },
-        { colspan: { default: 12, s: 12, m: 6 } }
+        { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+        { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } }
       ]}>
         <NetworkTrafficChart />
         <CreditUsageChart />
