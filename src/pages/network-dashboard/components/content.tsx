@@ -25,17 +25,21 @@ export function Content() {
     <SpaceBetween size="l">
       {/* Warning Alert Banner */}
       <Flashbar
-        items={showAlert ? [
-          {
-            type: 'warning',
-            content: 'This is a warning message',
-            dismissible: true,
-            dismissLabel: 'Dismiss',
-            onDismiss: () => setShowAlert(false),
-            buttonText: 'Dismiss',
-            onButtonClick: () => setShowAlert(false),
-          }
-        ] : []}
+        items={
+          showAlert
+            ? [
+                {
+                  type: 'warning',
+                  content: 'This is a warning message',
+                  dismissible: true,
+                  dismissLabel: 'Dismiss',
+                  onDismiss: () => setShowAlert(false),
+                  buttonText: 'Dismiss',
+                  onButtonClick: () => setShowAlert(false),
+                },
+              ]
+            : []
+        }
       />
 
       {/* Search Bar */}
