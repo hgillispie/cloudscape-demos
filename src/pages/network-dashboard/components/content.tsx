@@ -44,27 +44,31 @@ export function Content() {
 
       {/* Search Bar */}
       <Container>
-        <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } }]}>
-          <TextFilter
-            filteringText={filterText}
-            filteringPlaceholder="Placeholder"
-            filteringAriaLabel="Filter devices"
-            onChange={({ detail }) => setFilterText(detail.filteringText)}
-          />
-        </Grid>
-        
-        <Box float="right" padding={{ top: 's' }}>
-          <Pagination
-            currentPageIndex={currentPageIndex}
-            onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-            pagesCount={5}
-            ariaLabels={{
-              nextPageLabel: 'Next page',
-              previousPageLabel: 'Previous page',
-              pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
-            }}
-          />
-        </Box>
+        <SpaceBetween size="m" direction="vertical">
+          <Grid gridDefinition={[
+            { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
+            { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } }
+          ]}>
+            <TextFilter
+              filteringText={filterText}
+              filteringPlaceholder="Placeholder"
+              filteringAriaLabel="Filter devices"
+              onChange={({ detail }) => setFilterText(detail.filteringText)}
+            />
+            <Box textAlign={{ default: 'left', m: 'right' }}>
+              <Pagination
+                currentPageIndex={currentPageIndex}
+                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                pagesCount={5}
+                ariaLabels={{
+                  nextPageLabel: 'Next page',
+                  previousPageLabel: 'Previous page',
+                  pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
+                }}
+              />
+            </Box>
+          </Grid>
+        </SpaceBetween>
       </Container>
 
       {/* Charts Section */}
