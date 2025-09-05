@@ -38,13 +38,13 @@ const networkTrafficData = generateNetworkData();
 const networkTrafficSeries = [
   {
     title: 'Site 1',
-    type: 'area' as const,
+    type: 'line' as const,
     data: networkTrafficData.map(datum => ({ x: datum.date, y: datum.site1 })),
     valueFormatter: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    title: 'Site 2', 
-    type: 'area' as const,
+    title: 'Site 2',
+    type: 'line' as const,
     data: networkTrafficData.map(datum => ({ x: datum.date, y: datum.site2 })),
     valueFormatter: (value: number) => value.toLocaleString('en-US'),
   },
