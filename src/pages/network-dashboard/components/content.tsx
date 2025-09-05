@@ -32,10 +32,8 @@ export function Content() {
             dismissible: true,
             dismissLabel: 'Dismiss',
             onDismiss: () => setShowAlert(false),
-            action: {
-              text: 'Dismiss',
-              onClick: () => setShowAlert(false),
-            },
+            buttonText: 'Dismiss',
+            onButtonClick: () => setShowAlert(false),
           }
         ] : []}
       />
