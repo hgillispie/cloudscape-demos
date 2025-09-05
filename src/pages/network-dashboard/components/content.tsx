@@ -25,18 +25,21 @@ export function Content() {
   return (
     <SpaceBetween size="l">
       {/* Warning Alert Banner */}
-      {showAlert && (
-        <Alert
-          statusIconAriaLabel="Warning"
-          type="warning"
-          dismissible
-          dismissAriaLabel="Close alert"
-          onDismiss={() => setShowAlert(false)}
-          action={<Button variant="link">Dismiss</Button>}
-        >
-          This is a warning message
-        </Alert>
-      )}
+      <Flashbar
+        items={showAlert ? [
+          {
+            type: 'warning',
+            content: 'This is a warning message',
+            dismissible: true,
+            dismissLabel: 'Dismiss',
+            onDismiss: () => setShowAlert(false),
+            action: {
+              text: 'Dismiss',
+              onClick: () => setShowAlert(false),
+            },
+          }
+        ] : []}
+      />
 
       {/* Search Bar */}
       <Container>
