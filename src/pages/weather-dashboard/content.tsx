@@ -192,7 +192,7 @@ export function WeatherContent() {
       </Header>
 
       <Container header={<Header variant="h2">Search location</Header>}>
-        <Grid gridDefinition={[{ colspan: { default: 12, m: 6, l: 4 } }, { colspan: { default: 12, m: 3, l: 2 } }, { colspan: { default: 12, m: 3, l: 2 } }] }>
+        <Grid gridDefinition={[{ colspan: { default: 12, m: 6, l: 4 } }, { colspan: { default: 12, m: 3, l: 2 } }, { colspan: { default: 12, m: 3, l: 2 } }]}>
           <FormField label="City or place name">
             <Input
               value={query}
@@ -230,9 +230,7 @@ export function WeatherContent() {
         )}
       </Container>
 
-      <Container
-        header={<Header variant="h2">Current conditions</Header>}
-      >
+      <Container header={<Header variant="h2">Current conditions</Header>}>
         {summary ? (
           <Grid gridDefinition={[{ colspan: { default: 12, s: 6, l: 3 } }, { colspan: { default: 12, s: 6, l: 3 } }, { colspan: { default: 12, s: 6, l: 3 } }, { colspan: { default: 12, s: 6, l: 3 } }]}>
             <Box>
@@ -269,12 +267,12 @@ export function WeatherContent() {
           trackBy="date"
           items={dailyItems}
           loadingText="Loading forecast"
-          columnDefinitions=[
-            { id: 'date', header: 'Date', cell: item => new Date(item.date).toLocaleDateString() },
-            { id: 'min', header: 'Min (°C)', cell: item => `${item.min.toFixed(1)}` },
-            { id: 'max', header: 'Max (°C)', cell: item => `${item.max.toFixed(1)}` },
-            { id: 'precip', header: 'Precip (mm)', cell: item => (item.precip ?? 0).toFixed(1) },
-          ]
+          columnDefinitions={[
+            { id: 'date', header: 'Date', cell: (item: any) => new Date(item.date).toLocaleDateString() },
+            { id: 'min', header: 'Min (°C)', cell: (item: any) => `${item.min.toFixed(1)}` },
+            { id: 'max', header: 'Max (°C)', cell: (item: any) => `${item.max.toFixed(1)}` },
+            { id: 'precip', header: 'Precip (mm)', cell: (item: any) => (item.precip ?? 0).toFixed(1) },
+          ]}
           empty={<Box variant="p">Search and select a location, then load the forecast.</Box>}
           header={<Header counter={dailyItems.length ? `(${dailyItems.length})` : undefined}>Daily forecast</Header>}
         />
