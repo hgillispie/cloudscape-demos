@@ -10,7 +10,7 @@ import Button from '@cloudscape-design/components/button';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
 import Table from '@cloudscape-design/components/table';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
@@ -164,17 +164,14 @@ export function NetworkContent() {
       </Header>
 
       {!warningDismissed && (
-        <Flashbar
-          items={[
-            {
-              type: 'error',
-              content: 'This is a warning message',
-              dismissible: true,
-              onDismiss: () => setWarningDismissed(true),
-              dismissLabel: 'Dismiss',
-            },
-          ]}
-        />
+        <Alert
+          type="error"
+          dismissible
+          onDismiss={() => setWarningDismissed(true)}
+          dismissAriaLabel="Dismiss"
+        >
+          This is a warning message
+        </Alert>
       )}
 
       <Grid gridDefinition={[{ colspan: { default: 12, m: 6 } }, { colspan: { default: 12, m: 6 } }]}>
