@@ -164,12 +164,7 @@ export function NetworkContent() {
       </Header>
 
       {!warningDismissed && (
-        <Alert
-          type="error"
-          dismissible
-          onDismiss={() => setWarningDismissed(true)}
-          dismissAriaLabel="Dismiss"
-        >
+        <Alert type="error" dismissible onDismiss={() => setWarningDismissed(true)} dismissAriaLabel="Dismiss">
           This is a warning message
         </Alert>
       )}
