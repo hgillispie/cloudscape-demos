@@ -42,14 +42,78 @@ const creditUsageData = [
 
 // Mock data for devices table
 const devicesData = [
-  { id: '1', name: 'Router-Main', type: 'Router', status: 'Online', ip: '192.168.1.1', mac: '00:1B:44:11:3A:B7', location: 'Office' },
-  { id: '2', name: 'Switch-Floor1', type: 'Switch', status: 'Online', ip: '192.168.1.10', mac: '00:1B:44:11:3A:B8', location: 'Floor 1' },
-  { id: '3', name: 'AP-Conference', type: 'Access Point', status: 'Warning', ip: '192.168.1.20', mac: '00:1B:44:11:3A:B9', location: 'Conference Room' },
-  { id: '4', name: 'Printer-Office', type: 'Printer', status: 'Online', ip: '192.168.1.50', mac: '00:1B:44:11:3A:C0', location: 'Office' },
-  { id: '5', name: 'Server-NAS', type: 'NAS', status: 'Online', ip: '192.168.1.100', mac: '00:1B:44:11:3A:C1', location: 'Server Room' },
-  { id: '6', name: 'Camera-Front', type: 'IP Camera', status: 'Offline', ip: '192.168.1.201', mac: '00:1B:44:11:3A:C2', location: 'Front Door' },
-  { id: '7', name: 'Smart-TV', type: 'Smart TV', status: 'Online', ip: '192.168.1.75', mac: '00:1B:44:11:3A:C3', location: 'Living Room' },
-  { id: '8', name: 'Laptop-John', type: 'Laptop', status: 'Online', ip: '192.168.1.150', mac: '00:1B:44:11:3A:C4', location: 'Home Office' },
+  {
+    id: '1',
+    name: 'Router-Main',
+    type: 'Router',
+    status: 'Online',
+    ip: '192.168.1.1',
+    mac: '00:1B:44:11:3A:B7',
+    location: 'Office',
+  },
+  {
+    id: '2',
+    name: 'Switch-Floor1',
+    type: 'Switch',
+    status: 'Online',
+    ip: '192.168.1.10',
+    mac: '00:1B:44:11:3A:B8',
+    location: 'Floor 1',
+  },
+  {
+    id: '3',
+    name: 'AP-Conference',
+    type: 'Access Point',
+    status: 'Warning',
+    ip: '192.168.1.20',
+    mac: '00:1B:44:11:3A:B9',
+    location: 'Conference Room',
+  },
+  {
+    id: '4',
+    name: 'Printer-Office',
+    type: 'Printer',
+    status: 'Online',
+    ip: '192.168.1.50',
+    mac: '00:1B:44:11:3A:C0',
+    location: 'Office',
+  },
+  {
+    id: '5',
+    name: 'Server-NAS',
+    type: 'NAS',
+    status: 'Online',
+    ip: '192.168.1.100',
+    mac: '00:1B:44:11:3A:C1',
+    location: 'Server Room',
+  },
+  {
+    id: '6',
+    name: 'Camera-Front',
+    type: 'IP Camera',
+    status: 'Offline',
+    ip: '192.168.1.201',
+    mac: '00:1B:44:11:3A:C2',
+    location: 'Front Door',
+  },
+  {
+    id: '7',
+    name: 'Smart-TV',
+    type: 'Smart TV',
+    status: 'Online',
+    ip: '192.168.1.75',
+    mac: '00:1B:44:11:3A:C3',
+    location: 'Living Room',
+  },
+  {
+    id: '8',
+    name: 'Laptop-John',
+    type: 'Laptop',
+    status: 'Online',
+    ip: '192.168.1.150',
+    mac: '00:1B:44:11:3A:C4',
+    location: 'Home Office',
+  },
 ];
 
 export function NetworkContent() {
@@ -64,12 +128,12 @@ export function NetworkContent() {
       device.name.toLowerCase().includes(filterText.toLowerCase()) ||
       device.type.toLowerCase().includes(filterText.toLowerCase()) ||
       device.ip.includes(filterText) ||
-      device.location.toLowerCase().includes(filterText.toLowerCase())
+      device.location.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   const getStatusIcon = (status: string) => {
@@ -270,7 +334,12 @@ export function NetworkContent() {
             columnDefinitions={[
               { id: 'name', header: 'Device Name', cell: (item: any) => item.name, sortingField: 'name' },
               { id: 'type', header: 'Type', cell: (item: any) => item.type, sortingField: 'type' },
-              { id: 'status', header: 'Status', cell: (item: any) => getStatusIcon(item.status), sortingField: 'status' },
+              {
+                id: 'status',
+                header: 'Status',
+                cell: (item: any) => getStatusIcon(item.status),
+                sortingField: 'status',
+              },
               { id: 'ip', header: 'IP Address', cell: (item: any) => item.ip, sortingField: 'ip' },
               { id: 'mac', header: 'MAC Address', cell: (item: any) => item.mac, sortingField: 'mac' },
               { id: 'location', header: 'Location', cell: (item: any) => item.location, sortingField: 'location' },
@@ -300,7 +369,13 @@ export function NetworkContent() {
               />
             }
             header={
-              <Header counter={selectedItems.length ? `(${selectedItems.length}/${filteredDevices.length})` : `(${filteredDevices.length})`}>
+              <Header
+                counter={
+                  selectedItems.length
+                    ? `(${selectedItems.length}/${filteredDevices.length})`
+                    : `(${filteredDevices.length})`
+                }
+              >
                 Network Devices
               </Header>
             }

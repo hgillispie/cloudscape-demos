@@ -90,7 +90,7 @@ export function WeatherContent() {
         value: String(loc.id),
         description: `Lat ${loc.latitude.toFixed(2)}, Lon ${loc.longitude.toFixed(2)}`,
       })),
-    [locations]
+    [locations],
   );
 
   const selectedLocation = useMemo(() => {
@@ -112,7 +112,7 @@ export function WeatherContent() {
     setLoading(true);
     try {
       const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
-        trimmed
+        trimmed,
       )}&count=10&language=en&format=json`;
       const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to fetch locations');
@@ -194,7 +194,13 @@ export function WeatherContent() {
       </Header>
 
       <Container header={<Header variant="h2">Search location</Header>}>
-        <Grid gridDefinition={[{ colspan: { default: 12, m: 6, l: 4 } }, { colspan: { default: 12, m: 3, l: 2 } }, { colspan: { default: 12, m: 3, l: 2 } }]}>
+        <Grid
+          gridDefinition={[
+            { colspan: { default: 12, m: 6, l: 4 } },
+            { colspan: { default: 12, m: 3, l: 2 } },
+            { colspan: { default: 12, m: 3, l: 2 } },
+          ]}
+        >
           <FormField label="City or place name">
             <Input
               value={query}
@@ -234,7 +240,14 @@ export function WeatherContent() {
 
       <Container header={<Header variant="h2">Current conditions</Header>}>
         {summary ? (
-          <Grid gridDefinition={[{ colspan: { default: 12, s: 6, l: 3 } }, { colspan: { default: 12, s: 6, l: 3 } }, { colspan: { default: 12, s: 6, l: 3 } }, { colspan: { default: 12, s: 6, l: 3 } }]}>
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, s: 6, l: 3 } },
+              { colspan: { default: 12, s: 6, l: 3 } },
+              { colspan: { default: 12, s: 6, l: 3 } },
+              { colspan: { default: 12, s: 6, l: 3 } },
+            ]}
+          >
             <Box>
               <Box variant="awsui-key-label">Temperature</Box>
               <Box variant="p">{summary.temperature} °C</Box>
@@ -261,7 +274,10 @@ export function WeatherContent() {
         header={<Header variant="h2">7-day forecast</Header>}
         footer={
           <Box variant="p">
-            Data from <Link href="https://open-meteo.com/" external>Open-Meteo</Link>
+            Data from{' '}
+            <Link href="https://open-meteo.com/" external>
+              Open-Meteo
+            </Link>
           </Box>
         }
       >
