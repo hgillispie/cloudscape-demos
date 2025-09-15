@@ -126,7 +126,9 @@ export function WeatherContent() {
         longitude: r.longitude,
       }));
       setLocations(results);
-      if (results.length === 1) {
+      if (results.length === 0) {
+        setError('No locations found. Try a different search.');
+      } else if (results.length === 1) {
         const only = results[0];
         setSelected({ label: formatLocation(only), value: String(only.id) });
       }
