@@ -135,6 +135,7 @@ export default function NetworkDashboard() {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [selectedDevices, setSelectedDevices] = useState<any[]>([]);
   const [alertVisible, setAlertVisible] = useState(true);
+  const [alertHover, setAlertHover] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
   const itemsPerPage = 10;
@@ -197,13 +198,23 @@ export default function NetworkDashboard() {
               </Header>
 
               {alertVisible && (
-                <Alert
-                  type="error"
-                  dismissible
-                  onDismiss={() => setAlertVisible(false)}
-                >
-                  This is a warning message
-                </Alert>
+                <div onMouseEnter={() => setAlertHover(true)} onMouseLeave={() => setAlertHover(false)}>
+                  <Alert
+                    type="error"
+                    dismissible
+                    onDismiss={() => setAlertVisible(false)}
+                  >
+                    <SpaceBetween size="xs">
+                      <span>This is a warning message</span>
+                      {alertHover && (
+                        <span>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua.
+                        </span>
+                      )}
+                    </SpaceBetween>
+                  </Alert>
+                </div>
               )}
 
               <Container>
