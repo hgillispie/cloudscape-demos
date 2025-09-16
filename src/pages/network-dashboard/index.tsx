@@ -11,7 +11,7 @@ import SpaceBetween from '@cloudscape-design/components/space-between';
 import Container from '@cloudscape-design/components/container';
 import Grid from '@cloudscape-design/components/grid';
 import Box from '@cloudscape-design/components/box';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
 import Table from '@cloudscape-design/components/table';
@@ -284,17 +284,26 @@ export default function NetworkDashboard() {
 
               {alertVisible && (
                 <div onMouseEnter={() => setAlertHover(true)} onMouseLeave={() => setAlertHover(false)}>
-                  <Alert type="error" dismissible onDismiss={() => setAlertVisible(false)}>
-                    <SpaceBetween size="xs">
-                      <span>This is a warning message</span>
-                      {alertHover && (
-                        <span>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                          labore et dolore magna aliqua.
-                        </span>
-                      )}
-                    </SpaceBetween>
-                  </Alert>
+                  <Flashbar
+                    items={[
+                      {
+                        type: 'error',
+                        dismissible: true,
+                        onDismiss: () => setAlertVisible(false),
+                        content: (
+                          <SpaceBetween size="xs">
+                            <span>This is a warning message</span>
+                            {alertHover && (
+                              <span>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua.
+                              </span>
+                            )}
+                          </SpaceBetween>
+                        ),
+                      },
+                    ]}
+                  />
                 </div>
               )}
 
