@@ -198,7 +198,7 @@ export default function NetworkDashboard() {
 
               {alertVisible && (
                 <Alert
-                  type="warning"
+                  type="error"
                   dismissible
                   onDismiss={() => setAlertVisible(false)}
                 >
