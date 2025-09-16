@@ -207,7 +207,12 @@ export default function NetworkDashboard() {
               )}
 
               <Container>
-                <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } }]}>
+                <Grid
+                  gridDefinition={[
+                    { colspan: { default: 12, xs: 12, s: 12, m: 8, l: 8, xl: 8 } },
+                    { colspan: { default: 12, xs: 12, s: 12, m: 4, l: 4, xl: 4 } },
+                  ]}
+                >
                   <TextFilter
                     filteringText={filterText}
                     filteringPlaceholder="Placeholder"
@@ -217,27 +222,26 @@ export default function NetworkDashboard() {
                       setCurrentPageIndex(1);
                     }}
                   />
+                  <Box textAlign="right" padding={{ top: 's' }}>
+                    <Pagination
+                      currentPageIndex={currentPageIndex}
+                      onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                      pagesCount={Math.ceil(filteredDevices.length / itemsPerPage)}
+                      ariaLabels={{
+                        nextPageLabel: 'Next page',
+                        previousPageLabel: 'Previous page',
+                        pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
+                      }}
+                    />
+                  </Box>
                 </Grid>
-                
-                <Box float="right" padding={{ top: 's' }}>
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                    pagesCount={Math.ceil(filteredDevices.length / itemsPerPage)}
-                    ariaLabels={{
-                      nextPageLabel: 'Next page',
-                      previousPageLabel: 'Previous page',
-                      pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
-                    }}
-                  />
-                </Box>
               </Container>
             </SpaceBetween>
           }
         >
           <SpaceBetween size="l">
             {/* Charts Section */}
-            <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+            <Grid gridDefinition={[{ colspan: { default: 12, s: 12, m: 12, l: 6, xl: 6 } }, { colspan: { default: 12, s: 12, m: 12, l: 6, xl: 6 } }]}>
               <Container>
                 <AreaChart
                   series={networkTrafficSeries}
