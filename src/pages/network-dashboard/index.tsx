@@ -42,7 +42,7 @@ const networkTrafficSeries = [
     color: '#688AE8',
   },
   {
-    title: 'Site 2', 
+    title: 'Site 2',
     type: 'area' as const,
     data: networkTrafficData.map(d => ({ x: d.x, y: d.y2 })),
     color: '#C33D69',
@@ -75,16 +75,96 @@ const creditUsageSeries = [
 
 // Mock data for devices table
 const devicesData = [
-  { id: '1', deviceName: 'Router-01', status: 'Online', ipAddress: '192.168.1.1', lastSeen: '2 minutes ago', deviceType: 'Router', location: 'Main Office' },
-  { id: '2', deviceName: 'Switch-02', status: 'Online', ipAddress: '192.168.1.2', lastSeen: '5 minutes ago', deviceType: 'Switch', location: 'Server Room' },
-  { id: '3', deviceName: 'AP-03', status: 'Offline', ipAddress: '192.168.1.3', lastSeen: '2 hours ago', deviceType: 'Access Point', location: 'Floor 2' },
-  { id: '4', deviceName: 'Firewall-04', status: 'Online', ipAddress: '192.168.1.4', lastSeen: '1 minute ago', deviceType: 'Firewall', location: 'DMZ' },
-  { id: '5', deviceName: 'Router-05', status: 'Warning', ipAddress: '192.168.1.5', lastSeen: '30 minutes ago', deviceType: 'Router', location: 'Branch Office' },
-  { id: '6', deviceName: 'Switch-06', status: 'Online', ipAddress: '192.168.1.6', lastSeen: '3 minutes ago', deviceType: 'Switch', location: 'Main Office' },
-  { id: '7', deviceName: 'AP-07', status: 'Online', ipAddress: '192.168.1.7', lastSeen: '7 minutes ago', deviceType: 'Access Point', location: 'Floor 1' },
-  { id: '8', deviceName: 'Router-08', status: 'Online', ipAddress: '192.168.1.8', lastSeen: '4 minutes ago', deviceType: 'Router', location: 'Remote Site' },
-  { id: '9', deviceName: 'Switch-09', status: 'Offline', ipAddress: '192.168.1.9', lastSeen: '1 day ago', deviceType: 'Switch', location: 'Warehouse' },
-  { id: '10', deviceName: 'Firewall-10', status: 'Online', ipAddress: '192.168.1.10', lastSeen: '6 minutes ago', deviceType: 'Firewall', location: 'Main Office' },
+  {
+    id: '1',
+    deviceName: 'Router-01',
+    status: 'Online',
+    ipAddress: '192.168.1.1',
+    lastSeen: '2 minutes ago',
+    deviceType: 'Router',
+    location: 'Main Office',
+  },
+  {
+    id: '2',
+    deviceName: 'Switch-02',
+    status: 'Online',
+    ipAddress: '192.168.1.2',
+    lastSeen: '5 minutes ago',
+    deviceType: 'Switch',
+    location: 'Server Room',
+  },
+  {
+    id: '3',
+    deviceName: 'AP-03',
+    status: 'Offline',
+    ipAddress: '192.168.1.3',
+    lastSeen: '2 hours ago',
+    deviceType: 'Access Point',
+    location: 'Floor 2',
+  },
+  {
+    id: '4',
+    deviceName: 'Firewall-04',
+    status: 'Online',
+    ipAddress: '192.168.1.4',
+    lastSeen: '1 minute ago',
+    deviceType: 'Firewall',
+    location: 'DMZ',
+  },
+  {
+    id: '5',
+    deviceName: 'Router-05',
+    status: 'Warning',
+    ipAddress: '192.168.1.5',
+    lastSeen: '30 minutes ago',
+    deviceType: 'Router',
+    location: 'Branch Office',
+  },
+  {
+    id: '6',
+    deviceName: 'Switch-06',
+    status: 'Online',
+    ipAddress: '192.168.1.6',
+    lastSeen: '3 minutes ago',
+    deviceType: 'Switch',
+    location: 'Main Office',
+  },
+  {
+    id: '7',
+    deviceName: 'AP-07',
+    status: 'Online',
+    ipAddress: '192.168.1.7',
+    lastSeen: '7 minutes ago',
+    deviceType: 'Access Point',
+    location: 'Floor 1',
+  },
+  {
+    id: '8',
+    deviceName: 'Router-08',
+    status: 'Online',
+    ipAddress: '192.168.1.8',
+    lastSeen: '4 minutes ago',
+    deviceType: 'Router',
+    location: 'Remote Site',
+  },
+  {
+    id: '9',
+    deviceName: 'Switch-09',
+    status: 'Offline',
+    ipAddress: '192.168.1.9',
+    lastSeen: '1 day ago',
+    deviceType: 'Switch',
+    location: 'Warehouse',
+  },
+  {
+    id: '10',
+    deviceName: 'Firewall-10',
+    status: 'Online',
+    ipAddress: '192.168.1.10',
+    lastSeen: '6 minutes ago',
+    deviceType: 'Firewall',
+    location: 'Main Office',
+  },
 ];
 
 const deviceColumns = [
@@ -98,7 +178,15 @@ const deviceColumns = [
     id: 'status',
     header: 'Status',
     cell: (item: any) => (
-      <Box color={item.status === 'Online' ? 'text-status-success' : item.status === 'Warning' ? 'text-status-warning' : 'text-status-error'}>
+      <Box
+        color={
+          item.status === 'Online'
+            ? 'text-status-success'
+            : item.status === 'Warning'
+              ? 'text-status-warning'
+              : 'text-status-error'
+        }
+      >
         {item.status}
       </Box>
     ),
@@ -141,15 +229,19 @@ export default function NetworkDashboard() {
   const itemsPerPage = 10;
 
   // Filter devices based on search text
-  const filteredDevices = devicesData.filter(device =>
-    device.deviceName.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.ipAddress.includes(filterText) ||
-    device.deviceType.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.location.toLowerCase().includes(filterText.toLowerCase())
+  const filteredDevices = devicesData.filter(
+    device =>
+      device.deviceName.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.ipAddress.includes(filterText) ||
+      device.deviceType.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.location.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   // Paginate filtered devices
-  const paginatedDevices = filteredDevices.slice((currentPageIndex - 1) * itemsPerPage, currentPageIndex * itemsPerPage);
+  const paginatedDevices = filteredDevices.slice(
+    (currentPageIndex - 1) * itemsPerPage,
+    currentPageIndex * itemsPerPage,
+  );
 
   const handleRefreshData = async () => {
     setRefreshing(true);
@@ -167,14 +259,7 @@ export default function NetworkDashboard() {
     <AppLayout
       navigationHide
       toolsHide
-      breadcrumbs={
-        <BreadcrumbGroup
-          items={[
-            { text: 'Service', href: '#' },
-            { text: 'Administrative Dashboard' },
-          ]}
-        />
-      }
+      breadcrumbs={<BreadcrumbGroup items={[{ text: 'Service', href: '#' }, { text: 'Administrative Dashboard' }]} />}
       content={
         <ContentLayout
           header={
@@ -199,11 +284,7 @@ export default function NetworkDashboard() {
 
               {alertVisible && (
                 <div onMouseEnter={() => setAlertHover(true)} onMouseLeave={() => setAlertHover(false)}>
-                  <Alert
-                    type="error"
-                    dismissible
-                    onDismiss={() => setAlertVisible(false)}
-                  >
+                  <Alert type="error" dismissible onDismiss={() => setAlertVisible(false)}>
                     <SpaceBetween size="xs">
                       <span>This is a warning message</span>
                       {alertHover && (
@@ -252,7 +333,12 @@ export default function NetworkDashboard() {
         >
           <SpaceBetween size="l">
             {/* Charts Section */}
-            <Grid gridDefinition={[{ colspan: { default: 12, s: 12, m: 12, l: 6, xl: 6 } }, { colspan: { default: 12, s: 12, m: 12, l: 6, xl: 6 } }]}>
+            <Grid
+              gridDefinition={[
+                { colspan: { default: 12, s: 12, m: 12, l: 6, xl: 6 } },
+                { colspan: { default: 12, s: 12, m: 12, l: 6, xl: 6 } },
+              ]}
+            >
               <Container>
                 <AreaChart
                   series={networkTrafficSeries}
@@ -290,12 +376,7 @@ export default function NetworkDashboard() {
                   variant="h2"
                   description="Devices on your local network"
                   actions={
-                    <Button
-                      variant="primary"
-                      iconAlign="right"
-                      iconName="external"
-                      onClick={handleAddDevice}
-                    >
+                    <Button variant="primary" iconAlign="right" iconName="external" onClick={handleAddDevice}>
                       Add Device
                     </Button>
                   }
@@ -314,7 +395,7 @@ export default function NetworkDashboard() {
                 variant="borderless"
                 ariaLabels={{
                   selectionGroupLabel: 'Devices selection',
-                  allItemsSelectionLabel: ({ selectedItems }) => 
+                  allItemsSelectionLabel: ({ selectedItems }) =>
                     `${selectedItems.length} ${selectedItems.length === 1 ? 'device' : 'devices'} selected`,
                   itemSelectionLabel: ({ selectedItems }, item) => item.deviceName,
                 }}
