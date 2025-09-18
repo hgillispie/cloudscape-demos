@@ -223,7 +223,7 @@ export const devicesData = [
 ];
 
 // Table column definitions
-export const deviceColumns: TableProps.ColumnDefinition<typeof devicesData[0]>[] = [
+export const deviceColumns: TableProps.ColumnDefinition<(typeof devicesData)[0]>[] = [
   {
     id: 'name',
     header: 'Device Name',
@@ -241,12 +241,7 @@ export const deviceColumns: TableProps.ColumnDefinition<typeof devicesData[0]>[]
     id: 'status',
     header: 'Status',
     cell: item => (
-      <Badge
-        color={
-          item.status === 'Online' ? 'green' :
-          item.status === 'Warning' ? 'red' : 'grey'
-        }
-      >
+      <Badge color={item.status === 'Online' ? 'green' : item.status === 'Warning' ? 'red' : 'grey'}>
         {item.status}
       </Badge>
     ),

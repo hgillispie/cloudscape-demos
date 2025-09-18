@@ -38,28 +38,23 @@ export function App() {
   ]);
 
   const itemsPerPage = 10;
-  const filteredDevices = devicesData.filter(device =>
-    device.name.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.type.toLowerCase().includes(filterText.toLowerCase()) ||
-    device.ipAddress.toLowerCase().includes(filterText.toLowerCase())
+  const filteredDevices = devicesData.filter(
+    device =>
+      device.name.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.type.toLowerCase().includes(filterText.toLowerCase()) ||
+      device.ipAddress.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   return (
     <AppLayout
       navigationHide
       toolsHide
-      breadcrumbs={
-        <Breadcrumbs
-          items={[
-            { text: 'Administrative Dashboard' }
-          ]}
-        />
-      }
+      breadcrumbs={<Breadcrumbs items={[{ text: 'Administrative Dashboard' }]} />}
       content={
         <ContentLayout
           header={
@@ -84,10 +79,12 @@ export function App() {
 
             {/* Search and Pagination Controls */}
             <Container>
-              <Grid gridDefinition={[
-                { colspan: { default: 12, s: 8, m: 8, l: 8 } },
-                { colspan: { default: 12, s: 4, m: 4, l: 4 } }
-              ]}>
+              <Grid
+                gridDefinition={[
+                  { colspan: { default: 12, s: 8, m: 8, l: 8 } },
+                  { colspan: { default: 12, s: 4, m: 4, l: 4 } },
+                ]}
+              >
                 <TextFilter
                   filteringText={filterText}
                   filteringPlaceholder="Placeholder"
@@ -105,18 +102,9 @@ export function App() {
             </Container>
 
             {/* Charts Section */}
-            <Grid gridDefinition={[
-              { colspan: { default: 12, m: 6 } },
-              { colspan: { default: 12, m: 6 } }
-            ]}>
+            <Grid gridDefinition={[{ colspan: { default: 12, m: 6 } }, { colspan: { default: 12, m: 6 } }]}>
               {/* Network Traffic Area Chart */}
-              <Container
-                header={
-                  <Header variant="h2">
-                    Network traffic
-                  </Header>
-                }
-              >
+              <Container header={<Header variant="h2">Network traffic</Header>}>
                 <AreaChart
                   series={networkTrafficSeries}
                   xDomain={[new Date('2024-01-01'), new Date('2024-01-12')]}
@@ -137,13 +125,7 @@ export function App() {
               </Container>
 
               {/* Credit Usage Bar Chart */}
-              <Container
-                header={
-                  <Header variant="h2">
-                    Credit Usage
-                  </Header>
-                }
-              >
+              <Container header={<Header variant="h2">Credit Usage</Header>}>
                 <BarChart
                   series={creditUsageSeries}
                   xScaleType="categorical"
