@@ -21,6 +21,7 @@ import Badge from '@cloudscape-design/components/badge';
 
 import { Breadcrumbs } from '../commons';
 import { networkTrafficSeries, creditUsageSeries, devicesData, deviceColumns } from './data';
+import styles from './styles.module.scss';
 
 export function App() {
   const [filterText, setFilterText] = useState('');
@@ -77,7 +78,9 @@ export function App() {
         >
           <SpaceBetween size="l">
             {/* Warning Banner */}
-            <Flashbar items={flashbarItems} />
+            <div className={styles['warning-banner']}>
+              <Flashbar items={flashbarItems} />
+            </div>
 
             {/* Search and Pagination Controls */}
             <Container>

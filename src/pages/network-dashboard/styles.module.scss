@@ -1,0 +1,23 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+.warning-banner {
+  background-color: #FFF4B4 !important;
+  border-color: #946C00 !important;
+}
+
+.warning-banner .awsui_content {
+  color: #946C00 !important;
+}
+
+.warning-banner .awsui_action {
+  color: #946C00 !important;
+  font-weight: 600 !important;
+}
+
+.chart-container {
+  background: white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 16px;
+}
