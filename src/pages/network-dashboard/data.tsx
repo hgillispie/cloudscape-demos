@@ -1,6 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
+import React from 'react';
 import { AreaChartProps } from '@cloudscape-design/components/area-chart';
 import { BarChartProps } from '@cloudscape-design/components/bar-chart';
 import { TableProps } from '@cloudscape-design/components/table';
