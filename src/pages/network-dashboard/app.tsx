@@ -12,7 +12,7 @@ import Container from '@cloudscape-design/components/container';
 import Button from '@cloudscape-design/components/button';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
@@ -27,15 +27,7 @@ export function App() {
   const [filterText, setFilterText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [flashbarItems, setFlashbarItems] = useState([
-    {
-      type: 'warning' as const,
-      content: 'This is a warning message',
-      dismissible: true,
-      dismissLabel: 'Dismiss',
-      onDismiss: () => setFlashbarItems([]),
-    },
-  ]);
+  const [showAlert, setShowAlert] = useState(true);
 
   const itemsPerPage = 10;
   const filteredDevices = devicesData.filter(
@@ -73,9 +65,18 @@ export function App() {
         >
           <SpaceBetween size="l">
             {/* Warning Banner */}
-            <div className={styles['warning-banner']}>
-              <Flashbar items={flashbarItems} />
-            </div>
+            {showAlert && (
+              <div className={styles['warning-banner']}>
+                <Alert
+                  type="warning"
+                  dismissible={true}
+                  dismissAriaLabel="Dismiss"
+                  onDismiss={() => setShowAlert(false)}
+                >
+                  This is a warning message
+                </Alert>
+              </div>
+            )}
 
             {/* Search and Pagination Controls */}
             <Container>
