@@ -31,6 +31,7 @@ export function App() {
       type: 'warning' as const,
       content: 'This is a warning message',
       dismissible: true,
+      dismissLabel: 'Dismiss',
       onDismiss: () => setFlashbarItems([]),
     },
   ]);
