@@ -245,7 +245,7 @@ export function App() {
           )}
 
           {!loading && forecast.length > 0 && (
-            <Container header={<Header variant="h2">7-day forecast</Header>}>
+            <Container header={<Header variant="h2" className="weather-section-title"><span className="forecast-title-emphasis">7-day forecast</span></Header>}>
               <Table
                 trackBy="date"
                 columnDefinitions={[
@@ -264,7 +264,7 @@ export function App() {
         </SpaceBetween>
       }
       breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
-      navigation={<Navigation activeHref="#/weather" />}
+      navigation={<Navigation activeHref="#/weather-dashboard" />}
       toolsHide={true}
       notifications={<Notifications />}
     />
