@@ -41,9 +41,7 @@ export const DEVICES_COLUMN_DEFINITIONS: TableProps<Device>['columnDefinitions']
     id: 'status',
     header: 'Status',
     cell: (item: Device) => (
-      <StatusIndicator type={item.status === 'Active' ? 'success' : 'stopped'}>
-        {item.status}
-      </StatusIndicator>
+      <StatusIndicator type={item.status === 'Active' ? 'success' : 'stopped'}>{item.status}</StatusIndicator>
     ),
     sortingField: 'status',
   },

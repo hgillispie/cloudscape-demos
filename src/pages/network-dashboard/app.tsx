@@ -28,11 +28,14 @@ import { DEVICES_COLUMN_DEFINITIONS, DEFAULT_DEVICES_PREFERENCES, Device } from 
 export function App() {
   const [toolsOpen, setToolsOpen] = useState(false);
   const appLayout = useRef<AppLayoutProps.Ref>(null);
-  
+
   // Devices table state
   const [columnDefinitions, saveWidths] = useColumnWidths('Network-Devices-Table-Widths', DEVICES_COLUMN_DEFINITIONS);
-  const [preferences, setPreferences] = useLocalStorage('Network-Devices-Table-Preferences', DEFAULT_DEVICES_PREFERENCES);
-  
+  const [preferences, setPreferences] = useLocalStorage(
+    'Network-Devices-Table-Preferences',
+    DEFAULT_DEVICES_PREFERENCES,
+  );
+
   const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(
     devicesData,
     {
@@ -43,7 +46,7 @@ export function App() {
       pagination: { pageSize: preferences?.pageSize },
       sorting: { defaultState: { sortingColumn: columnDefinitions[0] } },
       selection: {},
-    }
+    },
   );
 
   const handleAddDevice = () => {
@@ -81,7 +84,7 @@ export function App() {
           >
             Network Administration Dashboard
           </Header>
-          
+
           <Box variant="p" color="text-body-secondary">
             Network Traffic, Credit Usage, and Your Devices
           </Box>
@@ -90,7 +93,7 @@ export function App() {
           <Grid
             gridDefinition={[
               { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
-              { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } }
+              { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
             ]}
           >
             {/* Network Traffic Area Chart */}
@@ -106,7 +109,9 @@ export function App() {
                 additionalFilters={
                   <Box textAlign="center">
                     <hr style={{ border: 'none', borderTop: '2px dashed #5F6B7A', margin: '10px 0' }} />
-                    <Box fontSize="body-s" color="text-body-secondary">Performance goal</Box>
+                    <Box fontSize="body-s" color="text-body-secondary">
+                      Performance goal
+                    </Box>
                   </Box>
                 }
                 ariaLabel="Network traffic area chart"
@@ -127,7 +132,9 @@ export function App() {
                 additionalFilters={
                   <Box textAlign="center">
                     <hr style={{ border: 'none', borderTop: '2px dashed #5F6B7A', margin: '10px 0' }} />
-                    <Box fontSize="body-s" color="text-body-secondary">Performance goal</Box>
+                    <Box fontSize="body-s" color="text-body-secondary">
+                      Performance goal
+                    </Box>
                   </Box>
                 }
                 ariaLabel="Credit usage bar chart"
@@ -173,7 +180,7 @@ export function App() {
                       filteringAriaLabel="Filter devices"
                       countText={`${filteredItemsCount} matches`}
                     />
-                    <Pagination 
+                    <Pagination
                       {...paginationProps}
                       ariaLabels={{
                         nextPageLabel: 'Next page',
@@ -192,7 +199,7 @@ export function App() {
                   />
                 }
                 pagination={
-                  <Pagination 
+                  <Pagination
                     {...paginationProps}
                     ariaLabels={{
                       nextPageLabel: 'Next page',
