@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 import React, { useState, useMemo } from 'react';
 
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Box from '@cloudscape-design/components/box';
@@ -278,15 +278,17 @@ export function App() {
             </Box>
 
             {!isWarningDismissed && (
-              <Alert
-                type="warning"
-                dismissible
-                onDismiss={() => setIsWarningDismissed(true)}
-                dismissAriaLabel="Dismiss warning"
-                className="warning-alert"
-              >
-                This is a warning message
-              </Alert>
+              <Flashbar
+                items={[
+                  {
+                    type: 'warning',
+                    content: 'This is a warning message',
+                    dismissible: true,
+                    onDismiss: () => setIsWarningDismissed(true),
+                    id: 'warning-1',
+                  },
+                ]}
+              />
             )}
 
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
