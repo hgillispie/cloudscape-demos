@@ -1,19 +1,19 @@
 // Network Dashboard specific styles
 :root {
-  --blue-500: #539FE5;
-  --grey-500: #7D8998;
+  --blue-500: #539fe5;
+  --grey-500: #7d8998;
   --grey-900: #000716;
   --blue-800: #033160;
-  --white: #FFF;
-  --grey-450: #8D99A8;
-  --grey-550: #5F6B7A;
-  --grey-400: #9BA7B6;
-  --grey-100: #FBFBFB;
-  --grey-600: #414D5C;
-  --grey-300: #D1D5DB;
-  --grey-200: #E9EBED;
-  --data-viz-blue-300: #688AE8;
-  --data-viz-pink-500: #C33D69;
+  --white: #fff;
+  --grey-450: #8d99a8;
+  --grey-550: #5f6b7a;
+  --grey-400: #9ba7b6;
+  --grey-100: #fbfbfb;
+  --grey-600: #414d5c;
+  --grey-300: #d1d5db;
+  --grey-200: #e9ebed;
+  --data-viz-blue-300: #688ae8;
+  --data-viz-pink-500: #c33d69;
 }
 
 .network-dashboard {
@@ -24,7 +24,12 @@
   }
 
   .dashboard-header {
-    font-family: 'Open Sans', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family:
+      'Open Sans',
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
     font-weight: 700;
     font-size: 32px;
     color: var(--grey-900);
@@ -32,14 +37,24 @@
   }
 
   .dashboard-description {
-    font-family: 'Open Sans', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family:
+      'Open Sans',
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: var(--grey-450);
   }
 
   .section-header {
-    font-family: 'Open Sans', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family:
+      'Open Sans',
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
     font-weight: 700;
     font-size: 32px;
     color: var(--grey-900);
@@ -47,12 +62,12 @@
 
   // Override default chart legend colors to match design
   .awsui-chart-legend-series-marker {
-    &[data-series="Site 1"] {
+    &[data-series='Site 1'] {
       background-color: var(--data-viz-blue-300) !important;
       border-color: var(--data-viz-blue-300) !important;
     }
-    
-    &[data-series="Site 2"] {
+
+    &[data-series='Site 2'] {
       background-color: var(--data-viz-pink-500) !important;
       border-color: var(--data-viz-pink-500) !important;
     }
@@ -69,8 +84,8 @@
 
   // Custom warning alert styling
   .warning-alert {
-    background: #FFF4B4;
-    border: 1px solid #946C00;
-    color: #946C00;
+    background: #fff4b4;
+    border: 1px solid #946c00;
+    color: #946c00;
   }
 }

@@ -90,14 +90,86 @@ const creditUsageSeries = [
 
 // Mock data for devices table
 const devicesData = [
-  { id: '1', deviceName: 'Router-01', ipAddress: '192.168.1.1', status: 'Active', lastSeen: '2 minutes ago', bandwidth: '100 Mbps', location: 'Data Center A', type: 'Router' },
-  { id: '2', deviceName: 'Switch-01', ipAddress: '192.168.1.10', status: 'Active', lastSeen: '1 minute ago', bandwidth: '1 Gbps', location: 'Data Center A', type: 'Switch' },
-  { id: '3', deviceName: 'AP-Office-01', ipAddress: '192.168.1.50', status: 'Warning', lastSeen: '5 minutes ago', bandwidth: '300 Mbps', location: 'Office Floor 1', type: 'Access Point' },
-  { id: '4', deviceName: 'Firewall-01', ipAddress: '192.168.1.2', status: 'Active', lastSeen: '30 seconds ago', bandwidth: '500 Mbps', location: 'Data Center A', type: 'Firewall' },
-  { id: '5', deviceName: 'Server-DB-01', ipAddress: '192.168.1.100', status: 'Active', lastSeen: '1 minute ago', bandwidth: '10 Gbps', location: 'Data Center B', type: 'Server' },
-  { id: '6', deviceName: 'AP-Office-02', ipAddress: '192.168.1.51', status: 'Inactive', lastSeen: '2 hours ago', bandwidth: '300 Mbps', location: 'Office Floor 2', type: 'Access Point' },
-  { id: '7', deviceName: 'Switch-02', ipAddress: '192.168.1.11', status: 'Active', lastSeen: '3 minutes ago', bandwidth: '1 Gbps', location: 'Data Center B', type: 'Switch' },
-  { id: '8', deviceName: 'Load-Balancer-01', ipAddress: '192.168.1.20', status: 'Active', lastSeen: '45 seconds ago', bandwidth: '2 Gbps', location: 'Data Center A', type: 'Load Balancer' },
+  {
+    id: '1',
+    deviceName: 'Router-01',
+    ipAddress: '192.168.1.1',
+    status: 'Active',
+    lastSeen: '2 minutes ago',
+    bandwidth: '100 Mbps',
+    location: 'Data Center A',
+    type: 'Router',
+  },
+  {
+    id: '2',
+    deviceName: 'Switch-01',
+    ipAddress: '192.168.1.10',
+    status: 'Active',
+    lastSeen: '1 minute ago',
+    bandwidth: '1 Gbps',
+    location: 'Data Center A',
+    type: 'Switch',
+  },
+  {
+    id: '3',
+    deviceName: 'AP-Office-01',
+    ipAddress: '192.168.1.50',
+    status: 'Warning',
+    lastSeen: '5 minutes ago',
+    bandwidth: '300 Mbps',
+    location: 'Office Floor 1',
+    type: 'Access Point',
+  },
+  {
+    id: '4',
+    deviceName: 'Firewall-01',
+    ipAddress: '192.168.1.2',
+    status: 'Active',
+    lastSeen: '30 seconds ago',
+    bandwidth: '500 Mbps',
+    location: 'Data Center A',
+    type: 'Firewall',
+  },
+  {
+    id: '5',
+    deviceName: 'Server-DB-01',
+    ipAddress: '192.168.1.100',
+    status: 'Active',
+    lastSeen: '1 minute ago',
+    bandwidth: '10 Gbps',
+    location: 'Data Center B',
+    type: 'Server',
+  },
+  {
+    id: '6',
+    deviceName: 'AP-Office-02',
+    ipAddress: '192.168.1.51',
+    status: 'Inactive',
+    lastSeen: '2 hours ago',
+    bandwidth: '300 Mbps',
+    location: 'Office Floor 2',
+    type: 'Access Point',
+  },
+  {
+    id: '7',
+    deviceName: 'Switch-02',
+    ipAddress: '192.168.1.11',
+    status: 'Active',
+    lastSeen: '3 minutes ago',
+    bandwidth: '1 Gbps',
+    location: 'Data Center B',
+    type: 'Switch',
+  },
+  {
+    id: '8',
+    deviceName: 'Load-Balancer-01',
+    ipAddress: '192.168.1.20',
+    status: 'Active',
+    lastSeen: '45 seconds ago',
+    bandwidth: '2 Gbps',
+    location: 'Data Center A',
+    type: 'Load Balancer',
+  },
 ];
 
 const deviceColumnDefinitions = [
@@ -117,7 +189,15 @@ const deviceColumnDefinitions = [
     id: 'status',
     header: 'Status',
     cell: (item: any) => (
-      <Box color={item.status === 'Active' ? 'text-status-success' : item.status === 'Warning' ? 'text-status-warning' : 'text-status-error'}>
+      <Box
+        color={
+          item.status === 'Active'
+            ? 'text-status-success'
+            : item.status === 'Warning'
+              ? 'text-status-warning'
+              : 'text-status-error'
+        }
+      >
         {item.status}
       </Box>
     ),
@@ -160,11 +240,12 @@ export function App() {
   // Filter devices based on search text
   const filteredDevices = useMemo(() => {
     if (!filterText) return devicesData;
-    return devicesData.filter(device =>
-      device.deviceName.toLowerCase().includes(filterText.toLowerCase()) ||
-      device.ipAddress.includes(filterText) ||
-      device.type.toLowerCase().includes(filterText.toLowerCase()) ||
-      device.location.toLowerCase().includes(filterText.toLowerCase())
+    return devicesData.filter(
+      device =>
+        device.deviceName.toLowerCase().includes(filterText.toLowerCase()) ||
+        device.ipAddress.includes(filterText) ||
+        device.type.toLowerCase().includes(filterText.toLowerCase()) ||
+        device.location.toLowerCase().includes(filterText.toLowerCase()),
     );
   }, [filterText]);
 
@@ -286,11 +367,7 @@ export function App() {
                       `${selectedItems.length} ${selectedItems.length === 1 ? 'device' : 'devices'} selected`,
                     itemSelectionLabel: ({ selectedItems }, item) => item.deviceName,
                   }}
-                  header={
-                    <Header counter={`(${filteredDevices.length})`}>
-                      Devices
-                    </Header>
-                  }
+                  header={<Header counter={`(${filteredDevices.length})`}>Devices</Header>}
                   pagination={
                     <Pagination
                       currentPageIndex={currentPageIndex}

@@ -101,9 +101,7 @@ export function App() {
       );
       if (!geoRes.ok) throw new Error('Failed to fetch location');
       const geoJson = await geoRes.json();
-      const result = (geoJson?.results?.[0] ?? null) as
-        | (GeoResult & { country_code?: string; admin1?: string })
-        | null;
+      const result = (geoJson?.results?.[0] ?? null) as (GeoResult & { country_code?: string; admin1?: string }) | null;
       if (!result) {
         setLocation(null);
         setForecast([]);
@@ -119,12 +117,7 @@ export function App() {
       };
       setLocation(selected);
 
-      const dailyParams = [
-        'temperature_2m_max',
-        'temperature_2m_min',
-        'precipitation_sum',
-        'weathercode',
-      ].join(',');
+      const dailyParams = ['temperature_2m_max', 'temperature_2m_min', 'precipitation_sum', 'weathercode'].join(',');
 
       const forecastUrl = new URL('https://api.open-meteo.com/v1/forecast');
       forecastUrl.searchParams.set('latitude', String(selected.latitude));
@@ -202,7 +195,9 @@ export function App() {
                   </FormField>
                 </Grid>
                 <Box>
-                  <Button variant="primary" loading={loading} iconAlign="right" iconName="search">Search</Button>
+                  <Button variant="primary" loading={loading} iconAlign="right" iconName="search">
+                    Search
+                  </Button>
                 </Box>
               </SpaceBetween>
             </form>
@@ -246,7 +241,13 @@ export function App() {
           )}
 
           {!loading && forecast.length > 0 && (
-            <Container header={<Header variant="h2" className="weather-section-title"><span className="forecast-title-emphasis">7-day forecast</span></Header>}>
+            <Container
+              header={
+                <Header variant="h2" className="weather-section-title">
+                  <span className="forecast-title-emphasis">7-day forecast</span>
+                </Header>
+              }
+            >
               <Table
                 trackBy="date"
                 columnDefinitions={[
