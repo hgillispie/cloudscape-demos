@@ -20,6 +20,7 @@ import { Breadcrumbs, Navigation, Notifications } from '../commons/common-compon
 import { CustomAppLayout } from '../commons/common-components';
 
 import '../../styles/base.scss';
+import '../../styles/weather-dashboard.scss';
 
 interface GeoResult {
   id: number;
