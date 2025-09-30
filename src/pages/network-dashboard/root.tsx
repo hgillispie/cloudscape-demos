@@ -177,156 +177,160 @@ export function App() {
   const totalPages = Math.ceil(filteredDevices.length / itemsPerPage);
 
   return (
-    <CustomAppLayout
-      content={
-        <SpaceBetween size="l">
-          <Header
-            variant="h1"
-            actions={
-              <Button variant="primary" iconAlign="right" iconName="refresh">
-                Refresh Data
-              </Button>
-            }
-          >
-            Network Administration Dashboard
-          </Header>
-
-          <Box variant="p" color="text-body-secondary">
-            Network Traffic, Credit Usage, and Your Devices
-          </Box>
-
-          {!isWarningDismissed && (
-            <Alert
-              type="warning"
-              dismissible
-              onDismiss={() => setIsWarningDismissed(true)}
-              dismissAriaLabel="Dismiss warning"
+    <div className="network-dashboard">
+      <CustomAppLayout
+        content={
+          <SpaceBetween size="l">
+            <Header
+              variant="h1"
+              actions={
+                <Button variant="primary" iconAlign="right" iconName="refresh" className="refresh-button">
+                  Refresh Data
+                </Button>
+              }
             >
-              This is a warning message
-            </Alert>
-          )}
+              Network Administration Dashboard
+            </Header>
 
-          <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-            <Container>
-              <AreaChart
-                series={networkTrafficSeries}
-                xTitle="Day"
-                yTitle="Network traffic"
-                height={300}
-                xScaleType="categorical"
-                hideLegend={false}
-                ariaLabel="Network traffic over time for Site 1 and Site 2"
-                i18nStrings={{
-                  legendAriaLabel: 'Legend',
-                  chartAriaRoleDescription: 'Area chart showing network traffic trends',
-                }}
-              />
-            </Container>
+            <Box variant="p" color="text-body-secondary" className="dashboard-description">
+              Network Traffic, Credit Usage, and Your Devices
+            </Box>
 
-            <Container>
-              <BarChart
-                series={creditUsageSeries}
-                xTitle="Day"
-                yTitle="Credit Usage"
-                height={300}
-                xScaleType="categorical"
-                hideLegend={false}
-                ariaLabel="Credit usage by day"
-                i18nStrings={{
-                  legendAriaLabel: 'Legend',
-                  chartAriaRoleDescription: 'Bar chart showing credit usage over time',
-                }}
-              />
-            </Container>
-          </Grid>
-
-          <Container
-            header={
-              <Header
-                variant="h2"
-                actions={
-                  <Button variant="primary" iconAlign="right" iconName="add-plus">
-                    Add Device
-                  </Button>
-                }
-                counter={`(${filteredDevices.length})`}
+            {!isWarningDismissed && (
+              <Alert
+                type="warning"
+                dismissible
+                onDismiss={() => setIsWarningDismissed(true)}
+                dismissAriaLabel="Dismiss warning"
+                className="warning-alert"
               >
-                My Devices
-              </Header>
-            }
-          >
-            <SpaceBetween size="m">
-              <Box variant="p" color="text-body-secondary">
-                Devices on your local network
-              </Box>
+                This is a warning message
+              </Alert>
+            )}
 
-              <TextFilter
-                filteringText={filterText}
-                filteringPlaceholder="Placeholder"
-                filteringAriaLabel="Filter devices"
-                onChange={({ detail }) => {
-                  setFilterText(detail.filteringText);
-                  setCurrentPageIndex(1);
-                }}
-              />
+            <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+              <Container className="chart-container">
+                <AreaChart
+                  series={networkTrafficSeries}
+                  xTitle="Day"
+                  yTitle="Network traffic"
+                  height={300}
+                  xScaleType="categorical"
+                  hideLegend={false}
+                  ariaLabel="Network traffic over time for Site 1 and Site 2"
+                  i18nStrings={{
+                    legendAriaLabel: 'Legend',
+                    chartAriaRoleDescription: 'Area chart showing network traffic trends',
+                  }}
+                />
+              </Container>
 
-              <Table
-                columnDefinitions={deviceColumnDefinitions}
-                items={paginatedDevices}
-                loadingText="Loading devices"
-                selectedItems={selectedDevices}
-                onSelectionChange={({ detail }) => setSelectedDevices(detail.selectedItems)}
-                selectionType="multi"
-                ariaLabels={{
-                  selectionGroupLabel: 'Device selection',
-                  allItemsSelectionLabel: ({ selectedItems }) =>
-                    `${selectedItems.length} ${selectedItems.length === 1 ? 'device' : 'devices'} selected`,
-                  itemSelectionLabel: ({ selectedItems }, item) => item.deviceName,
-                }}
-                header={
-                  <Header counter={`(${filteredDevices.length})`}>
-                    Devices
-                  </Header>
-                }
-                pagination={
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    pagesCount={totalPages}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                    ariaLabels={{
-                      nextPageLabel: 'Next page',
-                      previousPageLabel: 'Previous page',
-                      pageLabel: pageNumber => `Page ${pageNumber} of ${totalPages}`,
-                    }}
-                  />
-                }
-                empty={
-                  <Box textAlign="center" color="inherit">
-                    <Box variant="strong" textAlign="center" color="inherit">
-                      No devices
+              <Container className="chart-container">
+                <BarChart
+                  series={creditUsageSeries}
+                  xTitle="Day"
+                  yTitle="Credit Usage"
+                  height={300}
+                  xScaleType="categorical"
+                  hideLegend={false}
+                  ariaLabel="Credit usage by day"
+                  i18nStrings={{
+                    legendAriaLabel: 'Legend',
+                    chartAriaRoleDescription: 'Bar chart showing credit usage over time',
+                  }}
+                />
+              </Container>
+            </Grid>
+
+            <Container
+              header={
+                <Header
+                  variant="h2"
+                  actions={
+                    <Button variant="primary" iconAlign="right" iconName="add-plus">
+                      Add Device
+                    </Button>
+                  }
+                  counter={`(${filteredDevices.length})`}
+                  className="section-header"
+                >
+                  My Devices
+                </Header>
+              }
+            >
+              <SpaceBetween size="m">
+                <Box variant="p" color="text-body-secondary">
+                  Devices on your local network
+                </Box>
+
+                <TextFilter
+                  filteringText={filterText}
+                  filteringPlaceholder="Placeholder"
+                  filteringAriaLabel="Filter devices"
+                  onChange={({ detail }) => {
+                    setFilterText(detail.filteringText);
+                    setCurrentPageIndex(1);
+                  }}
+                />
+
+                <Table
+                  columnDefinitions={deviceColumnDefinitions}
+                  items={paginatedDevices}
+                  loadingText="Loading devices"
+                  selectedItems={selectedDevices}
+                  onSelectionChange={({ detail }) => setSelectedDevices(detail.selectedItems)}
+                  selectionType="multi"
+                  ariaLabels={{
+                    selectionGroupLabel: 'Device selection',
+                    allItemsSelectionLabel: ({ selectedItems }) =>
+                      `${selectedItems.length} ${selectedItems.length === 1 ? 'device' : 'devices'} selected`,
+                    itemSelectionLabel: ({ selectedItems }, item) => item.deviceName,
+                  }}
+                  header={
+                    <Header counter={`(${filteredDevices.length})`}>
+                      Devices
+                    </Header>
+                  }
+                  pagination={
+                    <Pagination
+                      currentPageIndex={currentPageIndex}
+                      pagesCount={totalPages}
+                      onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                      ariaLabels={{
+                        nextPageLabel: 'Next page',
+                        previousPageLabel: 'Previous page',
+                        pageLabel: pageNumber => `Page ${pageNumber} of ${totalPages}`,
+                      }}
+                    />
+                  }
+                  empty={
+                    <Box textAlign="center" color="inherit">
+                      <Box variant="strong" textAlign="center" color="inherit">
+                        No devices
+                      </Box>
+                      <Box variant="p" padding={{ bottom: 's' }} color="inherit">
+                        No devices found.
+                      </Box>
+                      <Button>Add device</Button>
                     </Box>
-                    <Box variant="p" padding={{ bottom: 's' }} color="inherit">
-                      No devices found.
-                    </Box>
-                    <Button>Add device</Button>
-                  </Box>
-                }
-              />
-            </SpaceBetween>
-          </Container>
-        </SpaceBetween>
-      }
-      breadcrumbs={
-        <Breadcrumbs
-          items={[
-            { text: 'Service', href: '#/' },
-            { text: 'Administrative Dashboard', href: '#/network-dashboard' },
-          ]}
-        />
-      }
-      navigation={<Navigation activeHref="#/network-dashboard" />}
-      toolsHide={true}
-      notifications={<Notifications />}
-    />
+                  }
+                />
+              </SpaceBetween>
+            </Container>
+          </SpaceBetween>
+        }
+        breadcrumbs={
+          <Breadcrumbs
+            items={[
+              { text: 'Service', href: '#/' },
+              { text: 'Administrative Dashboard', href: '#/network-dashboard' },
+            ]}
+          />
+        }
+        navigation={<Navigation activeHref="#/network-dashboard" />}
+        toolsHide={true}
+        notifications={<Notifications />}
+      />
+    </div>
   );
 }
