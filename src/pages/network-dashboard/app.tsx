@@ -7,7 +7,7 @@ import ContentLayout from '@cloudscape-design/components/content-layout';
 import Header from '@cloudscape-design/components/header';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Button from '@cloudscape-design/components/button';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Grid from '@cloudscape-design/components/grid';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
@@ -21,15 +21,7 @@ import { DevicesTable } from './components/devices-table';
 export function App() {
   const [filteringText, setFilteringText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
-  const [flashbarItems, setFlashbarItems] = useState([
-    {
-      type: 'error' as const,
-      content: 'This is a warning message',
-      dismissible: true,
-      onDismiss: () => setFlashbarItems([]),
-      id: 'warning-1',
-    },
-  ]);
+  const [alertVisible, setAlertVisible] = useState(true);
 
   return (
     <AppLayout
@@ -50,7 +42,15 @@ export function App() {
               >
                 Network Administration Dashboard
               </Header>
-              {flashbarItems.length > 0 && <Flashbar items={flashbarItems} />}
+              {alertVisible && (
+                <Alert
+                  type="error"
+                  dismissible
+                  onDismiss={() => setAlertVisible(false)}
+                >
+                  This is a warning message
+                </Alert>
+              )}
             </SpaceBetween>
           }
         >
