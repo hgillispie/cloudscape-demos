@@ -62,7 +62,7 @@ export function App() {
                 </SpaceBetween>
               }
             >
-              Weather Dashboard
+              <span style={{ fontWeight: 900 }}>Weather Dashboard</span>
             </Header>
           }
         >

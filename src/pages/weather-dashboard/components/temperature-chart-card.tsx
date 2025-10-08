@@ -36,7 +36,13 @@ export function TemperatureChartCard({ hourlyData }: TemperatureChartCardProps) 
   ];
 
   return (
-    <Container header={<Header variant="h2">24-Hour Temperature & Precipitation Forecast</Header>}>
+    <Container
+      header={
+        <Header variant="h2">
+          <span style={{ fontWeight: 800 }}>24-Hour Temperature & Precipitation Forecast</span>
+        </Header>
+      }
+    >
       <AreaChart
         series={series}
         xScaleType="time"
