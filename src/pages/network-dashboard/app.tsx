@@ -23,7 +23,7 @@ export function App() {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [flashbarItems, setFlashbarItems] = useState([
     {
-      type: 'warning' as const,
+      type: 'error' as const,
       content: 'This is a warning message',
       dismissible: true,
       onDismiss: () => setFlashbarItems([]),
