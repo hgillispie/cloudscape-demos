@@ -41,9 +41,7 @@ export function DevicesTable({ filteringText }: DevicesTableProps) {
 
   const filteredDevices = allDevices.filter(device => {
     if (!filteringText) return true;
-    return Object.values(device).some(value =>
-      value.toLowerCase().includes(filteringText.toLowerCase())
-    );
+    return Object.values(device).some(value => value.toLowerCase().includes(filteringText.toLowerCase()));
   });
 
   return (
