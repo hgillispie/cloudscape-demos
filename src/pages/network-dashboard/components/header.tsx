@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT-0
 import React from 'react';
 
+import Alert from '@cloudscape-design/components/alert';
 import Box from '@cloudscape-design/components/box';
 import Button from '@cloudscape-design/components/button';
-import Flashbar from '@cloudscape-design/components/flashbar';
 import Header from '@cloudscape-design/components/header';
 import HelpPanel from '@cloudscape-design/components/help-panel';
 import SpaceBetween from '@cloudscape-design/components/space-between';
@@ -27,17 +27,13 @@ export function NetworkDashboardHeader() {
         Network Adminstration Dashboard
       </Header>
 
-      <Flashbar
-        items={[
-          {
-            type: 'error',
-            content: 'This is a warning message',
-            dismissible: true,
-            dismissLabel: 'Dismiss',
-            id: 'warning-message',
-          },
-        ]}
-      />
+      <Alert
+        type="error"
+        dismissible
+        dismissAriaLabel="Dismiss"
+      >
+        This is a warning message
+      </Alert>
 
       <TextFilter
         filteringText={filteringText}
