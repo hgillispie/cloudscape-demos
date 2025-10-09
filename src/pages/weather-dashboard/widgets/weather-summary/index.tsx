@@ -33,7 +33,7 @@ function WeatherSummaryContent() {
       try {
         setLoading(true);
         const data = await fetchWeatherData();
-        
+
         const avgPrecipitation =
           data.daily.precipitationSum.reduce((sum, val) => sum + val, 0) / data.daily.precipitationSum.length;
 

@@ -7,7 +7,11 @@ import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Header from '@cloudscape-design/components/header';
 import Spinner from '@cloudscape-design/components/spinner';
 
-import { fetchWeatherData, getWeatherDescription, CurrentWeather as CurrentWeatherType } from '../../services/weather-api';
+import {
+  fetchWeatherData,
+  getWeatherDescription,
+  CurrentWeather as CurrentWeatherType,
+} from '../../services/weather-api';
 import { WidgetConfig } from '../interfaces';
 
 function CurrentWeatherHeader() {

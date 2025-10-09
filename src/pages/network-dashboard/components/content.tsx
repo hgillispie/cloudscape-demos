@@ -79,10 +79,7 @@ export function Content() {
   return (
     <SpaceBetween size="l">
       <ColumnLayout columns={2} variant="default">
-        <Container
-          header={<Header variant="h2">Network traffic</Header>}
-          fitHeight
-        >
+        <Container header={<Header variant="h2">Network traffic</Header>} fitHeight>
           <AreaChart
             series={networkTrafficData}
             xScaleType="time"
@@ -96,7 +93,7 @@ export function Content() {
               filterSelectedAriaLabel: 'selected',
               legendAriaLabel: 'Legend',
               chartAriaRoleDescription: 'area chart',
-              xTickFormatter: (value) => {
+              xTickFormatter: value => {
                 const date = new Date(value);
                 return `${date.getMonth() + 1}/${date.getDate()}`;
               },
@@ -104,10 +101,7 @@ export function Content() {
           />
         </Container>
 
-        <Container
-          header={<Header variant="h2">Credit Usage</Header>}
-          fitHeight
-        >
+        <Container header={<Header variant="h2">Credit Usage</Header>} fitHeight>
           <BarChart
             series={[
               {
@@ -137,28 +131,28 @@ export function Content() {
             {
               id: 'name',
               header: 'Device Name',
-              cell: (item) => item.name,
+              cell: item => item.name,
               sortingField: 'name',
             },
             {
               id: 'type',
               header: 'Type',
-              cell: (item) => item.type,
+              cell: item => item.type,
             },
             {
               id: 'status',
               header: 'Status',
-              cell: (item) => item.status,
+              cell: item => item.status,
             },
             {
               id: 'ip',
               header: 'IP Address',
-              cell: (item) => item.ip,
+              cell: item => item.ip,
             },
             {
               id: 'location',
               header: 'Location',
-              cell: (item) => item.location,
+              cell: item => item.location,
             },
           ]}
           items={paginatedDevices}
@@ -188,7 +182,7 @@ export function Content() {
               ariaLabels={{
                 nextPageLabel: 'Next page',
                 previousPageLabel: 'Previous page',
-                pageLabel: (pageNumber) => `Page ${pageNumber}`,
+                pageLabel: pageNumber => `Page ${pageNumber}`,
               }}
             />
           }
