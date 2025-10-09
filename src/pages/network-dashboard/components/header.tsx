@@ -27,11 +27,7 @@ export function NetworkDashboardHeader() {
         Network Adminstration Dashboard
       </Header>
 
-      <Alert
-        type="error"
-        dismissible
-        dismissAriaLabel="Dismiss"
-      >
+      <Alert type="error" dismissible dismissAriaLabel="Dismiss">
         This is a warning message
       </Alert>
 
