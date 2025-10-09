@@ -30,7 +30,7 @@ export function NetworkDashboardHeader() {
       <Flashbar
         items={[
           {
-            type: 'warning',
+            type: 'error',
             content: 'This is a warning message',
             dismissible: true,
             dismissLabel: 'Dismiss',
