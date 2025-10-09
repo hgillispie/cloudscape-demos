@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 import React from 'react';
 
-import { CommonNavigation } from '../../commons/common-components';
+import { Navigation } from '../../commons';
 
 const navItems = [
   {
@@ -16,5 +16,5 @@ const navItems = [
 ];
 
 export function WeatherDashboardSideNavigation() {
-  return <CommonNavigation activeHref="#/weather-dashboard" items={navItems} />;
+  return <Navigation items={navItems} activeHref="#/weather-dashboard" />;
 }
