@@ -155,10 +155,7 @@ export default function NetworkDashboard() {
           Network Adminstration Dashboard
         </Header>
 
-        <Alert
-          type="error"
-          dismissible
-        >
+        <Alert type="error" dismissible>
           This is a warning message
         </Alert>
 
