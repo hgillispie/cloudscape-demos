@@ -10,7 +10,7 @@ import SpaceBetween from '@cloudscape-design/components/space-between';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Grid from '@cloudscape-design/components/grid';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import { useState } from 'react';
 
 export default function NetworkDashboard() {
