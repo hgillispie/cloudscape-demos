@@ -158,7 +158,7 @@ export default function NetworkDashboard() {
         <Flashbar
           items={[
             {
-              type: 'warning',
+              type: 'error',
               dismissible: true,
               content: 'This is a warning message',
               id: 'warning-message'
