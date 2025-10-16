@@ -24,39 +24,39 @@ export default function NetworkDashboard() {
       title: 'Site 1',
       type: 'area',
       data: [
-        { x: 1, y: 3 },
-        { x: 2, y: 2.8 },
-        { x: 3, y: 3.2 },
-        { x: 4, y: 3.5 },
-        { x: 5, y: 4.2 },
-        { x: 6, y: 5.1 },
-        { x: 7, y: 4.8 },
-        { x: 8, y: 4.5 },
-        { x: 9, y: 5.2 },
-        { x: 10, y: 5.5 },
-        { x: 11, y: 5.8 },
-        { x: 12, y: 4.2 }
+        { x: new Date(2024, 0, 1), y: 3 },
+        { x: new Date(2024, 0, 2), y: 2.8 },
+        { x: new Date(2024, 0, 3), y: 3.2 },
+        { x: new Date(2024, 0, 4), y: 3.5 },
+        { x: new Date(2024, 0, 5), y: 4.2 },
+        { x: new Date(2024, 0, 6), y: 5.1 },
+        { x: new Date(2024, 0, 7), y: 4.8 },
+        { x: new Date(2024, 0, 8), y: 4.5 },
+        { x: new Date(2024, 0, 9), y: 5.2 },
+        { x: new Date(2024, 0, 10), y: 5.5 },
+        { x: new Date(2024, 0, 11), y: 5.8 },
+        { x: new Date(2024, 0, 12), y: 4.2 }
       ],
-      valueFormatter: (value) => `${value}`
+      valueFormatter: (value) => value.toFixed(1)
     },
     {
       title: 'Site 2',
       type: 'area',
       data: [
-        { x: 1, y: 2 },
-        { x: 2, y: 2.5 },
-        { x: 3, y: 2.8 },
-        { x: 4, y: 3.2 },
-        { x: 5, y: 3.8 },
-        { x: 6, y: 4.5 },
-        { x: 7, y: 3.8 },
-        { x: 8, y: 3.2 },
-        { x: 9, y: 3.5 },
-        { x: 10, y: 2.8 },
-        { x: 11, y: 2.5 },
-        { x: 12, y: 2.2 }
+        { x: new Date(2024, 0, 1), y: 2 },
+        { x: new Date(2024, 0, 2), y: 2.5 },
+        { x: new Date(2024, 0, 3), y: 2.8 },
+        { x: new Date(2024, 0, 4), y: 3.2 },
+        { x: new Date(2024, 0, 5), y: 3.8 },
+        { x: new Date(2024, 0, 6), y: 4.5 },
+        { x: new Date(2024, 0, 7), y: 3.8 },
+        { x: new Date(2024, 0, 8), y: 3.2 },
+        { x: new Date(2024, 0, 9), y: 3.5 },
+        { x: new Date(2024, 0, 10), y: 2.8 },
+        { x: new Date(2024, 0, 11), y: 2.5 },
+        { x: new Date(2024, 0, 12), y: 2.2 }
       ],
-      valueFormatter: (value) => `${value}`
+      valueFormatter: (value) => value.toFixed(1)
     }
   ];
 
@@ -66,13 +66,13 @@ export default function NetworkDashboard() {
       title: 'Site 1',
       type: 'bar',
       data: [
-        { x: 1, y: 3.5 },
-        { x: 2, y: 5 },
-        { x: 3, y: 4.2 },
-        { x: 4, y: 2.5 },
-        { x: 5, y: 4.1 }
+        { x: new Date(2024, 0, 1), y: 3.5 },
+        { x: new Date(2024, 0, 2), y: 5 },
+        { x: new Date(2024, 0, 3), y: 4.2 },
+        { x: new Date(2024, 0, 4), y: 2.5 },
+        { x: new Date(2024, 0, 5), y: 4.1 }
       ],
-      valueFormatter: (value) => `${value}`
+      valueFormatter: (value) => value.toFixed(1)
     }
   ];
 
@@ -166,30 +166,28 @@ export default function NetworkDashboard() {
           ]}
         />
 
-        <Box>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <Input
-              type="search"
-              value={searchValue}
-              onChange={({ detail }) => setSearchValue(detail.value)}
-              placeholder="Placeholder"
-              style={{ maxWidth: '500px' }}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+          <Input
+            type="search"
+            value={searchValue}
+            onChange={({ detail }) => setSearchValue(detail.value)}
+            placeholder="Placeholder"
+            style={{ flexGrow: 1, maxWidth: '500px' }}
+          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Pagination
+              currentPageIndex={currentPageIndex}
+              onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+              pagesCount={5}
             />
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Pagination
-                currentPageIndex={currentPageIndex}
-                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                pagesCount={5}
-              />
-            </div>
+            <Button iconName="settings" variant="icon" />
           </div>
-        </Box>
+        </div>
 
         <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-          <Container>
+          <Container header={<Header variant="h3">Network traffic</Header>}>
             <AreaChart
               series={areaChartSeries}
-              xDomain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
               yDomain={[0, 6]}
               i18nStrings={{
                 filterLabel: 'Filter displayed data',
@@ -197,22 +195,24 @@ export default function NetworkDashboard() {
                 filterSelectedAriaLabel: 'selected',
                 legendAriaLabel: 'Legend',
                 chartAriaRoleDescription: 'area chart',
-                xTickFormatter: (value) => `x${value}`,
+                xTickFormatter: (value) =>
+                  value instanceof Date ? `x${value.getDate()}` : String(value),
                 yTickFormatter: (value) => `y${value}`
               }}
               ariaLabel="Network traffic chart"
               height={300}
               xTitle="Day"
-              yTitle="Network traffic"
+              yTitle=""
               hideFilter
               statusType="finished"
+              legendTitle="Legend"
+              detailPopoverFooter={() => 'Performance goal'}
             />
           </Container>
 
-          <Container>
+          <Container header={<Header variant="h3">Credit Usage</Header>}>
             <BarChart
               series={barChartSeries}
-              xDomain={[1, 2, 3, 4, 5]}
               yDomain={[0, 6]}
               i18nStrings={{
                 filterLabel: 'Filter displayed data',
@@ -220,15 +220,17 @@ export default function NetworkDashboard() {
                 filterSelectedAriaLabel: 'selected',
                 legendAriaLabel: 'Legend',
                 chartAriaRoleDescription: 'bar chart',
-                xTickFormatter: (value) => `x${value}`,
+                xTickFormatter: (value) =>
+                  value instanceof Date ? `x${value.getDate()}` : String(value),
                 yTickFormatter: (value) => `y${value}`
               }}
               ariaLabel="Credit usage chart"
               height={300}
               xTitle="Day"
-              yTitle="Credit Usage"
+              yTitle=""
               hideFilter
               statusType="finished"
+              legendTitle="Legend"
             />
           </Container>
         </Grid>
