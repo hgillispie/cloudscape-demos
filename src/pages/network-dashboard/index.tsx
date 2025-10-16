@@ -155,16 +155,12 @@ export default function NetworkDashboard() {
           Network Adminstration Dashboard
         </Header>
 
-        <Flashbar
-          items={[
-            {
-              type: 'error',
-              dismissible: true,
-              content: 'This is a warning message',
-              id: 'warning-message',
-            },
-          ]}
-        />
+        <Alert
+          type="error"
+          dismissible
+        >
+          This is a warning message
+        </Alert>
 
         <div
           style={{
