@@ -35,9 +35,9 @@ export default function NetworkDashboard() {
         { x: new Date(2024, 0, 9), y: 5.2 },
         { x: new Date(2024, 0, 10), y: 5.5 },
         { x: new Date(2024, 0, 11), y: 5.8 },
-        { x: new Date(2024, 0, 12), y: 4.2 }
+        { x: new Date(2024, 0, 12), y: 4.2 },
       ],
-      valueFormatter: (value) => value.toFixed(1)
+      valueFormatter: value => value.toFixed(1),
     },
     {
       title: 'Site 2',
@@ -54,10 +54,10 @@ export default function NetworkDashboard() {
         { x: new Date(2024, 0, 9), y: 3.5 },
         { x: new Date(2024, 0, 10), y: 2.8 },
         { x: new Date(2024, 0, 11), y: 2.5 },
-        { x: new Date(2024, 0, 12), y: 2.2 }
+        { x: new Date(2024, 0, 12), y: 2.2 },
       ],
-      valueFormatter: (value) => value.toFixed(1)
-    }
+      valueFormatter: value => value.toFixed(1),
+    },
   ];
 
   // Bar chart data
@@ -70,10 +70,10 @@ export default function NetworkDashboard() {
         { x: new Date(2024, 0, 2), y: 5 },
         { x: new Date(2024, 0, 3), y: 4.2 },
         { x: new Date(2024, 0, 4), y: 2.5 },
-        { x: new Date(2024, 0, 5), y: 4.1 }
+        { x: new Date(2024, 0, 5), y: 4.1 },
       ],
-      valueFormatter: (value) => value.toFixed(1)
-    }
+      valueFormatter: value => value.toFixed(1),
+    },
   ];
 
   // Table data
@@ -85,52 +85,52 @@ export default function NetworkDashboard() {
     status: i % 3 === 0 ? 'Active' : i % 3 === 1 ? 'Inactive' : 'Pending',
     type: ['Router', 'Switch', 'Access Point', 'Server'][i % 4],
     location: ['Floor 1', 'Floor 2', 'Floor 3'][i % 3],
-    lastSeen: `${i + 1} hours ago`
+    lastSeen: `${i + 1} hours ago`,
   }));
 
   const columnDefinitions = [
     {
       id: 'name',
       header: 'Device Name',
-      cell: (item) => item.name,
-      sortingField: 'name'
+      cell: item => item.name,
+      sortingField: 'name',
     },
     {
       id: 'ipAddress',
       header: 'IP Address',
-      cell: (item) => item.ipAddress,
-      sortingField: 'ipAddress'
+      cell: item => item.ipAddress,
+      sortingField: 'ipAddress',
     },
     {
       id: 'macAddress',
       header: 'MAC Address',
-      cell: (item) => item.macAddress,
-      sortingField: 'macAddress'
+      cell: item => item.macAddress,
+      sortingField: 'macAddress',
     },
     {
       id: 'status',
       header: 'Status',
-      cell: (item) => item.status,
-      sortingField: 'status'
+      cell: item => item.status,
+      sortingField: 'status',
     },
     {
       id: 'type',
       header: 'Type',
-      cell: (item) => item.type,
-      sortingField: 'type'
+      cell: item => item.type,
+      sortingField: 'type',
     },
     {
       id: 'location',
       header: 'Location',
-      cell: (item) => item.location,
-      sortingField: 'location'
+      cell: item => item.location,
+      sortingField: 'location',
     },
     {
       id: 'lastSeen',
       header: 'Last Seen',
-      cell: (item) => item.lastSeen,
-      sortingField: 'lastSeen'
-    }
+      cell: item => item.lastSeen,
+      sortingField: 'lastSeen',
+    },
   ];
 
   return (
@@ -139,7 +139,7 @@ export default function NetworkDashboard() {
         <BreadcrumbGroup
           items={[
             { text: 'Service', href: '#' },
-            { text: 'Administrative Dashboard', href: '#' }
+            { text: 'Administrative Dashboard', href: '#' },
           ]}
         />
 
@@ -161,12 +161,20 @@ export default function NetworkDashboard() {
               type: 'error',
               dismissible: true,
               content: 'This is a warning message',
-              id: 'warning-message'
-            }
+              id: 'warning-message',
+            },
           ]}
         />
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '16px',
+            flexWrap: 'wrap',
+          }}
+        >
           <Input
             type="search"
             value={searchValue}
@@ -195,9 +203,8 @@ export default function NetworkDashboard() {
                 filterSelectedAriaLabel: 'selected',
                 legendAriaLabel: 'Legend',
                 chartAriaRoleDescription: 'area chart',
-                xTickFormatter: (value) =>
-                  value instanceof Date ? `x${value.getDate()}` : String(value),
-                yTickFormatter: (value) => `y${value}`
+                xTickFormatter: value => (value instanceof Date ? `x${value.getDate()}` : String(value)),
+                yTickFormatter: value => `y${value}`,
               }}
               ariaLabel="Network traffic chart"
               height={300}
@@ -220,9 +227,8 @@ export default function NetworkDashboard() {
                 filterSelectedAriaLabel: 'selected',
                 legendAriaLabel: 'Legend',
                 chartAriaRoleDescription: 'bar chart',
-                xTickFormatter: (value) =>
-                  value instanceof Date ? `x${value.getDate()}` : String(value),
-                yTickFormatter: (value) => `y${value}`
+                xTickFormatter: value => (value instanceof Date ? `x${value.getDate()}` : String(value)),
+                yTickFormatter: value => `y${value}`,
               }}
               ariaLabel="Credit usage chart"
               height={300}
