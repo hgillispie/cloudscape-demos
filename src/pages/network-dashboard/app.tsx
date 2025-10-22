@@ -7,7 +7,7 @@ import Button from '@cloudscape-design/components/button';
 import Header from '@cloudscape-design/components/header';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Box from '@cloudscape-design/components/box';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Grid from '@cloudscape-design/components/grid';
 import Container from '@cloudscape-design/components/container';
 import LineChart from '@cloudscape-design/components/line-chart';
@@ -180,18 +180,13 @@ export function App() {
           </Grid>
 
           {showWarning && (
-            <Flashbar
-              items={[
-                {
-                  type: 'error',
-                  content: 'This is a warning message',
-                  dismissible: true,
-                  dismissLabel: 'Dismiss',
-                  onDismiss: () => setShowWarning(false),
-                  id: 'warning-message',
-                },
-              ]}
-            />
+            <Alert
+              type="error"
+              dismissible
+              onDismiss={() => setShowWarning(false)}
+            >
+              This is a warning message
+            </Alert>
           )}
 
           <Grid gridDefinition={[{ colspan: { default: 12, m: 6 } }, { colspan: { default: 12, m: 6 } }]}>
