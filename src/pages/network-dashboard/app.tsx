@@ -74,7 +74,7 @@ const devicesData = Array.from({ length: 50 }, (_, i) => ({
   name: `Device ${i + 1}`,
   type: i % 3 === 0 ? 'Router' : i % 3 === 1 ? 'Switch' : 'Access Point',
   status: i % 4 === 0 ? 'Online' : 'Active',
-  ipAddress: `192.168.${Math.floor(i / 10)}.${i % 10 + 1}`,
+  ipAddress: `192.168.${Math.floor(i / 10)}.${(i % 10) + 1}`,
   location: i % 2 === 0 ? 'Building A' : 'Building B',
   lastSeen: `${Math.floor(Math.random() * 24)}h ago`,
   firmware: `v${Math.floor(Math.random() * 5) + 1}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`,
@@ -133,15 +133,10 @@ export function App() {
   const pageSize = 10;
 
   const filteredItems = devicesData.filter(item =>
-    Object.values(item).some(value =>
-      value.toString().toLowerCase().includes(filteringText.toLowerCase())
-    )
+    Object.values(item).some(value => value.toString().toLowerCase().includes(filteringText.toLowerCase())),
   );
 
-  const paginatedItems = filteredItems.slice(
-    (currentPageIndex - 1) * pageSize,
-    currentPageIndex * pageSize
-  );
+  const paginatedItems = filteredItems.slice((currentPageIndex - 1) * pageSize, currentPageIndex * pageSize);
 
   return (
     <AppLayout
@@ -203,10 +198,7 @@ export function App() {
             <Container>
               <LineChart
                 series={networkTrafficData}
-                xDomain={[
-                  new Date('2024-01-01'),
-                  new Date('2024-01-12'),
-                ]}
+                xDomain={[new Date('2024-01-01'), new Date('2024-01-12')]}
                 yDomain={[0, 50]}
                 height={300}
                 xTitle="Day"
@@ -219,7 +211,7 @@ export function App() {
                   filterPlaceholder: 'Filter data',
                   legendAriaLabel: 'Legend',
                   chartAriaRoleDescription: 'line chart',
-                  xTickFormatter: (value) =>
+                  xTickFormatter: value =>
                     new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
                 }}
                 additionalFilters={null}
