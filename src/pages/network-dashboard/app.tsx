@@ -180,11 +180,7 @@ export function App() {
           </Grid>
 
           {showWarning && (
-            <Alert
-              type="error"
-              dismissible
-              onDismiss={() => setShowWarning(false)}
-            >
+            <Alert type="error" dismissible onDismiss={() => setShowWarning(false)}>
               This is a warning message
             </Alert>
           )}
