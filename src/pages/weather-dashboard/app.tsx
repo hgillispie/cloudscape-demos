@@ -196,20 +196,21 @@ export function App() {
       navigationHide
       toolsHide
       content={
-        <ContentLayout
-          header={
-            <Header variant="h1">Weather Dashboard</Header>
-          }
-        >
+        <ContentLayout header={<Header variant="h1">Weather Dashboard</Header>}>
           <SpaceBetween size="l">
             <Container header={<Header variant="h2">Search Location</Header>}>
               <SpaceBetween size="m">
-                <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } }, { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } }]}>
+                <Grid
+                  gridDefinition={[
+                    { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } },
+                    { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6 } },
+                  ]}
+                >
                   <Input
                     value={searchInput}
                     onChange={({ detail }) => setSearchInput(detail.value)}
                     placeholder="Enter a city name..."
-                    onKeyDown={(event) => {
+                    onKeyDown={event => {
                       if (event.detail.key === 'Enter') {
                         handleSearch();
                       }
@@ -224,7 +225,7 @@ export function App() {
                     Quick access:
                   </Box>
                   <SpaceBetween size="xs" direction="horizontal">
-                    {presets.map((preset) => (
+                    {presets.map(preset => (
                       <Button
                         key={preset.value}
                         variant={selectedPreset.value === preset.value ? 'primary' : 'normal'}
@@ -256,10 +257,7 @@ export function App() {
               <>
                 <Container
                   header={
-                    <Header
-                      variant="h2"
-                      description={`${weatherData.location.name}, ${weatherData.location.country}`}
-                    >
+                    <Header variant="h2" description={`${weatherData.location.name}, ${weatherData.location.country}`}>
                       Current Weather
                     </Header>
                   }
@@ -350,7 +348,7 @@ export function App() {
                         },
                       ]}
                       i18nStrings={{
-                        yTickFormatter: (e) => `${Math.round(e)}°`,
+                        yTickFormatter: e => `${Math.round(e)}°`,
                       }}
                       ariaLabel="24-hour temperature forecast"
                       height={300}
@@ -366,18 +364,19 @@ export function App() {
                       sections: [
                         {
                           id: 'time',
-                          header: (item) => new Date(item.time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+                          header: item =>
+                            new Date(item.time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
                           content: () => null,
                         },
                         {
                           id: 'temperature',
                           header: 'Temperature',
-                          content: (item) => `${Math.round(item.temperature * 10) / 10}°F`,
+                          content: item => `${Math.round(item.temperature * 10) / 10}°F`,
                         },
                         {
                           id: 'precipitation',
                           header: 'Precipitation',
-                          content: (item) => `${item.precipitation}"`,
+                          content: item => `${item.precipitation}"`,
                         },
                       ],
                     }}

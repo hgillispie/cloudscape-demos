@@ -179,7 +179,7 @@ export function App() {
   const itemsPerPage = 10;
 
   const filteredDevices = allDevices.filter(
-    (device) =>
+    device =>
       device.name.toLowerCase().includes(filteringText.toLowerCase()) ||
       device.type.toLowerCase().includes(filteringText.toLowerCase()) ||
       device.ipAddress.toLowerCase().includes(filteringText.toLowerCase()),
@@ -260,8 +260,8 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (e) => e.toString(),
-                    yTickFormatter: (e) => `y${Math.round(e)}`,
+                    xTickFormatter: e => e.toString(),
+                    yTickFormatter: e => `y${Math.round(e)}`,
                   }}
                   ariaLabel="Network traffic area chart"
                   height={300}
@@ -305,8 +305,8 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    xTickFormatter: (e) => e.toString(),
-                    yTickFormatter: (e) => `y${Math.round(e)}`,
+                    xTickFormatter: e => e.toString(),
+                    yTickFormatter: e => `y${Math.round(e)}`,
                   }}
                   ariaLabel="Credit usage bar chart"
                   height={300}
@@ -338,41 +338,41 @@ export function App() {
                 {
                   id: 'name',
                   header: 'Device Name',
-                  cell: (item) => item.name,
+                  cell: item => item.name,
                   sortingField: 'name',
                 },
                 {
                   id: 'type',
                   header: 'Type',
-                  cell: (item) => item.type,
+                  cell: item => item.type,
                   sortingField: 'type',
                 },
                 {
                   id: 'status',
                   header: 'Status',
-                  cell: (item) => item.status,
+                  cell: item => item.status,
                   sortingField: 'status',
                 },
                 {
                   id: 'ipAddress',
                   header: 'IP Address',
-                  cell: (item) => item.ipAddress,
+                  cell: item => item.ipAddress,
                   sortingField: 'ipAddress',
                 },
                 {
                   id: 'macAddress',
                   header: 'MAC Address',
-                  cell: (item) => item.macAddress,
+                  cell: item => item.macAddress,
                 },
                 {
                   id: 'lastSeen',
                   header: 'Last Seen',
-                  cell: (item) => item.lastSeen,
+                  cell: item => item.lastSeen,
                 },
                 {
                   id: 'bandwidth',
                   header: 'Bandwidth',
-                  cell: (item) => item.bandwidth,
+                  cell: item => item.bandwidth,
                   sortingField: 'bandwidth',
                 },
               ]}
@@ -425,7 +425,7 @@ export function App() {
                   ariaLabels={{
                     nextPageLabel: 'Next page',
                     previousPageLabel: 'Previous page',
-                    pageLabel: (pageNumber) => `Page ${pageNumber} of all pages`,
+                    pageLabel: pageNumber => `Page ${pageNumber} of all pages`,
                   }}
                 />
               }
