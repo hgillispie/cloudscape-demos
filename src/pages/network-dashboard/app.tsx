@@ -219,11 +219,7 @@ export function App() {
               </Header>
 
               {!dismissedWarning && (
-                <Alert
-                  type="error"
-                  dismissible
-                  onDismiss={() => setDismissedWarning(true)}
-                >
+                <Alert type="error" dismissible onDismiss={() => setDismissedWarning(true)}>
                   This is a warning message
                 </Alert>
               )}
