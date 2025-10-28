@@ -15,7 +15,7 @@ import Table from '@cloudscape-design/components/table';
 import Box from '@cloudscape-design/components/box';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import ContentLayout from '@cloudscape-design/components/content-layout';
 
 interface DeviceItem {
@@ -219,17 +219,13 @@ export function App() {
               </Header>
 
               {!dismissedWarning && (
-                <Flashbar
-                  items={[
-                    {
-                      type: 'error',
-                      content: 'This is a warning message',
-                      dismissible: true,
-                      onDismiss: () => setDismissedWarning(true),
-                      buttonText: 'Dismiss',
-                    },
-                  ]}
-                />
+                <Alert
+                  type="error"
+                  dismissible
+                  onDismiss={() => setDismissedWarning(true)}
+                >
+                  This is a warning message
+                </Alert>
               )}
             </SpaceBetween>
           }
