@@ -24,6 +24,12 @@ const demos = [
   { route: '/cards', title: 'Card View', description: 'Demo of Cloudscape Cards component.', category: 'Components' },
   { route: '/chat', title: 'Chat', description: 'Chat UI demo.', category: 'Applications' },
   {
+    route: '/network-dashboard',
+    title: 'Network Dashboard',
+    description: 'Network administration dashboard with traffic monitoring and device management.',
+    category: 'Dashboards',
+  },
+  {
     route: '/configurable-dashboard',
     title: 'Configurable Dashboard',
     description: 'Dashboard with configurable widgets.',
