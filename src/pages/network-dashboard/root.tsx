@@ -171,11 +171,7 @@ export function App() {
       }
       notifications={
         alertVisible ? (
-          <Alert
-            type="error"
-            dismissible
-            onDismiss={() => setAlertVisible(false)}
-          >
+          <Alert type="error" dismissible onDismiss={() => setAlertVisible(false)}>
             This is a warning message
           </Alert>
         ) : null
