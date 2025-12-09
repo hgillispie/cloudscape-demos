@@ -156,18 +156,15 @@ export function App() {
     },
   ]);
 
-  const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(
-    devices,
-    {
-      filtering: {
-        empty: <div>No devices</div>,
-        noMatch: <div>No matches found</div>,
-      },
-      pagination: { pageSize: 10 },
-      sorting: {},
-      selection: {},
+  const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(devices, {
+    filtering: {
+      empty: <div>No devices</div>,
+      noMatch: <div>No matches found</div>,
     },
-  );
+    pagination: { pageSize: 10 },
+    sorting: {},
+    selection: {},
+  });
 
   return (
     <CustomAppLayout
@@ -212,9 +209,8 @@ export function App() {
                     filterPlaceholder: 'Filter data',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (value) =>
-                      value instanceof Date ? `x${value.getDate()}` : String(value),
-                    yTickFormatter: (value) => `y${Number(value).toFixed(0)}`,
+                    xTickFormatter: value => (value instanceof Date ? `x${value.getDate()}` : String(value)),
+                    yTickFormatter: value => `y${Number(value).toFixed(0)}`,
                   }}
                   hideFilter
                   hideLegend={false}
@@ -254,8 +250,8 @@ export function App() {
                     filterPlaceholder: 'Filter data',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    xTickFormatter: (value) => String(value),
-                    yTickFormatter: (value) => `y${Number(value).toFixed(0)}`,
+                    xTickFormatter: value => String(value),
+                    yTickFormatter: value => `y${Number(value).toFixed(0)}`,
                   }}
                   hideFilter
                   hideLegend={false}
