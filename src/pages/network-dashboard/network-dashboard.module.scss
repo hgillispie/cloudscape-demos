@@ -1,0 +1,86 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+.chartContainer {
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.chartWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legendContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legendBox {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid currentColor;
+}
+
+.legendDash {
+  width: 12px;
+  height: 3px;
+  display: inline-block;
+  background: repeating-linear-gradient(
+    to right,
+    #5f6b7a 0,
+    #5f6b7a 6px,
+    transparent 6px,
+    transparent 8px
+  );
+}
+
+.legendLabel {
+  color: #000716;
+  font-family: 'Open Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  gap: 113px;
+  width: 100%;
+}
+
+.paginationWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .tableHeader {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .paginationWrapper {
+    margin-left: 0;
+  }
+
+  .legendContainer {
+    flex-wrap: wrap;
+  }
+}
