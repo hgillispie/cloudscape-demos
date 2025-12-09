@@ -212,11 +212,9 @@ export function App() {
                     filterPlaceholder: 'Filter data',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (value) => {
-                      const date = new Date(value);
-                      return `x${date.getDate()}`;
-                    },
-                    yTickFormatter: (value) => `y${value}`,
+                    xTickFormatter: (value) =>
+                      value instanceof Date ? `x${value.getDate()}` : String(value),
+                    yTickFormatter: (value) => `y${Number(value).toFixed(0)}`,
                   }}
                   hideFilter
                   hideLegend={false}
@@ -256,8 +254,8 @@ export function App() {
                     filterPlaceholder: 'Filter data',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    xTickFormatter: (value) => value,
-                    yTickFormatter: (value) => `y${value}`,
+                    xTickFormatter: (value) => String(value),
+                    yTickFormatter: (value) => `y${Number(value).toFixed(0)}`,
                   }}
                   hideFilter
                   hideLegend={false}
