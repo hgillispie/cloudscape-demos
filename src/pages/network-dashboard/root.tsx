@@ -17,8 +17,6 @@ import Pagination from '@cloudscape-design/components/pagination';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Table from '@cloudscape-design/components/table';
 
-import styles from './styles.module.scss';
-
 export function NetworkDashboard() {
   const [searchValue, setSearchValue] = useState('');
   const [selectedItems, setSelectedItems] = useState([]);
