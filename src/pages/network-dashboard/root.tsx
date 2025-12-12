@@ -10,11 +10,14 @@ import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import Button from '@cloudscape-design/components/button';
 import Container from '@cloudscape-design/components/container';
 import Flashbar from '@cloudscape-design/components/flashbar';
+import Grid from '@cloudscape-design/components/grid';
 import Header from '@cloudscape-design/components/header';
 import Input from '@cloudscape-design/components/input';
 import Pagination from '@cloudscape-design/components/pagination';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Table from '@cloudscape-design/components/table';
+
+import styles from './styles.module.scss';
 
 export function NetworkDashboard() {
   const [searchValue, setSearchValue] = useState('');
@@ -169,11 +172,13 @@ export function NetworkDashboard() {
 
           {flashbarItems.length > 0 && <Flashbar items={flashbarItems} />}
 
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-            <Container
-              header={<Header variant="h2">Network traffic</Header>}
-              style={{ flex: '1 1 500px', minWidth: '300px' }}
-            >
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, s: 12, m: 6, l: 6, xl: 6 } },
+              { colspan: { default: 12, s: 12, m: 6, l: 6, xl: 6 } },
+            ]}
+          >
+            <Container header={<Header variant="h2">Network traffic</Header>}>
               <AreaChart
                 series={networkTrafficData}
                 xDomain={[new Date(2024, 0, 1), new Date(2024, 0, 12)]}
@@ -203,10 +208,7 @@ export function NetworkDashboard() {
               />
             </Container>
 
-            <Container
-              header={<Header variant="h2">Credit Usage</Header>}
-              style={{ flex: '1 1 500px', minWidth: '300px' }}
-            >
+            <Container header={<Header variant="h2">Credit Usage</Header>}>
               <BarChart
                 series={[
                   {
@@ -236,7 +238,7 @@ export function NetworkDashboard() {
                 yTitle=""
               />
             </Container>
-          </div>
+          </Grid>
 
           <Container
             header={
@@ -274,7 +276,7 @@ export function NetworkDashboard() {
                   type="search"
                   value={searchValue}
                   onChange={({ detail }) => setSearchValue(detail.value)}
-                  placeholder="Search devices"
+                  placeholder="Placeholder"
                 />
               }
               header={<Header counter={`(${deviceItems.length})`}>Devices</Header>}
