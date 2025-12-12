@@ -188,11 +188,7 @@ export function NetworkDashboard() {
                   legendAriaLabel: 'Legend',
                   chartAriaRoleDescription: 'area chart',
                   xTickFormatter: e =>
-                    e
-                      .toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-                      .split(' ')
-                      .reverse()
-                      .join(' '),
+                    e.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).split(' ').reverse().join(' '),
                   yTickFormatter: undefined,
                 }}
                 ariaLabel="Network traffic area chart"
