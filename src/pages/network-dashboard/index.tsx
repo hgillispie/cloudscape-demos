@@ -154,12 +154,12 @@ export default function NetworkDashboard() {
                   </Button>
                 }
               >
-                Network Administration Dashboard
+                <p>Network Admin Dashboard</p>
               </Header>
               <Flashbar
                 items={[
                   {
-                    type: 'warning',
+                    type: 'error',
                     dismissible: true,
                     content: 'This is a warning message',
                     id: 'warning-message',
