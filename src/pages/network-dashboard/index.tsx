@@ -87,43 +87,43 @@ export default function NetworkDashboard() {
     {
       id: 'column1',
       header: 'Column header',
-      cell: (item) => item.column1,
+      cell: item => item.column1,
       sortingField: 'column1',
     },
     {
       id: 'column2',
       header: 'Column header',
-      cell: (item) => item.column2,
+      cell: item => item.column2,
       sortingField: 'column2',
     },
     {
       id: 'column3',
       header: 'Column header',
-      cell: (item) => item.column3,
+      cell: item => item.column3,
       sortingField: 'column3',
     },
     {
       id: 'column4',
       header: 'Column header',
-      cell: (item) => item.column4,
+      cell: item => item.column4,
       sortingField: 'column4',
     },
     {
       id: 'column5',
       header: 'Column header',
-      cell: (item) => item.column5,
+      cell: item => item.column5,
       sortingField: 'column5',
     },
     {
       id: 'column6',
       header: 'Column header',
-      cell: (item) => item.column6,
+      cell: item => item.column6,
       sortingField: 'column6',
     },
     {
       id: 'column7',
       header: 'Column header',
-      cell: (item) => item.column7,
+      cell: item => item.column7,
       sortingField: 'column7',
     },
   ];
@@ -176,10 +176,7 @@ export default function NetworkDashboard() {
               <Container>
                 <AreaChart
                   series={networkTrafficData}
-                  xDomain={[
-                    new Date(2024, 0, 1),
-                    new Date(2024, 0, 12),
-                  ]}
+                  xDomain={[new Date(2024, 0, 1), new Date(2024, 0, 12)]}
                   yDomain={[0, 6]}
                   height={300}
                   xTitle="Day"
@@ -191,9 +188,8 @@ export default function NetworkDashboard() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (value) =>
-                      `x${new Date(value).getDate()}`,
-                    yTickFormatter: (value) => `y${Math.round(value)}`,
+                    xTickFormatter: value => `x${new Date(value).getDate()}`,
+                    yTickFormatter: value => `y${Math.round(value)}`,
                   }}
                   legendTitle="Legend"
                   statusType="finished"
@@ -210,7 +206,7 @@ export default function NetworkDashboard() {
                       data: creditUsageData,
                     },
                   ]}
-                  xDomain={creditUsageData.map((d) => d.x)}
+                  xDomain={creditUsageData.map(d => d.x)}
                   yDomain={[0, 300]}
                   height={300}
                   xTitle="Day"
@@ -222,7 +218,7 @@ export default function NetworkDashboard() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    yTickFormatter: (value) => `y${Math.round(value)}`,
+                    yTickFormatter: value => `y${Math.round(value)}`,
                   }}
                   legendTitle="Legend"
                   statusType="finished"
@@ -236,9 +232,7 @@ export default function NetworkDashboard() {
               items={tableItems}
               selectionType="multi"
               selectedItems={selectedItems}
-              onSelectionChange={({ detail }) =>
-                setSelectedItems(detail.selectedItems)
-              }
+              onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
               header={
                 <Header
                   variant="h2"
@@ -265,17 +259,13 @@ export default function NetworkDashboard() {
                 <Pagination
                   currentPageIndex={currentPage}
                   pagesCount={5}
-                  onChange={({ detail }) =>
-                    setCurrentPage(detail.currentPageIndex)
-                  }
+                  onChange={({ detail }) => setCurrentPage(detail.currentPageIndex)}
                 />
               }
               ariaLabels={{
                 selectionGroupLabel: 'Items selection',
                 itemSelectionLabel: ({ selectedItems }, item) => {
-                  const isItemSelected = selectedItems.filter(
-                    (i) => i.id === item.id
-                  ).length;
+                  const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
                   return `${item.id} is ${isItemSelected ? '' : 'not '}selected`;
                 },
               }}
