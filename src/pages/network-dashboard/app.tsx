@@ -14,34 +14,33 @@ import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
 import Table from '@cloudscape-design/components/table';
 import Flashbar from '@cloudscape-design/components/flashbar';
-import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
-// Sample data for Network Traffic chart
+// Chart data for Network Traffic
 const networkTrafficData = [
-  { x: 'x1', y1: 150, y2: 130 },
-  { x: 'x2', y1: 180, y2: 160 },
-  { x: 'x3', y1: 200, y2: 185 },
-  { x: 'x4', y1: 220, y2: 210 },
-  { x: 'x5', y1: 250, y2: 240 },
-  { x: 'x6', y1: 280, y2: 270 },
-  { x: 'x7', y1: 260, y2: 250 },
-  { x: 'x8', y1: 240, y2: 230 },
-  { x: 'x9', y1: 210, y2: 200 },
-  { x: 'x10', y1: 190, y2: 180 },
-  { x: 'x11', y1: 170, y2: 160 },
-  { x: 'x12', y1: 150, y2: 140 },
+  { x: 'Day 1', y: 150 },
+  { x: 'Day 2', y: 180 },
+  { x: 'Day 3', y: 200 },
+  { x: 'Day 4', y: 220 },
+  { x: 'Day 5', y: 250 },
+  { x: 'Day 6', y: 280 },
+  { x: 'Day 7', y: 260 },
+  { x: 'Day 8', y: 240 },
+  { x: 'Day 9', y: 210 },
+  { x: 'Day 10', y: 190 },
+  { x: 'Day 11', y: 170 },
+  { x: 'Day 12', y: 150 },
 ];
 
-// Sample data for Credit Usage chart
+// Chart data for Credit Usage
 const creditUsageData = [
-  { x: 'x1', y: 183 },
-  { x: 'x2', y: 257 },
-  { x: 'x3', y: 213 },
-  { x: 'x4', y: 122 },
-  { x: 'x5', y: 210 },
+  { x: 'Mon', y: 183 },
+  { x: 'Tue', y: 257 },
+  { x: 'Wed', y: 213 },
+  { x: 'Thu', y: 122 },
+  { x: 'Fri', y: 210 },
 ];
 
 // Sample data for devices table
@@ -153,10 +152,7 @@ export function App() {
                     type: 'warning',
                     content: 'This is a warning message',
                     dismissible: true,
-                    dismissLabel: 'Dismiss',
                     onDismiss: () => setShowWarning(false),
-                    buttonText: 'Dismiss',
-                    onButtonClick: () => setShowWarning(false),
                   },
                 ]}
               />
@@ -164,104 +160,52 @@ export function App() {
 
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
               <Container>
-                <Box variant="h2" padding={{ bottom: 's' }}>
-                  Network traffic
-                </Box>
-                <AreaChart
-                  series={[
-                    {
-                      title: 'Site 1',
-                      type: 'area',
-                      data: networkTrafficData.map(d => ({ x: d.x, y: d.y1 })),
-                      valueFormatter: (value) => `${value}`,
-                    },
-                    {
-                      title: 'Site 2',
-                      type: 'area',
-                      data: networkTrafficData.map(d => ({ x: d.x, y: d.y2 })),
-                      valueFormatter: (value) => `${value}`,
-                    },
-                  ]}
-                  xDomain={networkTrafficData.map(d => d.x)}
-                  yDomain={[0, 300]}
-                  i18nStrings={{
-                    filterLabel: 'Filter displayed data',
-                    filterPlaceholder: 'Filter data',
-                    filterSelectedAriaLabel: 'selected',
-                    legendAriaLabel: 'Legend',
-                    chartAriaRoleDescription: 'area chart',
-                    xAxisAriaRoleDescription: 'x axis',
-                    yAxisAriaRoleDescription: 'y axis',
-                  }}
-                  ariaLabel="Network traffic area chart"
-                  height={300}
-                  xScaleType="categorical"
-                  xTitle="Day"
-                  yTitle=""
-                  empty={
-                    <Box textAlign="center" color="inherit">
-                      <b>No data available</b>
-                      <Box variant="p" color="inherit">
-                        There is no data available
-                      </Box>
-                    </Box>
-                  }
-                  noMatch={
-                    <Box textAlign="center" color="inherit">
-                      <b>No matching data</b>
-                      <Box variant="p" color="inherit">
-                        There is no matching data to display
-                      </Box>
-                    </Box>
-                  }
-                />
-              </Container>
-
-              <Container>
-                <Box variant="h2" padding={{ bottom: 's' }}>
-                  Credit Usage
-                </Box>
+                <Header variant="h2" description="Daily network traffic">
+                  Network Traffic
+                </Header>
                 <BarChart
                   series={[
                     {
                       title: 'Site 1',
                       type: 'bar',
+                      data: networkTrafficData,
+                    },
+                  ]}
+                  xDomain={networkTrafficData.map(d => d.x)}
+                  yDomain={[0, 300]}
+                  hideFilter={true}
+                  hideLegend={true}
+                  fitHeight={true}
+                  height={20}
+                  xScaleType="categorical"
+                  xTitle="Day"
+                  yTitle=""
+                  ariaLabel="Network traffic bar chart"
+                />
+              </Container>
+
+              <Container>
+                <Header variant="h2" description="Daily credit usage">
+                  Credit Usage
+                </Header>
+                <BarChart
+                  series={[
+                    {
+                      title: 'Credits Used',
+                      type: 'bar',
                       data: creditUsageData,
-                      valueFormatter: (value) => `${value}`,
                     },
                   ]}
                   xDomain={creditUsageData.map(d => d.x)}
                   yDomain={[0, 300]}
-                  i18nStrings={{
-                    filterLabel: 'Filter displayed data',
-                    filterPlaceholder: 'Filter data',
-                    filterSelectedAriaLabel: 'selected',
-                    legendAriaLabel: 'Legend',
-                    chartAriaRoleDescription: 'bar chart',
-                    xAxisAriaRoleDescription: 'x axis',
-                    yAxisAriaRoleDescription: 'y axis',
-                  }}
-                  ariaLabel="Credit usage bar chart"
-                  height={300}
+                  hideFilter={true}
+                  hideLegend={true}
+                  fitHeight={true}
+                  height={20}
                   xScaleType="categorical"
                   xTitle="Day"
                   yTitle=""
-                  empty={
-                    <Box textAlign="center" color="inherit">
-                      <b>No data available</b>
-                      <Box variant="p" color="inherit">
-                        There is no data available
-                      </Box>
-                    </Box>
-                  }
-                  noMatch={
-                    <Box textAlign="center" color="inherit">
-                      <b>No matching data</b>
-                      <Box variant="p" color="inherit">
-                        There is no matching data to display
-                      </Box>
-                    </Box>
-                  }
+                  ariaLabel="Credit usage bar chart"
                 />
               </Container>
             </Grid>
@@ -294,7 +238,7 @@ export function App() {
                 <Grid gridDefinition={[{ colspan: { default: 12, s: 6 } }, { colspan: { default: 12, s: 6 } }]}>
                   <TextFilter
                     filteringText={filterText}
-                    filteringPlaceholder="Placeholder"
+                    filteringPlaceholder="Find devices"
                     filteringAriaLabel="Filter devices"
                     onChange={({ detail }) => {
                       setFilterText(detail.filteringText);
