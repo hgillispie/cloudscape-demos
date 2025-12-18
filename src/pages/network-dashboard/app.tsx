@@ -59,43 +59,43 @@ const columnDefinitions = [
   {
     id: 'name',
     header: 'Device Name',
-    cell: (item: typeof devicesData[0]) => item.name,
+    cell: (item: (typeof devicesData)[0]) => item.name,
     sortingField: 'name',
   },
   {
     id: 'ipAddress',
     header: 'IP Address',
-    cell: (item: typeof devicesData[0]) => item.ipAddress,
+    cell: (item: (typeof devicesData)[0]) => item.ipAddress,
     sortingField: 'ipAddress',
   },
   {
     id: 'macAddress',
     header: 'MAC Address',
-    cell: (item: typeof devicesData[0]) => item.macAddress,
+    cell: (item: (typeof devicesData)[0]) => item.macAddress,
     sortingField: 'macAddress',
   },
   {
     id: 'status',
     header: 'Status',
-    cell: (item: typeof devicesData[0]) => item.status,
+    cell: (item: (typeof devicesData)[0]) => item.status,
     sortingField: 'status',
   },
   {
     id: 'type',
     header: 'Type',
-    cell: (item: typeof devicesData[0]) => item.type,
+    cell: (item: (typeof devicesData)[0]) => item.type,
     sortingField: 'type',
   },
   {
     id: 'location',
     header: 'Location',
-    cell: (item: typeof devicesData[0]) => item.location,
+    cell: (item: (typeof devicesData)[0]) => item.location,
     sortingField: 'location',
   },
   {
     id: 'lastSeen',
     header: 'Last Seen',
-    cell: (item: typeof devicesData[0]) => item.lastSeen,
+    cell: (item: (typeof devicesData)[0]) => item.lastSeen,
     sortingField: 'lastSeen',
   },
 ];
@@ -107,13 +107,11 @@ export function App() {
   const [showWarning, setShowWarning] = useState(true);
   const itemsPerPage = 5;
 
-  const filteredDevices = devicesData.filter(device =>
-    device.name.toLowerCase().includes(filterText.toLowerCase())
-  );
+  const filteredDevices = devicesData.filter(device => device.name.toLowerCase().includes(filterText.toLowerCase()));
 
   const paginatedDevices = filteredDevices.slice(
     (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage
+    currentPageIndex * itemsPerPage,
   );
 
   return (
