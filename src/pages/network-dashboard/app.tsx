@@ -101,7 +101,7 @@ export function App() {
   const [filterText, setFilterText] = useState('');
   const [flashbarItems, setFlashbarItems] = useState([
     {
-      type: 'warning' as const,
+      type: 'error' as const,
       dismissible: true,
       dismissLabel: 'Dismiss message',
       onDismiss: () => setFlashbarItems([]),
