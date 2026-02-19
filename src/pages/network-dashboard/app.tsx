@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: MIT-0
 import React, { useState } from 'react';
 
+import Alert from '@cloudscape-design/components/alert';
 import AppLayout from '@cloudscape-design/components/app-layout';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import Button from '@cloudscape-design/components/button';
 import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Container from '@cloudscape-design/components/container';
 import ContentLayout from '@cloudscape-design/components/content-layout';
-import Flashbar from '@cloudscape-design/components/flashbar';
 import Header from '@cloudscape-design/components/header';
 import Input from '@cloudscape-design/components/input';
 import Pagination from '@cloudscape-design/components/pagination';
@@ -99,16 +99,7 @@ export function App() {
   const [selectedItems, setSelectedItems] = useState<typeof tableItems>([]);
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [filterText, setFilterText] = useState('');
-  const [flashbarItems, setFlashbarItems] = useState([
-    {
-      type: 'error' as const,
-      dismissible: true,
-      dismissLabel: 'Dismiss message',
-      onDismiss: () => setFlashbarItems([]),
-      content: 'This is a warning message',
-      id: 'warning_message_1',
-    },
-  ]);
+  const [alertVisible, setAlertVisible] = useState(true);
 
   const itemsPerPage = 10;
   const filteredItems = tableItems.filter(item =>
@@ -148,7 +139,16 @@ export function App() {
           }
         >
           <SpaceBetween size="l">
-            {flashbarItems.length > 0 && <Flashbar items={flashbarItems} />}
+            {alertVisible && (
+              <Alert
+                type="error"
+                dismissible
+                dismissAriaLabel="Dismiss message"
+                onDismiss={() => setAlertVisible(false)}
+              >
+                This is a warning message
+              </Alert>
+            )}
 
             <ColumnLayout columns={2} variant="text-grid">
               <Container
