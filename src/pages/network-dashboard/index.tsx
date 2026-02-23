@@ -9,7 +9,7 @@ import Button from '@cloudscape-design/components/button';
 import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Container from '@cloudscape-design/components/container';
 import ContentLayout from '@cloudscape-design/components/content-layout';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Header from '@cloudscape-design/components/header';
 import Input from '@cloudscape-design/components/input';
 import Pagination from '@cloudscape-design/components/pagination';
@@ -160,18 +160,14 @@ export default function NetworkDashboard() {
         }
         notifications={
           !warningDismissed ? (
-            <Flashbar
-              items={[
-                {
-                  type: 'warning',
-                  content: 'This is a warning message',
-                  dismissible: true,
-                  dismissLabel: 'Dismiss',
-                  onDismiss: () => setWarningDismissed(true),
-                  id: 'warning-msg',
-                },
-              ]}
-            />
+            <Alert
+              type="warning"
+              dismissible
+              dismissAriaLabel="Dismiss"
+              onDismiss={() => setWarningDismissed(true)}
+            >
+              This is a warning message
+            </Alert>
           ) : undefined
         }
         content={
