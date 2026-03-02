@@ -187,7 +187,16 @@ export default function NetworkDashboard() {
                 </Button>
               }
             >
-              Network Adminstration Dashboard
+              <Box
+                fontSize="heading-xl"
+                fontWeight="heavy"
+                display="inline"
+                color="inherit"
+              >
+                <span style={{ fontFamily: 'Arial, sans-serif', fontWeight: 800, marginLeft: '1px' }}>
+                  Network Adminstration Dashboard
+                </span>
+              </Box>
             </Header>
 
             {/* Search and Pagination */}
