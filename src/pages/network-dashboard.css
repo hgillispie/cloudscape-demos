@@ -1,0 +1,27 @@
+/* Custom styling for network dashboard */
+
+/* Warning message banner - custom red background */
+.custom-flashbar-wrapper [class*="flash"],
+.custom-flashbar-wrapper [class*="flash-body"],
+.custom-flashbar-wrapper div[class*="flash"] {
+  background-color: rgba(230, 28, 28, 1) !important;
+}
+
+/* Override Cloudscape error type styling */
+.custom-flashbar-wrapper [class*="type-error"] {
+  background-color: rgba(230, 28, 28, 1) !important;
+}
+
+/* Chart filter label text - pure black */
+.custom-chart-wrapper label,
+.custom-chart-wrapper [class*="filter"] label,
+.custom-chart-wrapper [class*="filter"] span,
+.custom-chart-wrapper [class*="filter-container"] * {
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+/* Additional targeting for form fields in charts */
+.custom-chart-wrapper .awsui-form-field label,
+.custom-chart-wrapper .awsui-select label {
+  color: rgba(0, 0, 0, 1) !important;
+}
