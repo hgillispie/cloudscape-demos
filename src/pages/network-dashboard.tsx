@@ -11,7 +11,7 @@ import Grid from '@cloudscape-design/components/grid';
 import Button from '@cloudscape-design/components/button';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Table from '@cloudscape-design/components/table';
 import Box from '@cloudscape-design/components/box';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
@@ -23,16 +23,7 @@ export default function NetworkDashboard() {
   const [filteringText, setFilteringText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [flashbarItems, setFlashbarItems] = useState([
-    {
-      type: 'error' as const,
-      content: 'This is a warning message',
-      dismissible: true,
-      dismissLabel: 'Dismiss',
-      onDismiss: () => setFlashbarItems([]),
-      id: 'warning-message',
-    },
-  ]);
+  const [alertVisible, setAlertVisible] = useState(true);
 
   // Network Traffic data
   const networkTrafficSeries: AreaChartProps.Series<number>[] = [
@@ -227,7 +218,11 @@ export default function NetworkDashboard() {
             </Grid>
 
             {/* Warning Banner */}
-            <Flashbar items={flashbarItems} />
+            {alertVisible && (
+              <Alert type="error" dismissible onDismiss={() => setAlertVisible(false)}>
+                This is a warning message
+              </Alert>
+            )}
 
             {/* Charts */}
             <Grid
