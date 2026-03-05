@@ -25,7 +25,7 @@ export default function NetworkDashboard() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [flashbarItems, setFlashbarItems] = useState([
     {
-      type: 'warning' as const,
+      type: 'error' as const,
       content: 'This is a warning message',
       dismissible: true,
       dismissLabel: 'Dismiss',
