@@ -191,7 +191,12 @@ export default function NetworkDashboard() {
             </Header>
 
             {/* Search and Pagination */}
-            <Grid gridDefinition={[{ colspan: { default: 12, xs: 8 } }, { colspan: { default: 12, xs: 4 } }]}>
+            <Grid
+              gridDefinition={[
+                { colspan: { default: 12, xxs: 12, xs: 12, s: 8, m: 8, l: 8, xl: 8 } },
+                { colspan: { default: 12, xxs: 12, xs: 12, s: 4, m: 4, l: 4, xl: 4 } },
+              ]}
+            >
               <TextFilter
                 filteringText={filteringText}
                 filteringPlaceholder="Placeholder"
@@ -216,7 +221,12 @@ export default function NetworkDashboard() {
             <Flashbar items={flashbarItems} />
 
             {/* Charts */}
-            <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+            <Grid
+              gridDefinition={[
+                { colspan: { default: 12, xxs: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+                { colspan: { default: 12, xxs: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+              ]}
+            >
               <Container>
                 <AreaChart
                   series={networkTrafficSeries}
@@ -267,6 +277,8 @@ export default function NetworkDashboard() {
               selectionType="multi"
               selectedItems={selectedItems}
               onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems as any)}
+              variant="container"
+              stickyHeader
               header={
                 <Header
                   variant="h2"
