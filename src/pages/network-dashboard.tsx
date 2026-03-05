@@ -18,6 +18,7 @@ import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import { AreaChartProps, BarChartProps } from '@cloudscape-design/components';
+import './network-dashboard.css';
 
 export default function NetworkDashboard() {
   const [filteringText, setFilteringText] = useState('');
@@ -25,7 +26,7 @@ export default function NetworkDashboard() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [flashbarItems, setFlashbarItems] = useState([
     {
-      type: 'warning' as const,
+      type: 'error' as const,
       content: 'This is a warning message',
       dismissible: true,
       dismissLabel: 'Dismiss',
@@ -213,29 +214,33 @@ export default function NetworkDashboard() {
             </Grid>
 
             {/* Warning Banner */}
-            <Flashbar items={flashbarItems} />
+            <div className="custom-flashbar-wrapper">
+              <Flashbar items={flashbarItems} />
+            </div>
 
             {/* Charts */}
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
               <Container>
-                <AreaChart
-                  series={networkTrafficSeries}
-                  xTitle="Day"
-                  yTitle="Network traffic"
-                  height={300}
-                  ariaLabel="Network traffic area chart"
-                  i18nStrings={{
-                    filterLabel: 'Filter displayed data',
-                    filterPlaceholder: 'Filter data',
-                    legendAriaLabel: 'Legend',
-                    chartAriaRoleDescription: 'area chart',
-                    xAxisAriaRoleDescription: 'x axis',
-                    yAxisAriaRoleDescription: 'y axis',
-                  }}
-                  xDomain={[1, 12]}
-                  xTickFormatter={value => `x${value}`}
-                  yTickFormatter={value => `y${value}`}
-                />
+                <div className="custom-chart-wrapper">
+                  <AreaChart
+                    series={networkTrafficSeries}
+                    xTitle="Day"
+                    yTitle="Network traffic"
+                    height={300}
+                    ariaLabel="Network traffic area chart"
+                    i18nStrings={{
+                      filterLabel: 'Filter displayed data',
+                      filterPlaceholder: 'Filter data',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'area chart',
+                      xAxisAriaRoleDescription: 'x axis',
+                      yAxisAriaRoleDescription: 'y axis',
+                    }}
+                    xDomain={[1, 12]}
+                    xTickFormatter={value => `x${value}`}
+                    yTickFormatter={value => `y${value}`}
+                  />
+                </div>
               </Container>
 
               <Container>
