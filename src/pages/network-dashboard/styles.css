@@ -1,0 +1,51 @@
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.dashboard-page-header {
+  padding-top: 8px;
+}
+
+.dashboard-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dashboard-filter {
+  flex: 1;
+  max-width: 600px;
+}
+
+.dashboard-pagination {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.dashboard-charts {
+  margin-top: 8px;
+}
+
+.dashboard-devices-section {
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dashboard-filter {
+    max-width: 100%;
+  }
+
+  .dashboard-pagination {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
