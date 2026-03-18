@@ -10,7 +10,7 @@ import Button from '@cloudscape-design/components/button';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
@@ -80,7 +80,16 @@ const deviceColumnDefinitions = [
 export default function NetworkDashboard() {
   const [filterText, setFilterText] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
-  const [alertVisible, setAlertVisible] = useState(true);
+  const [flashbarItems, setFlashbarItems] = useState([
+    {
+      type: 'warning' as const,
+      content: 'This is a warning message',
+      dismissible: true,
+      dismissLabel: 'Dismiss',
+      onDismiss: () => setFlashbarItems([]),
+      id: 'warning-message',
+    },
+  ]);
   const [selectedDevices, setSelectedDevices] = useState<typeof deviceTableItems>([]);
 
   return (
@@ -134,18 +143,7 @@ export default function NetworkDashboard() {
                   />
                 </div>
 
-                {alertVisible && (
-                  <Alert
-                    type="warning"
-                    action={
-                      <Button variant="link" onClick={() => setAlertVisible(false)}>
-                        Dismiss
-                      </Button>
-                    }
-                  >
-                    This is a warning message
-                  </Alert>
-                )}
+                <Flashbar items={flashbarItems} />
               </SpaceBetween>
             </SpaceBetween>
           }
