@@ -1,1 +1,3 @@
 When adding new pages make sure to link to them from the homepage in src/pages/index.tsx
+
+Ensure all new pages are responsive

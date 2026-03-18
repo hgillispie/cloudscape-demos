@@ -1,0 +1,16 @@
+.nd-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nd-search-wrapper {
+  flex: 1;
+  max-width: 600px;
+}
+
+.nd-pagination-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
