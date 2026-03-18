@@ -13,7 +13,7 @@ import Pagination from '@cloudscape-design/components/pagination';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Table from '@cloudscape-design/components/table';
 import TextFilter from '@cloudscape-design/components/text-filter';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Container from '@cloudscape-design/components/container';
 
@@ -161,16 +161,22 @@ export function App() {
                 </div>
               </div>
 
-              {warningVisible && (
-                <Alert
-                  type="warning"
-                  dismissible
-                  onDismiss={() => setWarningVisible(false)}
-                  dismissAriaLabel="Dismiss warning"
-                >
-                  This is a warning message
-                </Alert>
-              )}
+              <Flashbar
+                items={
+                  warningVisible
+                    ? [
+                        {
+                          type: 'warning',
+                          dismissible: true,
+                          onDismiss: () => setWarningVisible(false),
+                          dismissLabel: 'Dismiss',
+                          content: 'This is a warning message',
+                          id: 'warning-message',
+                        },
+                      ]
+                    : []
+                }
+              />
             </SpaceBetween>
           }
         >
