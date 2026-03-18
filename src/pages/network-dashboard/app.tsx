@@ -133,7 +133,7 @@ export function App() {
                   </Button>
                 }
               >
-                Network Adminstration Dashboard
+                <span className="nd-title">Network Adminstration Dashboard</span>
               </Header>
 
               <div>

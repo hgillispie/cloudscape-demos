@@ -14,3 +14,23 @@
   align-items: center;
   flex-shrink: 0;
 }
+
+.nd-title {
+  color: rgba(54, 128, 222, 1);
+  font-weight: 800;
+}
+
+/* Target the Flashbar warning item */
+[data-itemid="warning-message"] {
+  background-color: rgba(222, 30, 30, 1) !important;
+}
+
+/* Target the flash inner container */
+[data-itemid="warning-message"] > div {
+  background-color: rgba(222, 30, 30, 1) !important;
+}
+
+/* Target all nested divs to ensure full coverage */
+[data-itemid="warning-message"] div {
+  background-color: rgba(222, 30, 30, 1) !important;
+}
