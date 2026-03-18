@@ -166,7 +166,7 @@ export function App() {
                   warningVisible
                     ? [
                         {
-                          type: 'warning',
+                          type: 'error',
                           dismissible: true,
                           onDismiss: () => setWarningVisible(false),
                           dismissLabel: 'Dismiss',
