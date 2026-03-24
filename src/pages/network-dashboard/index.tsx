@@ -61,7 +61,7 @@ const networkTrafficSeries: any[] = [
     title: 'Performance goal',
     type: 'threshold',
     y: 3.5,
-    color: '#5F6B7A',
+    color: 'rgba(74, 74, 74, 1)',
   },
 ];
 
@@ -82,7 +82,7 @@ const creditUsageSeries: any[] = [
     title: 'Performance goal',
     type: 'threshold',
     y: 3.8,
-    color: '#5F6B7A',
+    color: 'rgba(74, 74, 74, 1)',
   },
 ];
 
@@ -136,7 +136,7 @@ export default function NetworkDashboard() {
             <SpaceBetween size="m">
               <Header
                 variant="h1"
-                description="Network Traffic, Credit Usage, and Your Devices"
+                description={<span style={{ fontWeight: 600 }}>Network Traffic, Credit Usage, and Your Devices</span>}
                 actions={
                   <Button variant="primary" iconAlign="right" iconName="external">
                     Refresh Data
@@ -177,7 +177,7 @@ export default function NetworkDashboard() {
                   alertVisible
                     ? [
                         {
-                          type: 'warning',
+                          type: 'error',
                           content: 'This is a warning message',
                           dismissible: true,
                           dismissLabel: 'Dismiss',
