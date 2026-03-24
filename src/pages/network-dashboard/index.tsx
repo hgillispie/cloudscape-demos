@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 
 import AreaChart from '@cloudscape-design/components/area-chart';
 import AppLayout from '@cloudscape-design/components/app-layout';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import Button from '@cloudscape-design/components/button';
-import Checkbox from '@cloudscape-design/components/checkbox';
 import ContentLayout from '@cloudscape-design/components/content-layout';
 import Grid from '@cloudscape-design/components/grid';
 import Header from '@cloudscape-design/components/header';
@@ -173,16 +172,21 @@ export default function NetworkDashboard() {
                 </div>
               </Grid>
 
-              {alertVisible && (
-                <Alert
-                  type="warning"
-                  dismissible
-                  onDismiss={() => setAlertVisible(false)}
-                  dismissAriaLabel="Dismiss warning"
-                >
-                  This is a warning message
-                </Alert>
-              )}
+              <Flashbar
+                items={
+                  alertVisible
+                    ? [
+                        {
+                          type: 'warning',
+                          content: 'This is a warning message',
+                          dismissible: true,
+                          dismissLabel: 'Dismiss',
+                          onDismiss: () => setAlertVisible(false),
+                        },
+                      ]
+                    : []
+                }
+              />
             </SpaceBetween>
           }
         >
