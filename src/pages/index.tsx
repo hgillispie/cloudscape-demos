@@ -31,6 +31,12 @@ const demos = [
   },
   { route: '/dashboard', title: 'Service Dashboard', description: 'Dashboard layout demo.', category: 'Dashboards' },
   {
+    route: '/network-dashboard',
+    title: 'Network Administration Dashboard',
+    description: 'Network monitoring dashboard with traffic charts, device management, and system alerts.',
+    category: 'Dashboards',
+  },
+  {
     route: '/delete-one-click',
     title: 'One-click Delete',
     description: 'Delete with a single click.',
