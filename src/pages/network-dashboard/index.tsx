@@ -9,7 +9,7 @@ import Button from '@cloudscape-design/components/button';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import Grid from '@cloudscape-design/components/grid';
 import Container from '@cloudscape-design/components/container';
 import Box from '@cloudscape-design/components/box';
@@ -155,17 +155,13 @@ export default function NetworkDashboard() {
               </SpaceBetween>
 
               {warningVisible && (
-                <Flashbar
-                  items={[
-                    {
-                      type: 'error',
-                      content: 'This is a warning message',
-                      dismissible: true,
-                      onDismiss: () => setWarningVisible(false),
-                      id: 'network-warning',
-                    },
-                  ]}
-                />
+                <Alert
+                  type="error"
+                  dismissible
+                  onDismiss={() => setWarningVisible(false)}
+                >
+                  This is a warning message
+                </Alert>
               )}
             </SpaceBetween>
           }
