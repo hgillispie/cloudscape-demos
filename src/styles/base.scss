@@ -88,3 +88,19 @@ ul.menu-list {
     }
   }
 }
+
+.network-dashboard__filter-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  > *:first-child {
+    flex: 1 1 300px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
