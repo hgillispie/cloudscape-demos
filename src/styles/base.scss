@@ -89,6 +89,13 @@ ul.menu-list {
   }
 }
 
+.network-dashboard__page-title {
+  h1 span {
+    font-weight: 400 !important;
+    padding-left: 20px;
+  }
+}
+
 .network-dashboard__filter-row {
   display: flex;
   align-items: center;

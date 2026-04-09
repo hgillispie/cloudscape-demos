@@ -116,6 +116,7 @@ export default function NetworkDashboard() {
         <ContentLayout
           header={
             <SpaceBetween size="m">
+              <div className="network-dashboard__page-title">
               <Header
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
@@ -127,6 +128,7 @@ export default function NetworkDashboard() {
               >
                 Network Administration Dashboard
               </Header>
+              </div>
 
               <SpaceBetween size="s" direction="horizontal">
                 <div className="network-dashboard__filter-row">
@@ -156,7 +158,7 @@ export default function NetworkDashboard() {
                 <Flashbar
                   items={[
                     {
-                      type: 'warning',
+                      type: 'error',
                       content: 'This is a warning message',
                       dismissible: true,
                       onDismiss: () => setWarningVisible(false),
