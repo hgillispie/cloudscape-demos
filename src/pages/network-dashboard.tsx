@@ -15,7 +15,7 @@ import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
 import Box from '@cloudscape-design/components/box';
 import Grid from '@cloudscape-design/components/grid';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 
 // --- Data ---
 
@@ -140,17 +140,6 @@ export default function NetworkDashboard() {
 
   const pagedDevices = filteredDevices.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
-  const warningItems = warningDismissed
-    ? []
-    : [
-        {
-          type: 'error' as const,
-          content: 'This is a warning message',
-          dismissible: true,
-          onDismiss: () => setWarningDismissed(true),
-          id: 'network-warning',
-        },
-      ];
 
   return (
     <AppLayout
@@ -213,7 +202,15 @@ export default function NetworkDashboard() {
                 </Box>
               </Grid>
 
-              <Flashbar items={warningItems} />
+              {!warningDismissed && (
+                <Alert
+                  type="error"
+                  dismissible
+                  onDismiss={() => setWarningDismissed(true)}
+                >
+                  This is a warning message
+                </Alert>
+              )}
             </SpaceBetween>
           }
         >
