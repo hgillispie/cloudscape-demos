@@ -144,7 +144,7 @@ export default function NetworkDashboard() {
     ? []
     : [
         {
-          type: 'warning' as const,
+          type: 'error' as const,
           content: 'This is a warning message',
           dismissible: true,
           onDismiss: () => setWarningDismissed(true),
@@ -178,7 +178,7 @@ export default function NetworkDashboard() {
                   </Button>
                 }
               >
-                Network Administration Dashboard
+                <span style={{ fontWeight: 900 }}>Network Administration Dashboard</span>
               </Header>
 
               <Grid
