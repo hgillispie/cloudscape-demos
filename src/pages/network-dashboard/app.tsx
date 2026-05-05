@@ -20,12 +20,35 @@ import TextFilter from '@cloudscape-design/components/text-filter';
 import { CustomAppLayout } from '../commons/common-components';
 
 // ─── Network Traffic Chart Data ───────────────────────────────────────────────
+// The Figma frame shows twelve x-axis labels, so each entry in TRAFFIC_DAYS
+// corresponds by index to the same-position traffic value in SITE1_VALS and
+// SITE2_VALS below. Keeping labels and values separate makes it easy to adjust
+// the visual trend while preserving the Cloudscape AreaChart data-point shape.
 
-const TRAFFIC_DAYS = ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7','Day 8','Day 9','Day 10','Day 11','Day 12'];
+const TRAFFIC_DAYS = [
+  'Day 1',
+  'Day 2',
+  'Day 3',
+  'Day 4',
+  'Day 5',
+  'Day 6',
+  'Day 7',
+  'Day 8',
+  'Day 9',
+  'Day 10',
+  'Day 11',
+  'Day 12',
+];
 
+// Site 1 represents the blue area in the design; Site 2 represents the pink
+// overlay. Values are approximate sample telemetry chosen to match the relative
+// peaks, valleys, and overlap shown in the provided dashboard mockup.
 const SITE1_VALS = [189, 181, 115, 95, 154, 160, 108, 63, 100, 157, 149, 149];
 const SITE2_VALS = [270, 318, 230, 200, 360, 350, 340, 270, 360, 360, 340, 290];
 
+// Cloudscape charts consume a `series` array where each item describes either a
+// plotted data series or an auxiliary threshold. The threshold creates the
+// dashed "Performance goal" line from the design.
 const networkTrafficSeries = [
   {
     title: 'Site 1',
@@ -51,6 +74,8 @@ const networkTrafficSeries = [
 
 const CREDIT_WEEKS = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'];
 
+// The bar chart mirrors the Figma credit usage block: one blue series for Site 1
+// plus a threshold marker to show the performance goal across all bars.
 const creditUsageSeries = [
   {
     title: 'Site 1',
@@ -85,6 +110,9 @@ interface Device {
   trafficIn: string;
 }
 
+// Static device rows keep this demo self-contained while still exercising the
+// table behaviors shown in the design: multi-select, filtering, pagination, and
+// sortable operational columns.
 const ALL_DEVICES: Device[] = [
   { id: '1', deviceName: 'Router-001', ipAddress: '192.168.1.1', macAddress: 'AA:BB:CC:DD:EE:01', deviceType: 'Router', status: 'Online', lastSeen: '1 min ago', trafficIn: '45.2 MB/s' },
   { id: '2', deviceName: 'Switch-002', ipAddress: '192.168.1.2', macAddress: 'AA:BB:CC:DD:EE:02', deviceType: 'Switch', status: 'Online', lastSeen: '2 min ago', trafficIn: '82.7 MB/s' },
@@ -100,6 +128,8 @@ const ALL_DEVICES: Device[] = [
   { id: '12', deviceName: 'Switch-012', ipAddress: '192.168.1.12', macAddress: 'AA:BB:CC:DD:EE:0C', deviceType: 'Switch', status: 'Warning', lastSeen: '6 min ago', trafficIn: '11.2 MB/s' },
 ];
 
+// Column definitions are declared once so both the displayed table and its
+// sorting behavior remain consistent as the data set changes.
 const COLUMN_DEFINITIONS = [
   { id: 'deviceName', header: 'Device Name', cell: (d: Device) => d.deviceName, sortingField: 'deviceName' },
   { id: 'ipAddress', header: 'IP Address', cell: (d: Device) => d.ipAddress, sortingField: 'ipAddress' },
@@ -120,6 +150,9 @@ export function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedDevices, setSelectedDevices] = useState<Device[]>([]);
 
+  // The page-level filter and table filter share this same text value so users
+  // see consistent results whether they search from the header area or directly
+  // from the My Devices table controls.
   const filteredDevices = ALL_DEVICES.filter(
     d =>
       filterText === '' ||
@@ -129,6 +162,8 @@ export function App() {
       d.status.toLowerCase().includes(filterText.toLowerCase())
   );
 
+  // Clamp the page count to at least one so the pagination control remains
+  // stable when the filter returns no matches.
   const totalPages = Math.max(1, Math.ceil(filteredDevices.length / PAGE_SIZE));
   const pagedDevices = filteredDevices.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
@@ -166,6 +201,8 @@ export function App() {
                 Network Administration Dashboard
               </Header>
 
+              {/* Flashbar matches Cloudscape's notification pattern and replaces
+                  the original inline alert while preserving dismiss behavior. */}
               <Flashbar
                 items={
                   warningVisible
