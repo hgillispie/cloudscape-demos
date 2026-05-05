@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 import React, { useState } from 'react';
 
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Box from '@cloudscape-design/components/box';
@@ -166,11 +166,22 @@ export function App() {
                 Network Administration Dashboard
               </Header>
 
-              {warningVisible && (
-                <Alert type="warning" dismissible onDismiss={() => setWarningVisible(false)}>
-                  This is a warning message
-                </Alert>
-              )}
+              <Flashbar
+                items={
+                  warningVisible
+                    ? [
+                        {
+                          id: 'network-dashboard-warning',
+                          type: 'warning',
+                          content: 'This is a warning message',
+                          dismissible: true,
+                          dismissLabel: 'Dismiss warning message',
+                          onDismiss: () => setWarningVisible(false),
+                        },
+                      ]
+                    : []
+                }
+              />
 
               <div className="dashboard-filter-row">
                 <TextFilter
