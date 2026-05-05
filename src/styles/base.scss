@@ -7,6 +7,21 @@ body {
   position: relative;
 }
 
+.dashboard-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  > *:first-child {
+    flex: 1;
+  }
+}
+
+.devices-empty-state {
+  padding: 24px;
+  text-align: center;
+}
+
 .custom-main-header {
   display: block;
   position: sticky;
