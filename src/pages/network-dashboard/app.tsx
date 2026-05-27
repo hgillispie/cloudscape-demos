@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 
 import React, { useState } from 'react';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
@@ -90,15 +90,23 @@ export function App() {
     />
   );
 
-  const notifications = !warningDismissed ? (
-    <Alert
-      type="warning"
-      dismissible
-      onDismiss={() => setWarningDismissed(true)}
-    >
-      This is a warning message
-    </Alert>
-  ) : undefined;
+  const notifications = (
+    <Flashbar
+      items={
+        warningDismissed
+          ? []
+          : [
+              {
+                type: 'warning',
+                content: 'This is a warning message',
+                dismissible: true,
+                onDismiss: () => setWarningDismissed(true),
+                id: 'warning-message',
+              },
+            ]
+      }
+    />
+  );
 
   const content = (
     <SpaceBetween size="l">
