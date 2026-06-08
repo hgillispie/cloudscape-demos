@@ -1,0 +1,8 @@
+.network-dashboard {
+  &__heading {
+    [class*='awsui_heading-text'] {
+      font-size: 36px !important;
+    }
+  }
+
+}
