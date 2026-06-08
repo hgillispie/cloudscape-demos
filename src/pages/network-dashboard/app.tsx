@@ -88,6 +88,7 @@ export function App() {
         <ContentLayout
           header={
             <SpaceBetween size="m">
+              <div className="network-dashboard__heading">
               <Header
                 variant="h1"
                 description="Network Traffic, Credit Usage, and Your Devices"
@@ -99,6 +100,7 @@ export function App() {
               >
                 Network Administration Dashboard
               </Header>
+              </div>
 
               <SpaceBetween size="xs" direction="horizontal" alignItems="center">
                 <div className="network-dashboard__filter-wrapper">
@@ -122,14 +124,16 @@ export function App() {
               </SpaceBetween>
 
               {warningVisible && (
-                <Alert
-                  type="warning"
-                  dismissible
-                  onDismiss={() => setWarningVisible(false)}
-                  dismissAriaLabel="Dismiss warning"
-                >
-                  This is a warning message
-                </Alert>
+                <div className="network-dashboard__alert-error">
+                  <Alert
+                    type="warning"
+                    dismissible
+                    onDismiss={() => setWarningVisible(false)}
+                    dismissAriaLabel="Dismiss warning"
+                  >
+                    This is a warning message
+                  </Alert>
+                </div>
               )}
             </SpaceBetween>
           }

@@ -1,0 +1,13 @@
+.network-dashboard {
+  &__heading {
+    [class*='awsui_heading-text'] {
+      font-size: 36px !important;
+    }
+  }
+
+  &__alert-error {
+    [class*='awsui_alert'] {
+      background-color: rgba(231, 72, 66, 1) !important;
+    }
+  }
+}
