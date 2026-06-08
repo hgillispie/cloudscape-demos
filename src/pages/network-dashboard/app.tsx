@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import AppLayout from '@cloudscape-design/components/app-layout';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
@@ -124,16 +124,17 @@ export function App() {
               </SpaceBetween>
 
               {warningVisible && (
-                <div className="network-dashboard__alert-error">
-                  <Alert
-                    type="warning"
-                    dismissible
-                    onDismiss={() => setWarningVisible(false)}
-                    dismissAriaLabel="Dismiss warning"
-                  >
-                    This is a warning message
-                  </Alert>
-                </div>
+                <Flashbar
+                  items={[
+                    {
+                      type: 'warning',
+                      content: 'This is a warning message',
+                      dismissible: true,
+                      dismissLabel: 'Dismiss warning',
+                      onDismiss: () => setWarningVisible(false),
+                    },
+                  ]}
+                />
               )}
             </SpaceBetween>
           }
