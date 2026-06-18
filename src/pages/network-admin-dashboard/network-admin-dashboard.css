@@ -1,3 +1,25 @@
+.network-admin-page {
+  display: contents;
+}
+
+/* Heading font-weight override */
+.network-admin-page [class*="heading-text-variant-h1"] {
+  font-weight: 900 !important;
+}
+
+/* Warning flash → error red */
+.network-admin-page [class*="flash-type-warning"] {
+  background-color: rgba(228, 11, 38, 1) !important;
+  border-color: rgba(228, 11, 38, 1) !important;
+}
+
+/* Network traffic chart y-title font-weight override */
+.network-admin-page [aria-label="Network traffic area chart"] [class*="chart-title"],
+.network-admin-page [aria-label="Network traffic area chart"] text,
+.network-admin-page [aria-label="Network traffic area chart"] [class*="label"] {
+  font-weight: 900 !important;
+}
+
 .dashboard-filter-row {
   display: flex;
   align-items: center;

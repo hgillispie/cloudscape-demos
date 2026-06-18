@@ -89,6 +89,7 @@ export default function NetworkAdminDashboard() {
       ];
 
   return (
+    <div className="network-admin-page">
     <AppLayout
       navigationHide
       toolsHide
@@ -226,5 +227,6 @@ export default function NetworkAdminDashboard() {
         </SpaceBetween>
       }
     />
+    </div>
   );
 }
