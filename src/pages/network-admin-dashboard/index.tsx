@@ -6,7 +6,7 @@ import Button from '@cloudscape-design/components/button';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
-import Flashbar from '@cloudscape-design/components/flashbar';
+import Alert from '@cloudscape-design/components/alert';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
@@ -76,17 +76,6 @@ export default function NetworkAdminDashboard() {
   const totalPages = Math.ceil(filteredDevices.length / pageSize);
   const pagedDevices = filteredDevices.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  const flashItems = warningDismissed
-    ? []
-    : [
-        {
-          type: 'warning' as const,
-          dismissible: true,
-          content: 'This is a warning message',
-          id: 'network-warning',
-          onDismiss: () => setWarningDismissed(true),
-        },
-      ];
 
   return (
     <div className="network-admin-page">
@@ -101,7 +90,17 @@ export default function NetworkAdminDashboard() {
           ]}
         />
       }
-      notifications={<Flashbar items={flashItems} />}
+      notifications={
+        !warningDismissed && (
+          <Alert
+            type="warning"
+            dismissible
+            onDismiss={() => setWarningDismissed(true)}
+          >
+            This is a warning message
+          </Alert>
+        )
+      }
       content={
         <SpaceBetween size="l">
           <Header
