@@ -1,0 +1,27 @@
+.network-admin-page {
+  display: contents;
+}
+
+/* Heading font-weight override */
+.network-admin-page [class*="heading-text-variant-h1"] {
+  font-weight: 900 !important;
+}
+
+/* Network traffic chart y-title font-weight override */
+.network-admin-page [aria-label="Network traffic area chart"] [class*="chart-title"],
+.network-admin-page [aria-label="Network traffic area chart"] text,
+.network-admin-page [aria-label="Network traffic area chart"] [class*="label"] {
+  font-weight: 900 !important;
+}
+
+.dashboard-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dashboard-filter-row > *:first-child {
+  flex: 1;
+  max-width: 600px;
+}
