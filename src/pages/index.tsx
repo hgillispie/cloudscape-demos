@@ -62,6 +62,12 @@ const demos = [
   { route: '/form-validation', title: 'Form Validation', description: 'Form validation demo.', category: 'Forms' },
   { route: '/manage-tags', title: 'Manage Tags', description: 'Tag management demo.', category: 'Components' },
   {
+    route: '/network-dashboard',
+    title: 'Network Administration Dashboard',
+    description: 'Network traffic, credit usage, and device management dashboard.',
+    category: 'Dashboards',
+  },
+  {
     route: '/non-console',
     title: 'Top Navigation',
     description: 'Non-console top navigation.',
