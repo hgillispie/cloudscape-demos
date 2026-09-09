@@ -1,0 +1,29 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+@use '@cloudscape-design/design-tokens' as cs;
+@use './base';
+
+.network-dashboard-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: cs.$space-scaled-m;
+
+  > :first-child {
+    flex: 1 1 260px;
+    min-inline-size: 200px;
+  }
+}
+
+.network-dashboard-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: cs.$space-scaled-l;
+  align-items: stretch;
+}
+
+.network-dashboard-chart-card {
+  background: cs.$color-background-container-content;
+  padding: cs.$space-scaled-l;
+  min-inline-size: 0;
+}

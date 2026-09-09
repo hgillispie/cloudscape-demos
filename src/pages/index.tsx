@@ -94,6 +94,12 @@ const demos = [
     category: 'Panels',
   },
   { route: '/split-panel-multiple', title: 'Split Panel Multiple', description: 'Split view.', category: 'Panels' },
+  {
+    route: '/network-dashboard',
+    title: 'Network Administration Dashboard',
+    description: 'Network traffic, credit usage, and device management dashboard.',
+    category: 'Dashboards',
+  },
   { route: '/table', title: 'Table View', description: 'Demo of Cloudscape Table component.', category: 'Tables' },
   {
     route: '/table-date-filter',
