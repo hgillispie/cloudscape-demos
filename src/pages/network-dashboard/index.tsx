@@ -63,7 +63,7 @@ export default function NetworkDashboard() {
                   </Button>
                 }
               >
-                Network Adminstration Dashboard
+                <span style={{ color: '#c613d5' }}>Network Adminstration Dashboard</span>
               </Header>
 
               <div className="network-dashboard-toolbar">
