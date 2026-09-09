@@ -8,7 +8,7 @@ import ContentLayout from '@cloudscape-design/components/content-layout';
 import Header from '@cloudscape-design/components/header';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Button from '@cloudscape-design/components/button';
-import Alert from '@cloudscape-design/components/alert';
+import Flashbar from '@cloudscape-design/components/flashbar';
 import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
 import AreaChart from '@cloudscape-design/components/area-chart';
@@ -81,18 +81,22 @@ export default function NetworkDashboard() {
                 <Button variant="icon" iconName="settings" ariaLabel="Settings" />
               </div>
 
-              {warningVisible && (
-                <Alert
-                  type="warning"
-                  action={
-                    <Button variant="inline-link" onClick={() => setWarningVisible(false)}>
-                      Dismiss
-                    </Button>
-                  }
-                >
-                  This is a warning message
-                </Alert>
-              )}
+              <Flashbar
+                items={
+                  warningVisible
+                    ? [
+                        {
+                          type: 'warning',
+                          content: 'This is a warning message',
+                          dismissible: true,
+                          dismissLabel: 'Dismiss',
+                          onDismiss: () => setWarningVisible(false),
+                          id: 'network-dashboard-warning',
+                        },
+                      ]
+                    : []
+                }
+              />
             </SpaceBetween>
           }
         >
